@@ -8,6 +8,7 @@ It uses the following technologies:
 
 * [React](https://github.com/facebook/react)
 * [React Router](https://github.com/rackt/react-router)
+* [JSON Web Token](https://www.npmjs.com/package/jsonwebtoken) JSON Web Token for API authentication
 * [Babel](http://babeljs.io) for ES6 and ES7 magic
 * [Webpack](http://webpack.github.io) for bundling
 * [Webpack Dev Middleware](http://webpack.github.io/docs/webpack-dev-middleware.html)
@@ -28,6 +29,8 @@ It uses the following technologies:
 **Backend**
 
 * [Django](https://www.djangoproject.com/)
+* [Django REST framework](http://www.django-rest-framework.org/) Django REST framework is a powerful and flexible toolkit for building Web APIs.
+* [Django REST framework JSON Web Token](http://getblimp.github.io/django-rest-framework-jwt/) JSON Web Token Authentication support for Django REST Framework
 * [WhiteNoise](http://whitenoise.evans.io/en/latest/django.html) to serve files efficiently from Django
 * [Prospector](http://prospector.landscape.io/en/master/) a complete Python static analysis tool
 * [pytest](http://pytest.org/latest/) a mature full-featured Python testing tool
