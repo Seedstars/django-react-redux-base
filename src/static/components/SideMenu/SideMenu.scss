@@ -1,0 +1,25 @@
+.side-menu {
+  margin-left: -15px;
+  background: transparent;
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+  }
+
+  .navbar-collapse {
+    border: none;
+  }
+
+  .nav {
+    li {
+      a {
+        cursor: pointer;
+      }
+    }
+
+    .side-menu__category {
+      margin: 20px 0 0 15px;
+      text-transform: uppercase;
+    }
+  }
+}
