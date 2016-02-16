@@ -9,14 +9,13 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'email', 'first_name', 'last_name', 'password')
 
-    def create(self, validated_data):
-        """Register an user in the test app."""
-        user = User.objects.create_user(**validated_data)
-
-        return user
-
     def validate_email(self, value):
-        """Validate if email is valid or there is an user using the email."""
+        """
+        Validate if email is valid or there is an user using the email.
+
+        :param value: string
+        :return: string
+        """
 
         if not email_is_valid(value):
             raise serializers.ValidationError('Please use a different email address provider.')

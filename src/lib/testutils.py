@@ -56,6 +56,6 @@ class CustomTestCase(TestCase):
             elif invalid_dict['method'] == 'GET':
                 response = self.client.get(url, data=invalid_dict['data'], format='json')
             else:
-                print('Implement other methods.')
+                print('Implement other methods.')  # pragma: no cover
             error_msg = '{}-{}-{}'.format(invalid_dict['label'], response.status_code, response.content)
             self.assertEqual(response.status_code, invalid_dict['status'], msg=error_msg)
