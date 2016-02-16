@@ -1,0 +1,21 @@
+[
+{
+  "model": "accounts.user",
+  "fields": {
+    "last_name": "",
+    "last_login": "2015-12-29T00:57:23.201Z",
+    "date_joined": "2015-12-29T00:57:23.201Z",
+    "confirmed_email": false,
+    "first_name": "",
+    "email": "a@a.com",
+    "gender": "M",
+    "is_active": true,
+    "password": "pbkdf2_sha256$20000$fSnaTbagnHiD$lZ5k1ZHDNM4oZir2IrWIrcRh0bEh4wYu+uuhh4ZZ9ZQ=",
+    "user_uuid": "7c32d60d-6312-42f6-a73a-22da56b07374",
+    "is_staff": true,
+    "is_superuser": true,
+    "activation_key": "64f5b041-81ed-4251-bf62-54b9c0a14848"
+  },
+  "pk": 1
+}
+]

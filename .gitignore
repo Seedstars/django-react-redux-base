@@ -1,0 +1,39 @@
+# IDEs
+.project
+.pydevproject
+.idea
+.settings
+
+# Random files
+*~
+\#*
+
+src/static_dist/
+src/static_root/
+
+# Python compiled byte code
+*.pyc
+
+# SQLite3 database
+*.sqlite
+
+# Node modules
+node_modules/
+npm-debug.log
+
+# Coverage 
+coverage/
+.coverage
+.cache
+
+# static validation files
+.eslintrc
+.sass-lint.yml
+.prospector.yml
+.coveragerc
+
+# in case we run shippable tests don't include it
+shippable/
+
+# not include scripts because they come from external module
+scripts/

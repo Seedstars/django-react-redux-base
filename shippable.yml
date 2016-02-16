@@ -1,0 +1,49 @@
+# Build Environment
+build_environment: Ubuntu 14.04
+
+# variables used for slack comunication
+env:
+  global:
+    - PROJECT="django-react-redux-jwt-base"
+
+language: python
+
+python:
+  - 3.4
+
+# only build when certain Git branches are updated
+branches:
+  only:
+    - master
+    - staging
+
+install:
+  # install nodejs from nodesource  (shippable wasn't supporting both python and node_js as languages)
+  - wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -
+  - sudo DEBIAN_FRONTEND=noninteractive apt-get install --yes nodejs
+  # now install requirements
+  - npm install
+  - pip install -r py-requirements/dev.txt
+
+# configuration to run tests
+before_script:
+  - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
+  - git submodule init
+  - git submodule update
+  - ./scripts/get_static_validation.sh
+  - npm run compile
+
+
+# run test scripts
+script:
+  - ./scripts/test_shippable_backend.sh
+  - ./scripts/test_shippable_frontend.sh
+
+# Notification
+notifications:
+  email:
+    recipients:
+      - ci@seedstarslabs.com
+    on_success: change
+    on_failure: change

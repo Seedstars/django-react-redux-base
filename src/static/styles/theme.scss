@@ -1,0 +1,61 @@
+@import "core";
+
+h1 {
+  font: $font-hero-heading;
+}
+
+h2 {
+  font: $font-section-heading;
+}
+
+h3 {
+  font: $font-sub-section-heading;
+}
+
+p {
+  font: $font-text;
+  color: $color-silver-dark;
+}
+
+// Navbar
+.navbar {
+  background: $color-purple-default;
+
+  .navbar-brand {
+    color: $color-white;
+  }
+
+  .navbar-right {
+    .dropdown-toggle {
+      color: $color-white;
+    }
+  }
+
+}
+
+// Side menu
+.side-menu {
+  .nav {
+    li {
+      font: $font-text;
+
+      a {
+        color: $color-silver-dark;
+        border-radius: 4px;
+
+        &:hover,
+        &.active {
+          background: $color-purple-light-2;
+        }
+
+        i {
+          color: $color-purple-default;
+        }
+      }
+    }
+
+    .side-menu__category {
+      color: $color-silver-dark;
+    }
+  }
+}
