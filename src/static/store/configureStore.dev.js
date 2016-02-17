@@ -7,8 +7,6 @@ import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools/DevTools';
 
 export default function configureStore(initialState, history) {
-    let createStoreWithMiddleware;
-
     const logger = createLogger();
 
     // Sync dispatched route actions to the history
@@ -16,7 +14,7 @@ export default function configureStore(initialState, history) {
 
     const middleware = applyMiddleware(thunk, logger, reduxRouterMiddleware);
 
-    createStoreWithMiddleware = compose(
+    const createStoreWithMiddleware = compose(
         middleware,
         DevTools.instrument()
     );

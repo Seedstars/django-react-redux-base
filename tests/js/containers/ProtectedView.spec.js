@@ -77,12 +77,13 @@ describe(' Protected View Tests (Container):', () => {
                 expect(h1.text()).to.equal('Welcome back!');
             });
 
-            it('should have one div with class .protected__protected-data with  "Data from server: {props.data}"', () => {
-                const div = wrapper.find('.protected__protected-data');
+            it('should have one div with class .protected__protected-data with  "Data from server: {props.data}"',
+                () => {
+                    const div = wrapper.find('.protected__protected-data');
 
-                expect(div).to.have.length(1);
-                expect(div.text()).to.equal('Data from server:some data');
-            });
+                    expect(div).to.have.length(1);
+                    expect(div.text()).to.equal('Data from server:some data');
+                });
         });
     });
 

@@ -5,14 +5,12 @@ import { syncHistory } from 'react-router-redux';
 import rootReducer from '../reducers';
 
 export default function configureStore(initialState, history) {
-    let createStoreWithMiddleware;
-
     // Sync dispatched route actions to the history
     const reduxRouterMiddleware = syncHistory(history);
 
     const middleware = applyMiddleware(thunk, reduxRouterMiddleware);
 
-    createStoreWithMiddleware = compose(
+    const createStoreWithMiddleware = compose(
         middleware
     );
 
