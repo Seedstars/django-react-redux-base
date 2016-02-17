@@ -52,7 +52,7 @@ describe('Auth Reducers Tests', () => {
             userName: null,
             isAuthenticating: false,
             isAuthenticated: false,
-            statusText: `Authentication Error: 401 something happen`
+            statusText: 'Authentication Error: 401 something happen'
         });
     });
 
