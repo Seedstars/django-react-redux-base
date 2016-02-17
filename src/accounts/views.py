@@ -51,7 +51,7 @@ class UserLoginView(APIView):
 
 
 class UserConfirmEmailView(AtomicMixin, GenericAPIView):
-    serializer_class = ()
+    serializer_class = None
     authentication_classes = ()
 
     def get(self, request, activation_key):
@@ -70,7 +70,7 @@ class UserConfirmEmailView(AtomicMixin, GenericAPIView):
 
 
 class UserEmailConfirmationStatusView(GenericAPIView):
-    serializer_class = ()
+    serializer_class = None
     authentication_classes = (JSONWebTokenAuthentication,)
 
     def get(self, request):
