@@ -10,17 +10,14 @@ describe('SideMenu Tests (Component):', () => {
     describe('Implementation:', () => {
         context('Empty state:', () => {
             let wrapper;
-            let props;
-            let spie;
+            const spie = sinon.spy();
+            const props = {
+                dispatch: spie,
+                pathName: '/'
+            };
 
             beforeEach(() => {
-                spie = sinon.spy();
-                props = {
-                    dispatch: spie,
-                    pathName: '/'
-                };
-
-                wrapper = shallow(<SideMenu {...props} />);
+                wrapper = shallow(<SideMenu {...props}/>);
             });
 
             it('should render correctly', () => {

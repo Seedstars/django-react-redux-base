@@ -20,7 +20,7 @@ export default class Root extends React.Component {
                         <Router history={this.props.history}>
                             {routes}
                         </Router>
-                        <DevTools />
+                        <DevTools/>
                     </div>
                 </Provider>
             </div>
