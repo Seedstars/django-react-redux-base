@@ -14,22 +14,18 @@ describe(' App View Tests (Container):', () => {
     describe('Implementation:', () => {
         context('Empty state:', () => {
             let wrapper;
-            let props;
-            let spies;
-
-            spies = {
+            const spies = {
                 redirect: sinon.spy()
+            };
+            const props = {
+                isAuthenticated: false,
+                children: <div className="test-test"></div>,
+                dispatch: spies.redirect,
+                pathName: '/'
             };
 
             beforeEach(() => {
-                props = {
-                    isAuthenticated: false,
-                    children: <div className="test-test"></div>,
-                    dispatch: spies.redirect,
-                    pathName: '/'
-                };
-
-                wrapper = shallow(<AppNotConnected {...props} />);
+                wrapper = shallow(<AppNotConnected {...props}/>);
             });
 
             it('should render correctly', () => {
@@ -54,22 +50,18 @@ describe(' App View Tests (Container):', () => {
         });
         context('State with autentication:', () => {
             let wrapper;
-            let props;
-            let spies;
-
-            spies = {
+            const spies = {
                 redirect: sinon.spy()
+            };
+            const props = {
+                isAuthenticated: true,
+                children: <div className="test-test"></div>,
+                dispatch: spies.redirect,
+                pathName: '/'
             };
 
             beforeEach(() => {
-                props = {
-                    isAuthenticated: true,
-                    children: <div className="test-test"></div>,
-                    dispatch: spies.redirect,
-                    pathName: '/'
-                };
-
-                wrapper = mount(<AppNotConnected {...props} />);
+                wrapper = mount(<AppNotConnected {...props}/>);
             });
 
             it('should render correctly', () => {

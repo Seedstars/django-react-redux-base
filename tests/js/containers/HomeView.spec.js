@@ -13,14 +13,12 @@ describe('Home View Tests (Container):', () => {
     describe('Implementation:', () => {
         context('Empty state:', () => {
             let wrapper;
-            let props;
+            const props = {
+                statusText: null
+            };
 
             beforeEach(() => {
-                props = {
-                    statusText: null
-                };
-
-                wrapper = shallow(<HomeViewNotConnected {...props} />);
+                wrapper = shallow(<HomeViewNotConnected {...props}/>);
             });
 
             it('should render correctly', () => {
@@ -35,14 +33,12 @@ describe('Home View Tests (Container):', () => {
 
         context('State with statusText:', () => {
             let wrapper;
-            let props;
+            const props = {
+                statusText: 'Some status text'
+            };
 
             beforeEach(() => {
-                props = {
-                    statusText: 'Some status text'
-                };
-
-                wrapper = shallow(<HomeViewNotConnected {...props} />);
+                wrapper = shallow(<HomeViewNotConnected {...props}/>);
             });
 
             it('should render correctly', () => {
@@ -76,7 +72,7 @@ describe('Home View Tests (Container):', () => {
             const mockStore = configureStore(middlewares);
             const store = mockStore(state, expectedActions, done);
 
-            const wrapper = mount(<HomeViewConnected store={store} />);
+            const wrapper = mount(<HomeViewConnected store={store}/>);
 
             it('props', () => {
                 expect(wrapper.node.renderedElement.props.statusText).to.equal(state.auth.statusText);

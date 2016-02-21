@@ -18,23 +18,19 @@ describe('Login View Tests (Container):', () => {
     describe('Implementation:', () => {
         context('Empty State:', () => {
             let wrapper;
-            let props;
-            let spies;
-
-            spies = {};
+            const spies = {
+                authLoginUser: sinon.spy()
+            };
+            const props = {
+                actions: {
+                    authLoginUser: spies.authLoginUser
+                },
+                isAuthenticating: false,
+                statusText: null
+            };
 
             beforeEach(() => {
-                spies = {};
-
-                props = {
-                    actions: {
-                        authLoginUser: spies.authLoginUser = sinon.spy()
-                    },
-                    isAuthenticating: false,
-                    statusText: null
-                };
-
-                wrapper = mount(<LoginViewNotConnected {...props} />);
+                wrapper = mount(<LoginViewNotConnected {...props}/>);
             });
 
             it('should render correctly', () => {
@@ -61,23 +57,19 @@ describe('Login View Tests (Container):', () => {
         });
         context('Wrong login state:', () => {
             let wrapper;
-            let props;
-            let spies;
-
-            spies = {};
+            const spies = {
+                authLoginUser: sinon.spy()
+            };
+            const props = {
+                actions: {
+                    authLoginUser: spies.authLoginUser
+                },
+                isAuthenticating: false,
+                statusText: 'Authentication Error: 401 UNAUTHORIZED'
+            };
 
             beforeEach(() => {
-                spies = {};
-
-                props = {
-                    actions: {
-                        authLoginUser: spies.authLoginUser = sinon.spy()
-                    },
-                    isAuthenticating: false,
-                    statusText: 'Authentication Error: 401 UNAUTHORIZED'
-                };
-
-                wrapper = mount(<LoginViewNotConnected {...props} />);
+                wrapper = mount(<LoginViewNotConnected {...props}/>);
             });
 
             it('should render correctly', () => {

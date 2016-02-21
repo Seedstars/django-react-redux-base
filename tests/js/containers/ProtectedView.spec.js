@@ -18,22 +18,21 @@ describe(' Protected View Tests (Container):', () => {
     describe('Implementation:', () => {
         context('Empty state:', () => {
             let wrapper;
-            let props;
-            let spies;
 
-            spies = {};
+            const spies = {
+                dataFetchProtectedData: sinon.spy()
+            };
+            const props = {
+                isFetching: true,
+                data: 'some random secret data that has to be available',
+                token: 'token',
+                actions: {
+                    dataFetchProtectedData: spies.dataFetchProtectedData
+                }
+            };
 
             beforeEach(() => {
-                props = {
-                    isFetching: true,
-                    data: 'some random secret data that has to be available',
-                    token: 'token',
-                    actions: {
-                        dataFetchProtectedData: spies.dataFetchProtectedData = sinon.spy()
-                    }
-                };
-
-                wrapper = shallow(<ProtectedViewNotConnected {...props} />);
+                wrapper = shallow(<ProtectedViewNotConnected {...props}/>);
             });
 
             it('should render correctly', () => {
@@ -49,21 +48,19 @@ describe(' Protected View Tests (Container):', () => {
 
         context('State with data:', () => {
             let wrapper;
-            let props;
+            const props = {
+                isFetching: false,
+                data: 'some data',
+                token: 'token',
+                actions: {
+                    dataFetchProtectedData: () => {
+                        return null;
+                    }
+                }
+            };
 
             beforeEach(() => {
-                props = {
-                    isFetching: false,
-                    data: 'some data',
-                    token: 'token',
-                    actions: {
-                        dataFetchProtectedData: () => {
-                            return null;
-                        }
-                    }
-                };
-
-                wrapper = shallow(<ProtectedViewNotConnected {...props} />);
+                wrapper = shallow(<ProtectedViewNotConnected {...props}/>);
             });
 
             it('should render correctly', () => {

@@ -15,10 +15,6 @@ class ProtectedView extends React.Component {
         actions: React.PropTypes.object.isRequired
     };
 
-    constructor(props) {
-        super(props);
-    }
-
     // Note: have to use componentWillMount, if I add this in constructor will get error:
     // Warning: setState(...): Cannot update during an existing state transition (such as within `render`).
     // Render methods should be a pure function of props and state.
