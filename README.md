@@ -110,3 +110,15 @@ Frontend (javascript static analysis)
 Backend (django/python static analysis)
 
 * `$ ./scripts/static_validate_backend.sh`
+
+### Screenshots
+
+Here are some screenshots of the boilerplate project.
+
+![Screenshot02][2]  
+
+[2]: https://raw.githubusercontent.com/andrealmar/django-react-redux-jwt-base/master/screenshots/screenshot_02.png
+
+![Screenshot01][1]  
+
+[1]: https://raw.githubusercontent.com/andrealmar/django-react-redux-jwt-base/master/screenshots/screenshot_01.png
