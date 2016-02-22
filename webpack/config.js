@@ -20,11 +20,16 @@ config.set('webpack_port',  3000); // eslint-disable-line
 
 config.set('vendor_dependencies', [
   'history',
+  'babel-polyfill',
   'react',
+  'react-dom',
   'react-redux',
   'react-router',
+  'react-mixin',
+  'classnames',
   'redux',
-  'react-router-redux'
+  'react-router-redux',
+  'jquery'
 ]);
 
 /*  *********************************************
