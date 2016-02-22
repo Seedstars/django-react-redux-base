@@ -6,8 +6,7 @@ import { mount, shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { AppNotConnected } from '../../../src/static/containers/App';
-import { default as AppConnected } from '../../../src/static/containers/App';
+import { default as AppConnected, AppNotConnected } from '../../../src/static/containers/App';
 
 
 describe(' App View Tests (Container):', () => {

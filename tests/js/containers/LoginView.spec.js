@@ -7,8 +7,7 @@ import { mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { LoginViewNotConnected } from '../../../src/static/containers/LoginView';
-import { default as LoginViewConnected } from '../../../src/static/containers/LoginView';
+import { default as LoginViewConnected, LoginViewNotConnected } from '../../../src/static/containers/LoginView';
 
 import * as TYPES from '../../../src/static/constants';
 import { SERVER_URL } from '../../../src/static/utils/config';
@@ -133,22 +132,22 @@ describe('Login View Tests (Container):', () => {
             };
             const expectedActions = [
                 {
-                    type: TYPES.LOGIN_USER_SUCCESS,
+                    type: TYPES.AUTH_LOGIN_USER_SUCCESS,
                     payload: {
                         auth: {}
                     }
                 }, {
-                    type: TYPES.LOGIN_USER_FAILURE,
+                    type: TYPES.AUTH_LOGIN_USER_FAILURE,
                     payload: {
                         status: null,
                         statusText: null
                     }
                 },
                 {
-                    type: TYPES.LOGIN_USER_REQUEST
+                    type: TYPES.AUTH_LOGIN_USER_REQUEST
                 },
                 {
-                    type: TYPES.LOGOUT_USER
+                    type: TYPES.AUTH_LOGOUT_USER
                 }
             ];
 
