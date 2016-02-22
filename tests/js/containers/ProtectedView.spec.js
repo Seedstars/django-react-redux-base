@@ -7,8 +7,10 @@ import { mount, shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { ProtectedViewNotConnected } from '../../../src/static/containers/ProtectedView';
-import { default as ProtectedViewConnected } from '../../../src/static/containers/ProtectedView';
+import {
+    default as ProtectedViewConnected,
+    ProtectedViewNotConnected
+} from '../../../src/static/containers/ProtectedView';
 
 import * as TYPES from '../../../src/static/constants';
 import { SERVER_URL } from '../../../src/static/utils/config';
