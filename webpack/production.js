@@ -23,7 +23,9 @@ webpackConfig.plugins.push(
   })
 );
 
-// add boostrap-loader and font-awesome-webpack to beginning of entry list
-webpackConfig.entry.app.splice(0, 0, 'bootstrap-loader/extractStyles', 'font-awesome-webpack!./src/static/styles/font-awesome.config.prod.js');
+// add font-awesome-webpack to beginning of entry list
+webpackConfig.entry.app.splice(0, 0, 'font-awesome-webpack!./src/static/styles/font-awesome.config.prod.js');
+// add boostrap-loader to vendor
+webpackConfig.entry.vendor.splice(0, 0, 'bootstrap-loader/extractStyles');
 
 export default webpackConfig;
