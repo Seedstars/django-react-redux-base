@@ -1,8 +1,8 @@
 # Django React/Redux Base Project
 
-This repository includes a base project to be used for all new online applications.
+This repository includes a boilerplate project used for all Seedstars Labs applications. It uses Django as backend and React as frontend. 
 
-It uses the following technologies:
+We build on the solders of giants with the following technologies:
 
 **Frontend**
 
@@ -46,7 +46,7 @@ It uses the following technologies:
 ## Retrieve code 
 
 * `$ git clone https://github.com/Seedstars/django-react-redux-base.git`
-* `$ cd django-react-redux-base`
+* `$ cd django-react-redux-jwt-base`
 * `$ git submodule init`
 * `$ git submodule update`
 * `$ ./scripts/get_static_validation.sh`
