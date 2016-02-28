@@ -29,10 +29,11 @@ We build on the solders of giants with the following technologies:
 **Backend**
 
 * [Django](https://www.djangoproject.com/)
-* [Django REST framework](http://www.django-rest-framework.org/) Django REST framework is a powerful and flexible toolkit for building Web APIs.
+* [Django REST framework](http://www.django-rest-framework.org/) Django REST framework is a powerful and flexible toolkit for building Web APIs
 * [Django REST framework JSON Web Token](http://getblimp.github.io/django-rest-framework-jwt/) JSON Web Token Authentication support for Django REST Framework
 * [WhiteNoise](http://whitenoise.evans.io/en/latest/django.html) to serve files efficiently from Django
 * [Prospector](http://prospector.landscape.io/en/master/) a complete Python static analysis tool
+* [Bandit](https://github.com/openstack/bandit) a security linter from OpenStack Security
 * [pytest](http://pytest.org/latest/) a mature full-featured Python testing tool
 * [Mock](http://www.voidspace.org.uk/python/mock/) mocking and testing Library
 * [Responses](https://github.com/getsentry/responses) a utility for mocking out the Python Requests library
