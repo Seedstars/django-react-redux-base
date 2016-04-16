@@ -14,7 +14,7 @@ class HomeView extends React.Component {
         return (
             <div>
                 <h1>React Redux Auth Example</h1>
-                <img src={logoImage} className="pull-right"/>
+                <img src={logoImage} className="pull-right" alt="React Logo"/>
                 {this.props.statusText ? <div className="alert alert-info">{this.props.statusText}</div> : ''}
                 <p>Attempt to access some <Link to="/protected">protected content.</Link></p>
             </div>
