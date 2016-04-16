@@ -1,10 +1,10 @@
 import { expect } from 'chai';
-import reducer from '../../../src/static/reducers/auth';
+import authReducer from '../../../src/static/reducers/auth';
 import * as TYPES from '../../../src/static/constants';
 
 describe('Auth Reducers Tests', () => {
     it('should handle LOGIN_USER_REQUEST', () => {
-        const reducerResponse = reducer([], {
+        const reducerResponse = authReducer([], {
             type: TYPES.AUTH_LOGIN_USER_REQUEST
         });
         expect(reducerResponse).to.eql({
@@ -14,7 +14,7 @@ describe('Auth Reducers Tests', () => {
     });
 
     it('should handle AUTH_LOGIN_USER_SUCCESS', () => {
-        const reducerResponse = reducer([],
+        const reducerResponse = authReducer([],
             {
                 type: TYPES.AUTH_LOGIN_USER_SUCCESS,
                 payload: {
@@ -38,7 +38,7 @@ describe('Auth Reducers Tests', () => {
     });
 
     it('should handle AUTH_LOGIN_USER_FAILURE', () => {
-        const reducerResponse = reducer([],
+        const reducerResponse = authReducer([],
             {
                 type: TYPES.AUTH_LOGIN_USER_FAILURE,
                 payload: {
@@ -57,7 +57,7 @@ describe('Auth Reducers Tests', () => {
     });
 
     it('should handle AUTH_LOGOUT_USER', () => {
-        const reducerResponse = reducer([
+        const reducerResponse = authReducer([
             {
                 token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFAYS5jb20iLCJleHAiOjE0NTI5NjA3NTUsIn' +
                 'VzZXJfaWQiOjEsImVtYWlsIjoiYUBhLmNvbSJ9.RrJJ63OyWaZIPSmgS8h_vZyrPo0TV9SXvT_5HJhNKpMunJoY76GKQ9xyjI2' +
