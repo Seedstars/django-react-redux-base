@@ -30,6 +30,6 @@ module.exports = {
       __DEVELOPMENT__: true,
     }),
     new ExtractTextPlugin('[name].[contenthash].css'),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin()
   ],
 };

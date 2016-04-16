@@ -59,7 +59,7 @@ const common = {
       "window.jQuery": "jquery"
     }),
     // extract all common modules to vendor so we can load multiple apps in one page
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' })
   ],
   
   resolve: {

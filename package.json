@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Django, React, Redux, and JWT!",
   "scripts": {
-    "dev": "webpack --progress --verbose --colors --display-error-details --config webpack/common.config.js --watch",
+    "dev": "webpack --progress --display-error-details --config webpack/common.config.js --watch",
     "compile": "webpack --progress --config webpack/common.config.js",
     "mocha": "mocha --require tests/require --recursive --compilers js:babel-core/register tests/js",
     "mocha:watch": "npm run mocha -- --watch tests/js",
@@ -72,8 +72,8 @@
     "sass-loader": "3.2.0",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
-    "webpack": "1.13.0",
-    "webpack-merge": "^0.10.0",
+    "webpack": "2.1.0-beta.5",
+    "webpack-merge": "0.10.0",
     "whatwg-fetch": "0.11.0",
     "yargs": "4.6.0"
   },
