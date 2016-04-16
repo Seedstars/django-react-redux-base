@@ -121,7 +121,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        pathName: state.routing.location.pathname
+        pathName: state.routing.locationBeforeTransitions.pathname
     };
 };
 
