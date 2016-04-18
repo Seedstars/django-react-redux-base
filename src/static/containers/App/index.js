@@ -118,10 +118,10 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        pathName: state.routing.locationBeforeTransitions.pathname
+        pathName: ownProps.location.pathname
     };
 };
 

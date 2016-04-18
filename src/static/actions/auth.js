@@ -46,6 +46,7 @@ export function authLogoutAndRedirect() {
     return (dispatch, state) => {
         dispatch(authLogout());
         dispatch(push('/login'));
+        return Promise.resolve(); // TOOD: we need  promise here because of tests, find a better way
     };
 }
 
