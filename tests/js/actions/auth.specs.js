@@ -57,7 +57,7 @@ describe('Auth Actions:', () => {
             {
                 type: TYPES.AUTH_LOGOUT_USER
             }, {
-                type: '@@router/TRANSITION',
+                type: '@@router/CALL_HISTORY_METHOD',
                 payload: {
                     method: 'push',
                     args: [
@@ -69,9 +69,12 @@ describe('Auth Actions:', () => {
 
         const middlewares = [thunk];
         const mockStore = configureStore(middlewares);
-        const store = mockStore({}, expectedActions, done);
+        const store = mockStore({});
 
-        store.dispatch(ACTIONS_AUTH.authLogoutAndRedirect());
+        store.dispatch(ACTIONS_AUTH.authLogoutAndRedirect())
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
     });
 
     it('authLoginUser should create LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, ' +
@@ -86,7 +89,7 @@ describe('Auth Actions:', () => {
                     'zk9MkxBHroZ9ZPZEES-IKeul9ozxYnoZ8'
                 }
             }, {
-                type: '@@router/TRANSITION',
+                type: '@@router/CALL_HISTORY_METHOD',
                 payload: {
                     method: 'push',
                     args: [
@@ -105,9 +108,12 @@ describe('Auth Actions:', () => {
 
         const middlewares = [thunk];
         const mockStore = configureStore(middlewares);
-        const store = mockStore({}, expectedActions, done);
+        const store = mockStore({});
 
-        store.dispatch(ACTIONS_AUTH.authLoginUser());
+        store.dispatch(ACTIONS_AUTH.authLoginUser())
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
     });
 
     it('authLoginUser should create LOGIN_USER_REQUEST and LOGIN_USER_FAILURE actions when API returns 401', (done) => {
@@ -129,9 +135,12 @@ describe('Auth Actions:', () => {
 
         const middlewares = [thunk];
         const mockStore = configureStore(middlewares);
-        const store = mockStore({}, expectedActions, done);
+        const store = mockStore({});
 
-        store.dispatch(ACTIONS_AUTH.authLoginUser());
+        store.dispatch(ACTIONS_AUTH.authLoginUser())
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
     });
 
     it('authLoginUser should create LOGIN_USER_REQUEST and LOGIN_USER_FAILURE ' +
@@ -158,6 +167,9 @@ describe('Auth Actions:', () => {
         const mockStore = configureStore(middlewares);
         const store = mockStore({}, expectedActions, done);
 
-        store.dispatch(ACTIONS_AUTH.authLoginUser());
+        store.dispatch(ACTIONS_AUTH.authLoginUser())
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
     });
 });

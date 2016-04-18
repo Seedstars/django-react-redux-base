@@ -102,7 +102,7 @@
     "redux-devtools-dock-monitor": "1.1.1",
     "redux-devtools-log-monitor": "1.0.10",
     "redux-logger": "2.6.1",
-    "redux-mock-store": "https://github.com/lfrodrigues/redux-mock-store.git#temp",
+    "redux-mock-store": "1.0.2",
     "sass-lint": "1.5.1",
     "sinon": "1.17.3",
     "webpack-dev-middleware": "1.6.1",

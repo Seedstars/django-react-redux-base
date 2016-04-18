@@ -42,7 +42,7 @@ describe('Data Actions:', () => {
                     statusText: 'Unauthorized'
                 }
             }, {
-                type: '@@router/TRANSITION',
+                type: '@@router/CALL_HISTORY_METHOD',
                 payload: {
                     method: 'push',
                     args: [
@@ -58,9 +58,12 @@ describe('Data Actions:', () => {
 
         const middlewares = [thunk];
         const mockStore = configureStore(middlewares);
-        const store = mockStore({}, expectedActions, done);
+        const store = mockStore({});
 
-        store.dispatch(ACTIONS_DATA.dataFetchProtectedData('token'));
+        store.dispatch(ACTIONS_DATA.dataFetchProtectedData('token'))
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
     });
 
     it('dataFetchProtectedDataRequest should create DATA_RECEIVE_PROTECTED_DATA actions ' +
@@ -84,8 +87,11 @@ describe('Data Actions:', () => {
 
         const middlewares = [thunk];
         const mockStore = configureStore(middlewares);
-        const store = mockStore({}, expectedActions, done);
+        const store = mockStore({});
 
-        store.dispatch(ACTIONS_DATA.dataFetchProtectedData('token'));
+        store.dispatch(ACTIONS_DATA.dataFetchProtectedData('token'))
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
     });
 });
