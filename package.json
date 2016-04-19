@@ -18,8 +18,6 @@
   "author": "Luis Rodrigues <luis.rodrigues@seedstarslabs.com>",
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "6.3.6",
-    "autoprefixer-loader": "3.2.0",
     "babel": "6.5.2",
     "babel-core": "6.7.6",
     "babel-loader": "6.2.4",
