@@ -59,7 +59,7 @@ const common = {
             'window.jQuery': 'jquery'
         }),
         // extract all common modules to vendor so we can load multiple apps in one page
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' })
+        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.[hash].js' })
     ],
 
     resolve: {
@@ -70,38 +70,43 @@ const common = {
     module: {
         loaders: [
             {
-                test: /bootstrap-sass\/assets\/javascripts\//,
-                loader: 'imports?jQuery=jquery',
-            },
-            {
-                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=application/font-woff',
-            }, {
-                test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=application/font-woff2',
-            }, {
-                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=application/octet-stream',
-            }, {
-                test: /\.otf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=application/font-otf',
-            }, {
-                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'file',
-            }, {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=image/svg+xml',
-            }, {
                 test: /\.js$/,
                 loaders: ['babel-loader'],
                 exclude: /node_modules/,
-            }, {
-                test: /\.png$/,
-                loader: 'file?name=[name].[ext]',
-            }, {
-                test: /\.jpg$/,
-                loader: 'file?name=[name].[ext]',
-            }],
+            },
+            {
+                test: /\.jpe?g$|\.gif$|\.png$/,
+                loader: 'file?name=/images/[name].[ext]?[hash]'
+            },
+            {
+                test: /\.woff(\?.*)?$/,
+                loader: 'url-loader?name=/fonts/[name].[ext]&limit=10000&mimetype=application/font-woff'
+            },
+            {
+                test: /\.woff2(\?.*)?$/,
+                loader: 'url-loader?name=/fonts/[name].[ext]&limit=10000&mimetype=application/font-woff2'
+            },
+            {
+                test: /\.ttf(\?.*)?$/,
+                loader: 'url-loader?name=/fonts/[name].[ext]&limit=10000&mimetype=application/octet-stream'
+            },
+            {
+                test: /\.eot(\?.*)?$/,
+                loader: 'file-loader?name=/fonts/[name].[ext]'
+            },
+            {
+                test: /\.otf(\?.*)?$/,
+                loader: 'file-loader?name=/fonts/[name].[ext]&mimetype=application/font-otf'
+            },
+            {
+                test: /\.svg(\?.*)?$/,
+                loader: 'url-loader?name=/fonts/[name].[ext]&limit=10000&mimetype=image/svg+xml'
+            },
+            {
+                test: /\.json(\?.*)?$/,
+                loader: 'file-loader?name=/files/[name].[ext]'
+            }
+        ]
     },
 
     postcss: (param) => {

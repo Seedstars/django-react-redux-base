@@ -111,7 +111,11 @@ describe(' App View Tests (Container):', () => {
             const mockStore = configureStore(middlewares);
             const store = mockStore(state, expectedActions, done);
 
-            const wrapper = mount(<AppConnected store={store} children={<div>for testing only</div>} location={{pathname: '/'}}/>);
+            const wrapper = mount(
+                <AppConnected store={store}
+                    children={<div>for testing only</div>}
+                    location={ { pathname: '/' } }
+                />);
 
             it('props', () => {
                 expect(wrapper.node.renderedElement.props.isAuthenticated).to.equal(state.auth.isAuthenticated);

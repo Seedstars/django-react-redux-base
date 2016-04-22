@@ -11,10 +11,6 @@ module.exports = {
         ]
     },
 
-    output: {
-        publicPath: '../src/static_dist/',
-    },
-
     module: {
         loaders: [{
             test: /\.scss$/,
