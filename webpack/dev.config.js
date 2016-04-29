@@ -25,7 +25,7 @@ module.exports = {
             },
             __DEVELOPMENT__: true,
         }),
-        new ExtractTextPlugin('[name].[contenthash].css'),
+        new ExtractTextPlugin('styles/[name].[contenthash].css'),
         new webpack.optimize.OccurrenceOrderPlugin()
     ],
 };

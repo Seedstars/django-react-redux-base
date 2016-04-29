@@ -43,7 +43,7 @@ const common = {
     output: {
         filename: '[name].[hash].js',
         path: PATHS.build,
-        publicPath: '/static/'
+        publicPath: '/static'
     },
 
     plugins: [

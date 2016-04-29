@@ -25,13 +25,13 @@ module.exports = {
             },
             __DEVELOPMENT__: false,
         }),
-        new ExtractTextPlugin('[name].[contenthash].css'),
+        new ExtractTextPlugin('styles/[name].[contenthash].css'),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: false,
-            },
+                warnings: false
+            }
         }),
     ],
 };
