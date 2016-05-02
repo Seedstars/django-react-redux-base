@@ -5,7 +5,7 @@ import { mount, shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { default as HomeViewConnected, HomeViewNotConnected } from '../../../src/static/containers/HomeView';
+import { default as HomeViewConnected, HomeViewNotConnected } from '../../../src/static/containers/Home';
 
 
 describe('Home View Tests (Container):', () => {

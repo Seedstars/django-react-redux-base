@@ -7,7 +7,7 @@ import { mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { default as LoginViewConnected, LoginViewNotConnected } from '../../../src/static/containers/LoginView';
+import { default as LoginViewConnected, LoginViewNotConnected } from '../../../src/static/containers/Login';
 
 import * as TYPES from '../../../src/static/constants';
 import { SERVER_URL } from '../../../src/static/utils/config';

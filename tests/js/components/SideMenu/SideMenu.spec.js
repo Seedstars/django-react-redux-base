@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import SideMenu from '../../../../src/static/components/SideMenu/SideMenu';
+import SideMenu from '../../../../src/static/components/SideMenu';
 
 
 describe('SideMenu Tests (Component):', () => {
