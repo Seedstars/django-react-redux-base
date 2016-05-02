@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { authLogoutAndRedirect } from '../../actions/auth';
 
-import './styles.scss';
+import './style.scss';
 
 
 class SideMenu extends React.Component {
