@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 import {
     default as ProtectedViewConnected,
     ProtectedViewNotConnected
-} from '../../../src/static/containers/ProtectedView';
+} from '../../../src/static/containers/Protected';
 
 import * as TYPES from '../../../src/static/constants';
 import { SERVER_URL } from '../../../src/static/utils/config';

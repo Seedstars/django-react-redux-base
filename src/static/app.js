@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { authLogoutAndRedirect } from './actions/auth';
-import SideMenu from './common/SideMenu';
+import SideMenu from './components/SideMenu';
 
 import './styles/theme.scss';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import NotFoundView from '../../../src/static/containers/NotFoundView';
+import NotFoundView from '../../../src/static/containers/NotFound';
 
 
 describe('NotFound View Tests (Container):', () => {
