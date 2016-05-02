@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { authLogoutAndRedirect } from '../../actions/auth';
-import SideMenu from '../../components/SideMenu/SideMenu';
+import { authLogoutAndRedirect } from './actions/auth';
+import SideMenu from './common/SideMenu';
 
-import './style.scss';
+import './styles/theme.scss';
 
 
 class App extends React.Component {
@@ -39,7 +39,8 @@ class App extends React.Component {
                     <div className="container-fluid">
                         <div className="navbar-header">
                             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
-                                    data-target=".navbar-collapse" aria-expanded="false">
+                                    data-target=".navbar-collapse" aria-expanded="false"
+                            >
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>

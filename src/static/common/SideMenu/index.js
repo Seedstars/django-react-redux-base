@@ -3,7 +3,8 @@ import { push } from 'react-router-redux';
 import classNames from 'classnames';
 
 import { authLogoutAndRedirect } from '../../actions/auth';
-import './SideMenu.scss';
+
+import './styles.scss';
 
 
 class SideMenu extends React.Component {
