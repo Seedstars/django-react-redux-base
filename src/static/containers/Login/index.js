@@ -1,12 +1,9 @@
 import React from 'react';
-import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import reactMixin from 'react-mixin';
 import * as actionCreators from '../../actions/auth';
 
 
-@reactMixin.decorate(LinkedStateMixin)
 class LoginView extends React.Component {
 
     static propTypes = {
@@ -32,6 +29,12 @@ class LoginView extends React.Component {
         this.props.actions.authLoginUser(this.state.email, this.state.password, this.state.redirectTo);
     };
 
+    handleInputChange = (e, state) => {
+        this.setState({
+            [state]: e.currentTarget.value
+        });
+    };
+
     render() {
         return (
             <div className="col-xs-12 col-md-6 col-md-offset-3">
@@ -42,15 +45,15 @@ class LoginView extends React.Component {
                     <div className="form-group">
                         <input type="text"
                                className="form-control input-lg"
-                               valueLink={this.linkState('email')}
                                placeholder="Email"
+                               onChange={(e) => { this.handleInputChange(e, 'email'); }}
                         />
                     </div>
                     <div className="form-group">
                         <input type="password"
                                className="form-control input-lg"
-                               valueLink={this.linkState('password')}
                                placeholder="Password"
+                               onChange={(e) => { this.handleInputChange(e, 'password'); }}
                         />
                     </div>
                     <button type="submit"
