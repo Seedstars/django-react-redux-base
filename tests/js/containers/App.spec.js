@@ -114,7 +114,7 @@ describe(' App View Tests (Container):', () => {
             const wrapper = mount(
                 <AppConnected store={store}
                     children={<div>for testing only</div>}
-                    location={ { pathname: '/' } }
+                    location={{ pathname: '/' }}
                 />);
 
             it('props', () => {
