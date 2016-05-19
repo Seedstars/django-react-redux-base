@@ -125,6 +125,6 @@ if (TARGET === 'dev' || !TARGET) {
     module.exports = merge(development, common);
 }
 
-if (TARGET === 'compile' || !TARGET) {
+if (TARGET === 'prod' || !TARGET) {
     module.exports = merge(production, common);
 }
