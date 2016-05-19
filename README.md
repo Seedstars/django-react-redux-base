@@ -46,7 +46,7 @@ We build on the solders of giants with the following technologies:
 
 ## Retrieve code 
 
-* `$ git clone https://github.com/Seedstars/django-react-redux-base.git`
+* `$ git clone https://github.com/Seedstars/django-react-redux-jwt-base.git`
 * `$ cd django-react-redux-jwt-base`
 * `$ git submodule init`
 * `$ git submodule update`
@@ -62,6 +62,10 @@ Remember that when you copy this repository for a new project you need to add th
 
 * `# wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -`
 * `# apt-get install --yes nodejs`
+
+Make sure npm version is 3.x
+* `$ npm -v`
+* `$ npm install -g npm@next` # only if version is lower than 3.x
 
 ### Main Project
 
