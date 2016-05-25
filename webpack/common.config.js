@@ -64,7 +64,7 @@ const common = {
 
     resolve: {
         extensions: ['', '.jsx', '.js', '.json', '.scss'],
-        modulesDirectories: ['node_modules', PATHS.app],
+        modules: ['node_modules', PATHS.app],
     },
 
     module: {
