@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "webpack --progress --display-error-details --config webpack/common.config.js --watch",
     "prod": "webpack --progress --config webpack/common.config.js",
-    "mocha": "mocha --require tests/require --recursive --compilers js:babel-core/register tests/js",
+    "mocha": "NODE_PATH=./src/static mocha --require tests/require --recursive --compilers js:babel-core/register tests/js",
     "mocha:watch": "npm run mocha -- --watch tests/js",
-    "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --require tests/require --recursive --compilers js:babel-core/register --colors --reporter dot tests/js/",
+    "coverage": "NODE_PATH=./src/static istanbul cover node_modules/mocha/bin/_mocha -- --require tests/require --recursive --compilers js:babel-core/register --colors --reporter dot tests/js/",
     "lintjs": "eslint -c .eslintrc src/static tests/js || true",
     "lintscss": "sass-lint --verbose --no-exit || true"
   },
