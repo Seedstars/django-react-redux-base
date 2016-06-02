@@ -37,6 +37,14 @@ class AccountTests(CustomTestCase, APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+        # Confirm user can login after register
+        url_login = reverse('accounts:login')
+        data_login = {'email': 'emailsuccess@mydomain.com', 'password': 'test'}
+        response_login = self.client.post(url_login, data_login, format='json')
+        self.assertTrue('token' in response_login.data)
+        self.assertEqual(response_login.status_code, status.HTTP_200_OK)
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + response_login.data['token'])
+
     def test_account_login_successful_and_perform_actions(self):
         # Ensure we can login with given credentials.
         url = reverse('accounts:login')

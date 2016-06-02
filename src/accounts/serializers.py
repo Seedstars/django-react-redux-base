@@ -9,6 +9,12 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'email', 'first_name', 'last_name', 'password')
 
+    def create(self, validated_data):
+        user = User.objects.create(**validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+
     def validate_email(self, value):
         """
         Validate if email is valid or there is an user using the email.
