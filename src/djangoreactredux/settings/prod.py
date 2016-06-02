@@ -1,4 +1,7 @@
+import os
+
 from djangoreactredux.settings.base import *  # NOQA (ignore all errors on this line)
+
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -11,11 +14,11 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite'),  # NOQA (ignore all errors on this line)
     }
 }
 
-REST_FRAMEWORK['EXCEPTION_HANDLER'] = 'django_rest_logger.handlers.rest_exception_handler'
+REST_FRAMEWORK['EXCEPTION_HANDLER'] = 'django_rest_logger.handlers.rest_exception_handler'  # NOQA (ignore all errors on this line)
 
 # ########### Sentry configuration
 
@@ -24,7 +27,7 @@ RAVEN_CONFIG = {
     'dsn': 'http://7d20e5babb164e70ab478cd6f75232e9:76bac262b8894d4db4448b33dad78f0d@sentry.seedstars.com/3',
 }
 
-INSTALLED_APPS = INSTALLED_APPS + (
+INSTALLED_APPS = INSTALLED_APPS + (  # NOQA (ignore all errors on this line)
     'raven.contrib.django.raven_compat',
 )
 
