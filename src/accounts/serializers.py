@@ -20,4 +20,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         if not email_is_valid(value):
             raise serializers.ValidationError('Please use a different email address provider.')
 
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError('Email already in use, please use a different email address.')
+
         return value

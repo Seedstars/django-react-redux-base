@@ -9,6 +9,8 @@
 *~
 \#*
 
+virtualenv/
+htmlcov/
 src/static_dist/
 src/static_root/
 
