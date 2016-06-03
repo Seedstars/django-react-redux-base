@@ -75,14 +75,14 @@ describe('Login View Tests (Container):', () => {
                 return expect(wrapper).to.be.ok;
             });
 
-            it('should have one div with class alert alert-info ', () => {
-                const div = wrapper.find('div.alert-info');
+            it('should have one div with class alert alert__error', () => {
+                const div = wrapper.find('div.alert__error');
 
                 expect(div).to.have.length(1);
                 expect(div.text()).to.equal(props.statusText);
             });
 
-            it('should have two inputs ([text,password]) and one button ', () => {
+            it('should have two inputs ([text,password]) and one button', () => {
                 const input = wrapper.find('input');
                 expect(input).to.have.length(2);
                 expect(input.at(0).prop('type')).to.equal('text');
@@ -156,6 +156,13 @@ describe('Login View Tests (Container):', () => {
             const store = mockStore(state, expectedActions, done);
 
             const wrapper = mount(<LoginViewConnected store={store}/>);
+
+            it('should have one div with class alert alert__success', () => {
+                const div = wrapper.find('div.alert__success');
+
+                expect(div).to.have.length(1);
+                expect(div.text()).to.equal(wrapper.node.renderedElement.props.statusText);
+            });
 
             it('props', () => {
                 expect(wrapper.node.renderedElement.props.isAuthenticating).to.equal(state.auth.isAuthenticating);

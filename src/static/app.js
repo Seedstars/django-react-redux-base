@@ -3,9 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { authLogoutAndRedirect } from './actions/auth';
 import SideMenu from './components/SideMenu';
-
-import './styles/theme.scss';
-
+import './styles/main.scss';
 
 class App extends React.Component {
 
@@ -16,58 +14,84 @@ class App extends React.Component {
         pathName: React.PropTypes.string.isRequired
     };
 
+    constructor(props) {
+        super(props);
+        this.sidebarWidthDesktop = 280;
+        this.sidebarWidthMobile = 60;
+
+        this.state = {
+            containerWidth: 0
+        };
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.setContainerWidth);
+        this.setContainerWidth();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.setContainerWidth);
+    }
+
+    setContainerWidth = () => {
+        const sidebarWidth = document.body.clientWidth > 1200 ? this.sidebarWidthDesktop : this.sidebarWidthMobile;
+        this.setState({
+            containerWidth: document.body.clientWidth - sidebarWidth
+        });
+    };
+
     logout = () => {
         this.props.dispatch(authLogoutAndRedirect());
     };
 
     render() {
         // only show the sidebar for authenticated users
-        let bodyContent = !this.props.isAuthenticated ? this.props.children : (
-            <div className="row">
-                <div className="col-sm-3 col-md-3 col-lg-2">
-                    <SideMenu pathName={this.props.pathName} dispatch={this.props.dispatch}/>
+        let bodyContent = null;
+        if (this.props.isAuthenticated) {
+            bodyContent = (
+                <div className="app">
+                    <div className="app__sidebar">
+                        <SideMenu pathName={this.props.pathName} dispatch={this.props.dispatch}/>
+                    </div>
+                    <div className="app__content"
+                         style={{ width: this.state.containerWidth }}
+                    >
+                        <div className="app__content__container">
+                            {this.props.children}
+                        </div>
+                    </div>
                 </div>
-                <div className="col-sm-9 col-md-9">
+            );
+        } else {
+            bodyContent = (
+                <div>
                     {this.props.children}
                 </div>
-            </div>
-        );
+            );
+        }
 
         return (
-            <div>
-                <nav className="navbar navbar-default navbar-static-top" role="navigation">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
-                                    data-target=".navbar-collapse" aria-expanded="false"
-                            >
-                                <span className="sr-only">Toggle navigation</span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                            </button>
-                            <Link className="navbar-brand" to="/">Django React Redux Demo</Link>
-                        </div>
-                        <ul className="nav navbar-nav navbar-right">
-                            <li className="dropdown">
-                                <a href="#" className="dropdown-toggle hidden-xs" data-toggle="dropdown" role="button">
-                                    User
+            <div className="app">
+                <nav className="app__navbar">
+                    <Link className="app__navbar__title float-left" to="/">
+                        Django React Redux Demo
+                    </Link>
+                    <ul className="float-right">
+                        <li>
+                            {this.props.isAuthenticated ?
+                                <a href="#" className="js-logout-button"
+                                   onClick={this.logout}
+                                >
+                                    Logout
                                 </a>
-                                <ul className="dropdown-menu">
-                                    <li>
-                                    {this.props.isAuthenticated
-                                        ? <a href="#" className="js-logout-button" onClick={this.logout}>Logout</a>
-                                        : <Link className="js-login-button" to="/login">Login</Link>
-                                    }
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                                :
+                                <Link className="js-login-button" to="/login">Login</Link>
+                            }
+                        </li>
+                    </ul>
                 </nav>
-                <div className="container-fluid">
-                    {bodyContent}
-                </div>
+
+                {bodyContent}
             </div>
         );
     }

@@ -50,7 +50,8 @@ describe(' App View Tests (Container):', () => {
         context('State with autentication:', () => {
             let wrapper;
             const spies = {
-                redirect: sinon.spy()
+                redirect: sinon.spy(),
+                willUnmount: sinon.spy()
             };
             const props = {
                 isAuthenticated: true,
@@ -85,6 +86,11 @@ describe(' App View Tests (Container):', () => {
 
                 button.simulate('click');
                 expect(spies.redirect.calledOnce).to.equal(true);
+            });
+
+            it('should unmount and remove resize event listener', () => {
+                expect(spies.willUnmount.callCount).to.equal(0);
+                wrapper.unmount();
             });
         });
     });

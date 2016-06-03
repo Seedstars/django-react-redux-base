@@ -1,0 +1,18 @@
+@import "~foundation-sites/scss/util/util";
+@import "~foundation-sites/scss/global";
+@import "~foundation-sites/scss/grid/grid";
+
+@include foundation-global-styles;
+@include foundation-grid;
+
+$breakpoints: (
+        small: 0,
+        medium: 400px,
+        large: 700px,
+        xlarge: 960px,
+        xxlarge: 1200px,
+);
+
+.container {
+  @include grid-column(12);
+}
