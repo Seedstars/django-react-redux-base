@@ -1,0 +1,41 @@
+h1 {
+  font-family: $font-family-regular;
+  font-size: 1.5rem;
+  color: $color-silver-dark;
+  padding-bottom: .6rem;
+}
+
+h2 {
+  font-family: $font-family-regular;
+  font-size: 1.125rem;
+  color: $color-silver-dark;
+}
+
+h3 {
+  font-family: $font-family-regular;
+  font-size: .875rem;
+  color: $color-silver-dark;
+}
+
+p {
+  font-family: $font-family-regular;
+  font-size: 1rem;
+  color: $color-silver-dark;
+}
+
+a {
+  font-family: $font-family-regular;
+  font-size: 1rem;
+  color: $color-silver-dark;
+
+  &:hover {
+    color: $color-silver-dark;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+label {
+  font-family: $font-family-regular;
+  color: $color-silver-dark;
+}

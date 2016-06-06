@@ -1,0 +1,15 @@
+.button {
+  border-radius: 3px;
+  background: $color-silver;
+  color: $color-white;
+  padding: 8px 6px;
+  font-size: .75rem;
+
+  &.button-medium {
+    padding: 12px 10px;
+  }
+
+  &.button-large {
+    padding: 18px 16px;
+  }
+}

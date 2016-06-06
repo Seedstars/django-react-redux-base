@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/auth';
-
+import classNames from 'classnames';
 
 class LoginView extends React.Component {
 
@@ -36,34 +36,75 @@ class LoginView extends React.Component {
     };
 
     render() {
+        let statusText = null;
+        if (this.props.statusText) {
+            const statusTextClassNames = classNames({
+                alert: true,
+                alert__error: this.props.statusText.indexOf('Authentication Error') === 0,
+                alert__success: this.props.statusText.indexOf('Authentication Error') !== 0
+            });
+
+            statusText = (
+                <div className="row">
+                    <div className="small-12 columns">
+                        <div className={statusTextClassNames}>
+                            {this.props.statusText}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
         return (
-            <div className="col-xs-12 col-md-6 col-md-offset-3">
-                <h3>Log in to view protected content!</h3>
-                <p>Hint: a@a.com / qw</p>
-                {this.props.statusText ? <div className="alert alert-info">{this.props.statusText}</div> : ''}
-                <form role="form">
-                    <div className="form-group">
-                        <input type="text"
-                               className="form-control input-lg"
-                               placeholder="Email"
-                               onChange={(e) => { this.handleInputChange(e, 'email'); }}
-                        />
+            <div className="container">
+                <div className="row margin-top-large">
+                    <div className="small-6 small-centered columns">
+                        <div className="row">
+                            <div className="small-12 columns">
+                                <h1>Log in to view protected content!</h1>
+                            </div>
+                        </div>
+                        <div className="row margin-top-medium">
+                            <div className="small-12 columns">
+                                <p>Hint: a@a.com / qw</p>
+                            </div>
+                        </div>
+
+                        {statusText}
+
+                        <form>
+                            <div className="row margin-top-small">
+                                <div className="small-12 columns">
+                                    <input type="text"
+                                           className="form-control input-lg"
+                                           placeholder="Email"
+                                           onChange={(e) => { this.handleInputChange(e, 'email'); }}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row margin-top-small">
+                                <div className="small-12 columns">
+                                    <input type="password"
+                                           className="form-control input-lg"
+                                           placeholder="Password"
+                                           onChange={(e) => { this.handleInputChange(e, 'password'); }}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row margin-top-small">
+                                <div className="small-12 columns">
+                                    <button type="submit"
+                                            className="button button-medium float-right"
+                                            disabled={this.props.isAuthenticating}
+                                            onClick={this.login}
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div className="form-group">
-                        <input type="password"
-                               className="form-control input-lg"
-                               placeholder="Password"
-                               onChange={(e) => { this.handleInputChange(e, 'password'); }}
-                        />
-                    </div>
-                    <button type="submit"
-                            className="btn btn-lg"
-                            disabled={this.props.isAuthenticating}
-                            onClick={this.login}
-                    >
-                        Submit
-                    </button>
-                </form>
+                </div>
             </div>
         );
     }
