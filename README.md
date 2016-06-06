@@ -22,6 +22,7 @@ We build on the solders of giants with the following technologies:
 * [foundation-sites](https://github.com/zurb/foundation-sites) for the grid
 * [ESLint](http://eslint.org), [Airbnb Javascript/React Styleguide](https://github.com/airbnb/javascript), [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css) to maintain a consistent code style and [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import) to make sure all imports are correct
 * [mocha](https://mochajs.org/) to allow writing unit tests for the project
+* [Enzyme](http://airbnb.io/enzyme/) JavaScript Testing utilities for React
 * [redux-mock-store](https://github.com/arnaudbenard/redux-mock-store) a mock store for your testing your redux async action creators and middleware
 * [expect](https://github.com/mjackson/expect) Write better assertions
 * [Nock](https://github.com/pgte/nock) HTTP mocking and expectations library
