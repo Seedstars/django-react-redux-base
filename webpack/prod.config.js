@@ -6,7 +6,6 @@ module.exports = {
 
     entry: {
         vendor: [
-            'bootstrap-loader/extractStyles',
             'font-awesome-webpack!./src/static/styles/font-awesome.config.prod.js'
         ]
     },

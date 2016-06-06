@@ -81,7 +81,7 @@ describe(' Protected View Tests (Container):', () => {
                     const div = wrapper.find('.protected__protected-data');
 
                     expect(div).to.have.length(1);
-                    expect(div.text()).to.equal('Data from server:some data');
+                    expect(div.text()).to.equal('Data from serversome data');
                 });
         });
     });

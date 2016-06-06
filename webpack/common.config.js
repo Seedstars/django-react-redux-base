@@ -109,6 +109,10 @@ const common = {
         ]
     },
 
+    sassLoader: {
+        data: '@import "' + __dirname + '/../src/static/styles/config/_variables.scss";'
+    },
+
     postcss: (param) => {
         return [
             autoprefixer({

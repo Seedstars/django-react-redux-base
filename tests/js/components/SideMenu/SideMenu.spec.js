@@ -29,7 +29,7 @@ describe('SideMenu Tests (Component):', () => {
             });
 
             it('should call dispatch on a click', () => {
-                const links = wrapper.find('a');
+                const links = wrapper.find('li');
 
                 links.at(0).simulate('click');
                 links.at(1).simulate('click');

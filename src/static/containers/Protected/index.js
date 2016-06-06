@@ -27,14 +27,23 @@ class ProtectedView extends React.Component {
         return (
             <div className="protected">
                 <div className="container">
-                    {this.props.isFetching === true
-                        ? <h1>Loading data...</h1>
+                    {this.props.isFetching === true ?
+                        <h1>Loading data...</h1>
                         :
                         <div>
-                            <h1>Welcome back!</h1>
-                            <div className="protected__protected-data margin-top-md">
-                                Data from server:
-                                <b>{this.props.data}</b>
+                            <div className="row">
+                                <div className="small-12 columns">
+                                    <h1>Welcome back!</h1>
+                                </div>
+                            </div>
+
+                            <div className="row margin-top-small">
+                                <div className="small-12 columns">
+                                    <div className="protected__protected-data">
+                                        Data from server<br/>
+                                        <b>{this.props.data}</b>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     }
