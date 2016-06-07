@@ -124,12 +124,12 @@ Here are some screenshots of the boilerplate project.
 
 ![Screenshot01][1]  
 
-[1]: https://raw.githubusercontent.com/andrealmar/django-react-redux-jwt-base/master/screenshots/screenshot_01.png
+[1]: https://raw.githubusercontent.com/Seedstars/django-react-redux-jwt-base/master/screenshots/screenshot_01.png
 
 ![Screenshot02][2]  
 
-[2]: https://raw.githubusercontent.com/andrealmar/django-react-redux-jwt-base/master/screenshots/screenshot_02.png
+[2]: https://raw.githubusercontent.com/Seedstars/django-react-redux-jwt-base/master/screenshots/screenshot_02.png
 
 ![Screenshot03][3]  
 
-[3]: https://raw.githubusercontent.com/andrealmar/django-react-redux-jwt-base/master/screenshots/screenshot_03.png
+[3]: https://raw.githubusercontent.com/Seedstars/django-react-redux-jwt-base/master/screenshots/screenshot_03.png
