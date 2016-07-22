@@ -63,8 +63,7 @@ STATICFILES_DIRS = (
 )
 
 # store static files locally and serve with whitenoise
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # ############# REST FRAMEWORK ###################
 
