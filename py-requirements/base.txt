@@ -7,7 +7,7 @@ django-disposable-email-checker==1.2.1
 psycopg2==2.6.1
 
 # serve files
-whitenoise==2.0.6
+whitenoise==3.2
 
 # Rest Framework
 djangorestframework==3.3.2
