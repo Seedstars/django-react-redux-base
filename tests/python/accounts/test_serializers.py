@@ -33,7 +33,7 @@ class UserRegistrationSerializerTest(CustomTestCase, APITestCase):
                   'first_name': 'test',
                   'last_name': 'user',
                   'password': 'test'},
-         'error': ('email', ['User with this Email address already exists.']),
+         'error': ('email', ['user with this Email address already exists.']),
          'label': 'Email is already in use.',
          'method': 'POST',
          'status': status.HTTP_400_BAD_REQUEST

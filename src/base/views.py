@@ -25,7 +25,7 @@ class ProtectedDataView(GenericAPIView):
 
     authentication_classes = (JSONWebTokenAuthentication,)
     permission_classes = (IsAuthenticated,)
-    
+
     def get(self, request):
         """Process GET request and return protected data."""
 
