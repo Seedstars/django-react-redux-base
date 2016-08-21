@@ -81,7 +81,8 @@ class User(AbstractBaseUser):
         (GENDER_FEMALE, 'Female')
     )
 
-    user_uuid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
     first_name = models.CharField(_('First Name'), max_length=50)
     last_name = models.CharField(_('Last Name'), max_length=50)
     email = models.EmailField(_('Email address'), unique=True)
