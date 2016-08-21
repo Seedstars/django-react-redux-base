@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+
 import React from 'react';
 import sinon from 'sinon';
 import { expect } from 'chai';
@@ -18,7 +20,7 @@ describe(' App View Tests (Container):', () => {
             };
             const props = {
                 isAuthenticated: false,
-                children: <div className="test-test"></div>,
+                children: <div className="test-test"/>,
                 dispatch: spies.redirect,
                 pathName: '/'
             };
@@ -55,7 +57,7 @@ describe(' App View Tests (Container):', () => {
             };
             const props = {
                 isAuthenticated: true,
-                children: <div className="test-test"></div>,
+                children: <div className="test-test"/>,
                 dispatch: spies.redirect,
                 pathName: '/'
             };

@@ -13,16 +13,16 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.scss$/,
-            loader: 'style!css!postcss-loader!sass',
+            loader: 'style!css!postcss-loader!sass'
         }],
     },
 
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: '"production"',
+                NODE_ENV: '"production"'
             },
-            __DEVELOPMENT__: false,
+            '__DEVELOPMENT__': false
         }),
         new ExtractTextPlugin('styles/[name].[contenthash].css'),
         new webpack.optimize.DedupePlugin(),

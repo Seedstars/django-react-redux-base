@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+
 import thunk from 'redux-thunk';
 import { applyMiddleware, compose, createStore } from 'redux';
 import createLogger from 'redux-logger';
@@ -25,6 +27,7 @@ export default function configureStore(initialState, history) {
         module.hot
             .accept('../reducers', () => {
                 const nextRootReducer = require('../reducers/index'); // eslint-disable-line global-require
+
                 store.replaceReducer(nextRootReducer);
             });
     }

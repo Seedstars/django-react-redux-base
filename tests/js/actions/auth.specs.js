@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+
 import { expect } from 'chai';
 import nock from 'nock';
 import configureStore from 'redux-mock-store';
@@ -20,7 +22,8 @@ describe('Auth Actions:', () => {
 
     it('authLoginUserSuccess should create LOGIN_USER_SUCCESS action', () => {
         expect(ACTIONS_AUTH.authLoginUserSuccess('token')).to.eql({
-            type: TYPES.AUTH_LOGIN_USER_SUCCESS, payload: {
+            type: TYPES.AUTH_LOGIN_USER_SUCCESS,
+            payload: {
                 token: 'token'
             }
         });
@@ -33,7 +36,8 @@ describe('Auth Actions:', () => {
                 statusText: 'Not found'
             }
         })).to.eql({
-            type: TYPES.AUTH_LOGIN_USER_FAILURE, payload: {
+            type: TYPES.AUTH_LOGIN_USER_FAILURE,
+            payload: {
                 status: '404',
                 statusText: 'Not found'
             }

@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+
 import { expect } from 'chai';
 import nock from 'nock';
 import configureStore from 'redux-mock-store';
@@ -19,7 +21,8 @@ describe('Data Actions:', () => {
 
     it('dataReceiveProtectedData should create DATA_RECEIVE_PROTECTED_DATA action', () => {
         expect(ACTIONS_DATA.dataReceiveProtectedData('data')).to.eql({
-            type: TYPES.DATA_RECEIVE_PROTECTED_DATA, payload: {
+            type: TYPES.DATA_RECEIVE_PROTECTED_DATA,
+            payload: {
                 data: 'data'
             }
         });

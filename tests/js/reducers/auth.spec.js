@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+
 import { expect } from 'chai';
 import authReducer from '../../../src/static/reducers/auth';
 import * as TYPES from '../../../src/static/constants';

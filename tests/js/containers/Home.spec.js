@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+
 import React from 'react';
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';

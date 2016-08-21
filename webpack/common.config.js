@@ -6,8 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 
-const development = require('./dev.config.js');
-const production = require('./prod.config.js');
+const development = require('./dev.config');
+const production = require('./prod.config');
 
 require('babel-polyfill').default;
 
@@ -54,8 +54,8 @@ const common = {
             inject: 'body'
         }),
         new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
+            '$': 'jquery',
+            'jQuery': 'jquery',
             'window.jQuery': 'jquery'
         }),
         // extract all common modules to vendor so we can load multiple apps in one page
@@ -110,16 +110,16 @@ const common = {
     },
 
     sassLoader: {
-        data: '@import "' + __dirname + '/../src/static/styles/config/_variables.scss";'
+        data: `@import "${__dirname}/../src/static/styles/config/_variables.scss";`
     },
 
     postcss: (param) => {
         return [
             autoprefixer({
-                browsers: ['last 2 versions'],
+                browsers: ['last 2 versions']
             }),
             postcssImport({
-                addDependencyTo: param,
+                addDependencyTo: param
             }),
         ];
     },

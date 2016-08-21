@@ -1,11 +1,12 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+
 import Root from './containers/Root/Root';
 import configureStore from './store/configureStore';
 import { authLoginUserSuccess } from './actions/auth';
-import { browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
 
 
 const target = document.getElementById('root');

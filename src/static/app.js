@@ -79,9 +79,7 @@ class App extends React.Component {
                     <ul className="float-right">
                         <li>
                             {this.props.isAuthenticated ?
-                                <a href="#" className="js-logout-button"
-                                   onClick={this.logout}
-                                >
+                                <a className="js-logout-button" onClick={this.logout}>
                                     Logout
                                 </a>
                                 :

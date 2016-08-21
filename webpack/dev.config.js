@@ -13,16 +13,16 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.scss$/,
-            loader: 'style!css?localIdentName=[path][name]--[local]!postcss-loader!sass',
+            loader: 'style!css?localIdentName=[path][name]--[local]!postcss-loader!sass'
         }],
     },
 
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: '"development"',
+                NODE_ENV: '"development"'
             },
-            __DEVELOPMENT__: true,
+            '__DEVELOPMENT__': true
         }),
         new ExtractTextPlugin('styles/[name].[contenthash].css'),
         new webpack.optimize.OccurrenceOrderPlugin()

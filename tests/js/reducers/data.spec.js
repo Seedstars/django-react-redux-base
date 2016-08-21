@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+
 import { expect } from 'chai';
 import dataReducer from '../../../src/static/reducers/data';
 import * as TYPES from '../../../src/static/constants';

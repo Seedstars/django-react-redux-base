@@ -1,3 +1,5 @@
+import jwtDecode from 'jwt-decode';
+
 import { createReducer } from '../utils';
 import {
     AUTH_LOGIN_USER_REQUEST,
@@ -5,7 +7,7 @@ import {
     AUTH_LOGIN_USER_FAILURE,
     AUTH_LOGOUT_USER
 } from '../constants';
-import jwtDecode from 'jwt-decode';
+
 
 const initialState = {
     token: null,

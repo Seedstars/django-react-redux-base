@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+
 import React from 'react';
 import sinon from 'sinon';
 import nock from 'nock';
@@ -25,7 +27,9 @@ describe('Login View Tests (Container):', () => {
                     authLoginUser: spies.authLoginUser
                 },
                 isAuthenticating: false,
-                statusText: null
+                isAuthenticated: false,
+                statusText: null,
+                dispatch: () => {}
             };
 
             beforeEach(() => {
@@ -64,6 +68,8 @@ describe('Login View Tests (Container):', () => {
                     authLoginUser: spies.authLoginUser
                 },
                 isAuthenticating: false,
+                isAuthenticated: false,
+                dispatch: () => {},
                 statusText: 'Authentication Error: 401 UNAUTHORIZED'
             };
 

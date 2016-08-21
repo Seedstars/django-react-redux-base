@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+
 import React from 'react';
 import sinon from 'sinon';
 import { expect } from 'chai';

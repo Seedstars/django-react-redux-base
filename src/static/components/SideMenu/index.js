@@ -33,14 +33,14 @@ class SideMenu extends React.Component {
                         onClick={this.goToIndex}
                     >
                         <a>
-                            <i className="fa fa-map-marker fa-fw"></i> Home
+                            <i className="fa fa-map-marker fa-fw"/> Home
                         </a>
                     </li>
                     <li className={protectedClass}
                         onClick={this.goToProtected}
                     >
                         <a>
-                            <i className="fa fa-map fa-fw"></i> Protected
+                            <i className="fa fa-map fa-fw"/> Protected
                         </a>
                     </li>
                 </ul>
