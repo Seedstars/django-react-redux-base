@@ -77,7 +77,7 @@ export function authLoginUser(email, password, redirect = '/') {
                     dispatch(authLoginUserFailure({
                         response: {
                             status: 403,
-                            statusText: 'Invalid token'
+                            statusText: e
                         }
                     }));
                 }
