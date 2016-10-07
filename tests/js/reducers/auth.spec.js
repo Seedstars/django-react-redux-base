@@ -22,7 +22,10 @@ describe('Auth Reducers Tests', () => {
                 payload: {
                     token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFAYS5jb20iLCJleHAiOjE0NTI5NjA3N' +
                     'TUsInVzZXJfaWQiOjEsImVtYWlsIjoiYUBhLmNvbSJ9.RrJJ63OyWaZIPSmgS8h_vZyrPo0TV9SXvT_5HJhNKpMunJoY' +
-                    '76GKQ9xyjI27vlir0pA61j0X-j-Wk2phDDk39w'
+                    '76GKQ9xyjI27vlir0pA61j0X-j-Wk2phDDk39w',
+                    user: {
+                        email: 'a@a.com'
+                    }
                 }
             }
         );

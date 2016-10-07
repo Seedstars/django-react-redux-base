@@ -8,10 +8,10 @@ We build on the solders of giants with the following technologies:
 
 * [React](https://github.com/facebook/react)
 * [React Router](https://github.com/rackt/react-router)
-* [JSON Web Token](https://www.npmjs.com/package/jsonwebtoken) JSON Web Token for API authentication
 * [Babel](http://babeljs.io) for ES6 and ES7 magic
 * [Webpack](http://webpack.github.io) for bundling
 * [Webpack Dev Middleware](http://webpack.github.io/docs/webpack-dev-middleware.html)
+* [Clean Webpack Plugin](https://github.com/johnagan/clean-webpack-plugin)
 * [Redux](https://github.com/rackt/redux)'s futuristic [Flux](https://facebook.github.io/react/blog/2014/05/06/flux.html) implementation
 * [Redux Dev Tools](https://github.com/rackt/redux-devtools) for next generation DX (developer experience). Watch [Dan Abramov's talk](https://www.youtube.com/watch?v=xsSnOQynTHs)
 * [Redux Thunk](https://github.com/gaearon/redux-thunk) Thunk middleware for Redux - used in async actions
@@ -19,7 +19,7 @@ We build on the solders of giants with the following technologies:
 * [fetch](https://github.com/github/fetch) A window.fetch JavaScript polyfill
 * [style-loader](https://github.com/webpack/style-loader), [sass-loader](https://github.com/jtangelder/sass-loader) and [less-loader](https://github.com/webpack/less-loader) to allow import of stylesheets in plain css, sass and less,
 * [font-awesome-webpack](https://github.com/gowravshekar/font-awesome-webpack) to customize FontAwesome
-* [foundation-sites](https://github.com/zurb/foundation-sites) for the grid
+* [bootstrap-loader](https://github.com/shakacode/bootstrap-loader) to customize Bootstrap
 * [ESLint](http://eslint.org), [Airbnb Javascript/React Styleguide](https://github.com/airbnb/javascript), [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css) to maintain a consistent code style and [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import) to make sure all imports are correct
 * [mocha](https://mochajs.org/) to allow writing unit tests for the project
 * [Enzyme](http://airbnb.io/enzyme/) JavaScript Testing utilities for React
@@ -32,7 +32,7 @@ We build on the solders of giants with the following technologies:
 
 * [Django](https://www.djangoproject.com/)
 * [Django REST framework](http://www.django-rest-framework.org/) Django REST framework is a powerful and flexible toolkit for building Web APIs
-* [Django REST framework JSON Web Token](http://getblimp.github.io/django-rest-framework-jwt/) JSON Web Token Authentication support for Django REST Framework
+* [Django REST Knox](https://github.com/James1345/django-rest-knox) Token based authentication for API endpoints
 * [WhiteNoise](http://whitenoise.evans.io/en/latest/django.html) to serve files efficiently from Django
 * [Prospector](http://prospector.landscape.io/en/master/) a complete Python static analysis tool
 * [Bandit](https://github.com/openstack/bandit) a security linter from OpenStack Security
@@ -60,7 +60,11 @@ Remember that when you copy this repository for a new project you need to add th
 
 ## Installation
 
-### NODEJS
+### django-rest-knox dependencies
+
+* `# apt-get install -y build-essential libssl-dev libffi-dev libpq-dev python3-dev python-dev`
+
+### NodeJS
 
 * `# wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -`
 * `# apt-get install --yes nodejs`
@@ -124,12 +128,8 @@ Here are some screenshots of the boilerplate project.
 
 ![Screenshot01][1]  
 
-[1]: https://raw.githubusercontent.com/Seedstars/django-react-redux-jwt-base/master/screenshots/screenshot_01.png
+[1]: ./screenshots/screenshot_01.png
 
 ![Screenshot02][2]  
 
-[2]: https://raw.githubusercontent.com/Seedstars/django-react-redux-jwt-base/master/screenshots/screenshot_02.png
-
-![Screenshot03][3]  
-
-[3]: https://raw.githubusercontent.com/Seedstars/django-react-redux-jwt-base/master/screenshots/screenshot_03.png
+[2]: ./screenshots/screenshot_02.png

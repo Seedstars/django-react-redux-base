@@ -26,9 +26,10 @@ describe('Home View Tests (Container):', () => {
                 return expect(wrapper).to.be.ok;
             });
 
-            it('should have one h1 and one h2 ', () => {
+            it('should have two img, one h1 and one p ', () => {
+                expect(wrapper.find('img')).to.have.length(2);
                 expect(wrapper.find('h1')).to.have.length(1);
-                expect(wrapper.find('h2')).to.have.length(1);
+                expect(wrapper.find('p')).to.have.length(1);
             });
         });
 
@@ -46,11 +47,12 @@ describe('Home View Tests (Container):', () => {
                 return expect(wrapper).to.be.ok;
             });
 
-            it('should have one h1, one h2 and one alert alert__info div ', () => {
+            it('should have two img, one h1, one p and one alert alert-info div ', () => {
+                expect(wrapper.find('img')).to.have.length(2);
                 expect(wrapper.find('h1')).to.have.length(1);
-                expect(wrapper.find('h2')).to.have.length(1);
+                expect(wrapper.find('p')).to.have.length(1);
 
-                const div = wrapper.find('div.alert__info');
+                const div = wrapper.find('div.alert.alert-info');
                 expect(div).to.have.length(1);
                 expect(div.text()).to.equal(props.statusText);
             });

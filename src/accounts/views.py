@@ -1,16 +1,16 @@
 from django.shortcuts import get_object_or_404
 from django_rest_logger import log
-from rest_framework import status, parsers, renderers
+from knox.auth import TokenAuthentication
+from knox.models import AuthToken
+from rest_framework import status
+from rest_framework.authentication import BasicAuthentication
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import CreateModelMixin
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-from rest_framework_jwt.serializers import JSONWebTokenSerializer
-from rest_framework_jwt.utils import jwt_response_payload_handler
 
 from accounts.models import User
-from accounts.serializers import UserRegistrationSerializer
+from accounts.serializers import UserRegistrationSerializer, UserSerializer
 from lib.utils import AtomicMixin
 
 
@@ -23,31 +23,18 @@ class UserRegisterView(AtomicMixin, CreateModelMixin, GenericAPIView):
         return self.create(request)
 
 
-class UserLoginView(APIView):
-    throttle_classes = ()
-    permission_classes = ()
-    authentication_classes = ()
-    parser_classes = (parsers.FormParser, parsers.JSONParser,)
-    renderer_classes = (renderers.JSONRenderer,)
-    serializer_class = JSONWebTokenSerializer
+class UserLoginView(GenericAPIView):
+    serializer_class = UserSerializer
+    authentication_classes = (BasicAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        """
-        User login view.
-
-        Based on JSONWebTokenAPIView from rest_framework_jwt.
-        """
-        serializer = self.serializer_class(data=request.data)
-
-        if serializer.is_valid():
-            user = serializer.object.get('user') or request.user
-            token = serializer.object.get('token')
-            response_data = jwt_response_payload_handler(token, user, request)
-
-            return Response(response_data)
-
-        log.warning(message='Authentication failed.', details={'http_status_code': status.HTTP_401_UNAUTHORIZED})
-        return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
+        """User login with username and password."""
+        token = AuthToken.objects.create(request.user)
+        return Response({
+            'user': self.get_serializer(request.user).data,
+            'token': token
+        })
 
 
 class UserConfirmEmailView(AtomicMixin, GenericAPIView):
@@ -71,7 +58,8 @@ class UserConfirmEmailView(AtomicMixin, GenericAPIView):
 
 class UserEmailConfirmationStatusView(GenericAPIView):
     serializer_class = None
-    authentication_classes = (JSONWebTokenAuthentication,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         """Retrieve user current confirmed_email status."""

@@ -8,8 +8,8 @@ import DevTools from './DevTools';
 export default class Root extends React.Component {
 
     static propTypes = {
-        store: React.PropTypes.object.isRequired,
-        history: React.PropTypes.object.isRequired
+        store: React.PropTypes.shape().isRequired,
+        history: React.PropTypes.shape().isRequired
     };
 
     render() {

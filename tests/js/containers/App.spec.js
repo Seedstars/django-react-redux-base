@@ -49,7 +49,7 @@ describe(' App View Tests (Container):', () => {
                 expect(wrapper.find('.js-login-button')).to.have.length(1);
             });
         });
-        context('State with autentication:', () => {
+        context('State with authentication:', () => {
             let wrapper;
             const spies = {
                 redirect: sinon.spy(),
@@ -121,9 +121,10 @@ describe(' App View Tests (Container):', () => {
 
             const wrapper = mount(
                 <AppConnected store={store}
-                    children={<div>for testing only</div>}
-                    location={{ pathname: '/' }}
-                />);
+                              location={{ pathname: '/' }}
+                >
+                    <div>for testing only</div>
+                </AppConnected>);
 
             it('props', () => {
                 expect(wrapper.node.renderedElement.props.isAuthenticated).to.equal(state.auth.isAuthenticated);

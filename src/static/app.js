@@ -1,95 +1,102 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import classNames from 'classnames';
+
 import { authLogoutAndRedirect } from './actions/auth';
-import SideMenu from './components/SideMenu';
 import './styles/main.scss';
 
 class App extends React.Component {
 
     static propTypes = {
         isAuthenticated: React.PropTypes.bool.isRequired,
-        children: React.PropTypes.object.isRequired,
+        children: React.PropTypes.shape().isRequired,
         dispatch: React.PropTypes.func.isRequired,
         pathName: React.PropTypes.string.isRequired
-    };
-
-    constructor(props) {
-        super(props);
-        this.sidebarWidthDesktop = 280;
-        this.sidebarWidthMobile = 60;
-
-        this.state = {
-            containerWidth: 0
-        };
-    }
-
-    componentDidMount() {
-        window.addEventListener('resize', this.setContainerWidth);
-        this.setContainerWidth();
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.setContainerWidth);
-    }
-
-    setContainerWidth = () => {
-        const sidebarWidth = document.body.clientWidth > 1200 ? this.sidebarWidthDesktop : this.sidebarWidthMobile;
-        this.setState({
-            containerWidth: document.body.clientWidth - sidebarWidth
-        });
     };
 
     logout = () => {
         this.props.dispatch(authLogoutAndRedirect());
     };
 
+    goToIndex = () => {
+        this.props.dispatch(push('/'));
+    };
+
+    goToProtected = () => {
+        this.props.dispatch(push('/protected'));
+    };
+
     render() {
-        // only show the sidebar for authenticated users
-        let bodyContent = null;
-        if (this.props.isAuthenticated) {
-            bodyContent = (
-                <div className="app">
-                    <div className="app__sidebar">
-                        <SideMenu pathName={this.props.pathName} dispatch={this.props.dispatch}/>
-                    </div>
-                    <div className="app__content"
-                         style={{ width: this.state.containerWidth }}
-                    >
-                        <div className="app__content__container">
-                            {this.props.children}
-                        </div>
-                    </div>
-                </div>
-            );
-        } else {
-            bodyContent = (
-                <div>
-                    {this.props.children}
-                </div>
-            );
-        }
+        const homeClass = classNames({
+            active: this.props.pathName === '/'
+        });
+        const protectedClass = classNames({
+            active: this.props.pathName === '/protected'
+        });
+        const loginClass = classNames({
+            active: this.props.pathName === '/login',
+        });
 
         return (
             <div className="app">
-                <nav className="app__navbar">
-                    <Link className="app__navbar__title float-left" to="/">
-                        Django React Redux Demo
-                    </Link>
-                    <ul className="float-right">
-                        <li>
+                <nav className="navbar navbar-default">
+                    <div className="container-fluid">
+                        <div className="navbar-header">
+                            <button type="button"
+                                    className="navbar-toggle collapsed"
+                                    data-toggle="collapse"
+                                    data-target="#top-navbar"
+                                    aria-expanded="false"
+                            >
+                                <span className="sr-only">Toggle navigation</span>
+                                <span className="icon-bar"/>
+                                <span className="icon-bar"/>
+                                <span className="icon-bar"/>
+                            </button>
+                            <a className="navbar-brand" tabIndex="0" onClick={this.goToIndex}>
+                                Django React Redux Demo
+                            </a>
+                        </div>
+                        <div className="collapse navbar-collapse" id="top-navbar">
                             {this.props.isAuthenticated ?
-                                <a className="js-logout-button" onClick={this.logout}>
-                                    Logout
-                                </a>
+                                <ul className="nav navbar-nav navbar-right">
+                                    <li className={homeClass}>
+                                        <a tabIndex="0" onClick={this.goToIndex}>
+                                            <i className="fa fa-home"/> Home
+                                        </a>
+                                    </li>
+                                    <li className={protectedClass}>
+                                        <a tabIndex="0" onClick={this.goToProtected}>
+                                            <i className="fa fa-lock"/> Protected
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a className="js-logout-button" tabIndex="0" onClick={this.logout}>
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
                                 :
-                                <Link className="js-login-button" to="/login">Login</Link>
+                                    <ul className="nav navbar-nav navbar-right">
+                                        <li className={homeClass}>
+                                            <a tabIndex="0" onClick={this.goToIndex}>
+                                                <i className="fa fa-home"/> Home
+                                            </a>
+                                        </li>
+                                        <li className={loginClass}>
+                                            <Link className="js-login-button" to="/login">Login</Link>
+                                        </li>
+                                    </ul>
                             }
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </nav>
 
-                {bodyContent}
+                <div>
+                    {this.props.children}
+                </div>
             </div>
         );
     }

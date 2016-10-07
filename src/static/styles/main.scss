@@ -1,13 +1,10 @@
-@import "config/typography";
 @import "config/reset";
 @import "config/fonts";
+@import "config/typography";
 
 @import "theme/base";
+@import "theme/login";
+@import "theme/navbar";
 @import "theme/footer";
 
-@import "components/alerts";
-@import "components/buttons";
-@import "components/inputs";
-
-@import "utils/extra";
 @import "utils/margins";

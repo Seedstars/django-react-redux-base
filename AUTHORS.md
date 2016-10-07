@@ -6,3 +6,4 @@ The JS part was inspired from the excellent [React-redux-jwt-auth-example](https
 - Luis Rodrigues <luis.rodrigues@seedstarslabs.com>
 - Pedro Gomes <pedro.gomes@seedstarslabs.com>
 - Ruben Almeida <ruben.almeida@seedstarslabs.com>
+- Daniel Silva <daniel.silva@seedstarslabs.com>

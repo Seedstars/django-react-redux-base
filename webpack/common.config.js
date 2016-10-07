@@ -4,6 +4,7 @@ const postcssImport = require('postcss-import');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
 const development = require('./dev.config');
@@ -29,7 +30,7 @@ const VENDOR = [
     'classnames',
     'redux',
     'react-router-redux',
-    'jquery'
+    'jquery',
 ];
 
 process.env.BABEL_ENV = TARGET;
@@ -59,7 +60,10 @@ const common = {
             'window.jQuery': 'jquery'
         }),
         // extract all common modules to vendor so we can load multiple apps in one page
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.[hash].js' })
+        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.[hash].js' }),
+        new CleanWebpackPlugin([PATHS.build], {
+            root: process.cwd()
+        })
     ],
 
     resolve: {

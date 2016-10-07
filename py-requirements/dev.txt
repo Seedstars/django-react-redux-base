@@ -3,13 +3,13 @@
 mock==2.0.0
 factory-boy==2.7.0
 
-prospector==0.12.2
+prospector==0.12.3
 bandit==1.1.0
 
-pytest==3.0.0
-pytest-cov==2.3.1
-pytest-django==2.9.1
-pytest-pythonpath==0.7
+pytest==3.0.3
+pytest-cov==2.4.0
+pytest-django==3.0.0
+pytest-pythonpath==0.7.1
 pytest-xdist==1.15.0
 
 ptpython==0.35
