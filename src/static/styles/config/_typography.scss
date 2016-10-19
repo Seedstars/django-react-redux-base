@@ -1,38 +1,58 @@
 h1 {
   font-family: $font-family-regular;
-  font-size: 1.5rem;
+  font-size: 3rem;
   color: $color-silver-dark;
   padding-bottom: .6rem;
 }
 
 h2 {
   font-family: $font-family-regular;
-  font-size: 1.125rem;
+  font-size: 2.5rem;
   color: $color-silver-dark;
 }
 
 h3 {
   font-family: $font-family-regular;
-  font-size: .875rem;
+  font-size: 2rem;
+  color: $color-silver-dark;
+}
+
+h4 {
+  font-family: $font-family-regular;
+  font-size: 1.5rem;
+  color: $color-silver-dark;
+}
+
+h5 {
+  font-family: $font-family-regular;
+  font-size: 1rem;
   color: $color-silver-dark;
 }
 
 p {
   font-family: $font-family-regular;
   font-size: 1rem;
+  line-height: 2rem;
   color: $color-silver-dark;
 }
 
 a {
   font-family: $font-family-regular;
   font-size: 1rem;
-  color: $color-silver-dark;
+  text-decoration: underline;
 
   &:hover {
     color: $color-silver-dark;
     cursor: pointer;
-    text-decoration: none;
   }
+}
+
+b, strong {
+  font-weight: bold;
+}
+
+code {
+  padding: 2px 4px;
 }
 
 label {

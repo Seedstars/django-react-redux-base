@@ -21,10 +21,11 @@ describe('Auth Actions:', () => {
     });
 
     it('authLoginUserSuccess should create LOGIN_USER_SUCCESS action', () => {
-        expect(ACTIONS_AUTH.authLoginUserSuccess('token')).to.eql({
+        expect(ACTIONS_AUTH.authLoginUserSuccess('token', {})).to.eql({
             type: TYPES.AUTH_LOGIN_USER_SUCCESS,
             payload: {
-                token: 'token'
+                token: 'token',
+                user: {}
             }
         });
     });
@@ -90,7 +91,8 @@ describe('Auth Actions:', () => {
                 type: TYPES.AUTH_LOGIN_USER_SUCCESS,
                 payload: {
                     token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlRlc3QgVXNlciJ9.J6n4-v0I85' +
-                    'zk9MkxBHroZ9ZPZEES-IKeul9ozxYnoZ8'
+                    'zk9MkxBHroZ9ZPZEES-IKeul9ozxYnoZ8',
+                    user: {}
                 }
             }, {
                 type: '@@router/CALL_HISTORY_METHOD',
@@ -107,7 +109,8 @@ describe('Auth Actions:', () => {
             .post('/api/v1/accounts/login/')
             .reply(200, {
                 token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlRlc3QgVXNlciJ9.J6n4-v0I85zk9Mk' +
-                'xBHroZ9ZPZEES-IKeul9ozxYnoZ8'
+                'xBHroZ9ZPZEES-IKeul9ozxYnoZ8',
+                user: {}
             });
 
         const middlewares = [thunk];
@@ -156,15 +159,16 @@ describe('Auth Actions:', () => {
                 type: TYPES.AUTH_LOGIN_USER_FAILURE,
                 payload: {
                     status: 403,
-                    statusText: 'Invalid token'
+                    statusText: 'Forbidden'
                 }
             }
         ];
 
         nock(SERVER_URL)
             .post('/api/v1/accounts/login/')
-            .reply(200, {
-                token: null
+            .reply(403, {
+                status: 403,
+                statusText: 'Forbidden'
             });
 
         const middlewares = [thunk];

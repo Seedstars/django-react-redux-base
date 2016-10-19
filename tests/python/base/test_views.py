@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from tests.python.accounts.test_models import UserFactory
+from tests.python.accounts.test_views import get_basic_auth_header
 
 
 @override_settings(CELERY_EAGER_PROPAGATES_EXCEPTIONS=True, CELERY_ALWAYS_EAGER=True, BROKER_BACKEND='memory')
@@ -18,11 +19,11 @@ class BaseTests(APITestCase):
     def test_get_protected_page(self):
         # Ensure we can login with given credentials.
         url = reverse('accounts:login')
-        data = {'email': 'emailwilllogin@mydomain.com', 'password': 'test'}
-        response = self.client.post(url, data, format='json')
+        self.client.credentials(HTTP_AUTHORIZATION=get_basic_auth_header('emailwilllogin@mydomain.com', 'test'))
+        response = self.client.post(url, format='json')
         self.assertTrue('token' in response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + response.data['token'])
+        self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(response.data['token']))
 
         # user confirmed account unsuccessfully
         url = reverse('base:protected_data')

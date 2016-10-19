@@ -14,7 +14,6 @@ import { default as LoginViewConnected, LoginViewNotConnected } from '../../../s
 import * as TYPES from '../../../src/static/constants';
 import { SERVER_URL } from '../../../src/static/utils/config';
 
-
 describe('Login View Tests (Container):', () => {
     describe('Implementation:', () => {
         context('Empty State:', () => {
@@ -50,11 +49,14 @@ describe('Login View Tests (Container):', () => {
 
             it('should call prop action with 3 arguments on button click', () => {
                 wrapper.setState({
-                    email: 'a@a.com',
-                    password: '123'
+                    formValues: {
+                        email: 'a@a.com',
+                        password: '123'
+                    },
+                    redirectTo: '/'
                 });
 
-                wrapper.find('button').simulate('click');
+                wrapper.find('form').simulate('submit');
                 expect(spies.authLoginUser.calledWith('a@a.com', '123', '/')).to.equal(true);
             });
         });
@@ -81,8 +83,8 @@ describe('Login View Tests (Container):', () => {
                 return expect(wrapper).to.be.ok;
             });
 
-            it('should have one div with class alert alert__error', () => {
-                const div = wrapper.find('div.alert__error');
+            it('should have one div with class alert alert-danger', () => {
+                const div = wrapper.find('div.alert-danger');
 
                 expect(div).to.have.length(1);
                 expect(div.text()).to.equal(props.statusText);
@@ -98,22 +100,15 @@ describe('Login View Tests (Container):', () => {
             });
 
             it('should call prop action with 3 arguments on button click', () => {
-                // There are two ways of changing input values
-
-                // ONE: if input not linked to components state
-                const inputs = wrapper.find('input');
-                inputs.at(0).node.value = 'a@a.com';
-                inputs.at(0).simulate('change');
-                inputs.at(1).node.value = '123';
-                inputs.at(1).simulate('change');
-
-                // TWO: if inputs linked to component state
                 wrapper.setState({
-                    email: 'a@a.com',
-                    password: '123'
+                    formValues: {
+                        email: 'a@a.com',
+                        password: '123'
+                    },
+                    redirectTo: '/'
                 });
 
-                wrapper.find('button').simulate('click');
+                wrapper.find('form').simulate('submit');
                 expect(spies.authLoginUser.calledWith('a@a.com', '123', '/')).to.equal(true);
             });
         });
@@ -163,8 +158,8 @@ describe('Login View Tests (Container):', () => {
 
             const wrapper = mount(<LoginViewConnected store={store}/>);
 
-            it('should have one div with class alert alert__success', () => {
-                const div = wrapper.find('div.alert__success');
+            it('should have one div with class alert alert-success', () => {
+                const div = wrapper.find('div.alert-success');
 
                 expect(div).to.have.length(1);
                 expect(div.text()).to.equal(wrapper.node.renderedElement.props.statusText);

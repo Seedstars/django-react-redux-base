@@ -1,8 +1,7 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
-from rest_framework_jwt.serializers import JSONWebTokenSerializer
 
-from accounts.serializers import UserRegistrationSerializer
+from accounts.serializers import UserRegistrationSerializer, UserSerializer
 from lib.testutils import CustomTestCase
 from tests.python.accounts.test_models import UserFactory
 
@@ -66,34 +65,34 @@ class UserRegistrationSerializerTest(CustomTestCase, APITestCase):
         self.assert_valid_data(serializer, self.VALID_DATA_DICT)
 
 
-class UserLoginSerializerTest(CustomTestCase, APITestCase):
+class UserSerializerTest(CustomTestCase, APITestCase):
     INVALID_DATA_DICT = [
         {'data': {'email': 'emailwilllogin@mydomain.com',
-                  'password': 'teste'},
-         'error': ('non_field_errors', ['Unable to login with provided credentials.']),
-         'label': 'Invalid login credentials.',
+                  'first_name': 'test', 'last_name': ''},
+         'error': ('last_name', ['This field may not be blank.']),
+         'label': 'Last name is required',
          'method': 'POST',
-         'status': status.HTTP_401_UNAUTHORIZED
+         'status': status.HTTP_400_BAD_REQUEST
          },
     ]
     VALID_DATA_DICT = [
-        {'email': 'emailwilllogin@mydomain.com', 'password': 'test'},
+        {'email': 'emailwilllogin@mydomain.com', 'first_name': 'test', 'last_name': 'test'},
     ]
 
     def setUp(self):
-        self.required_fields = ['email', 'password']
+        self.required_fields = ['email', 'first_name', 'last_name']
         self.not_required_fields = []
 
     def test_fields(self):
-        serializer = JSONWebTokenSerializer()
+        serializer = UserSerializer()
         self.assert_fields_required(True, serializer, self.required_fields)
         self.assert_fields_required(False, serializer, self.not_required_fields)
         self.assertEqual(len(serializer.fields), len(self.required_fields) + len(self.not_required_fields))
 
     def test_invalid_data(self):
-        serializer = JSONWebTokenSerializer
+        serializer = UserSerializer
         self.assert_invalid_data(serializer, self.INVALID_DATA_DICT)
 
     def test_validate_success(self):
-        serializer = JSONWebTokenSerializer
+        serializer = UserSerializer
         self.assert_valid_data(serializer, self.VALID_DATA_DICT)

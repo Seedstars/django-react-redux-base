@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import logoImage from './images/react-logo.png';
+
+import './style.scss';
+import reactLogo from './images/react-logo.png';
+import reduxLogo from './images/redux-logo.png';
 
 class HomeView extends React.Component {
 
@@ -12,31 +15,30 @@ class HomeView extends React.Component {
     render() {
         return (
             <div className="container">
-                <div className="row margin-top-medium">
-                    <div className="small-6 columns">
-                        <h1>React Redux Auth Example</h1>
-                    </div>
-                    <div className="small-6 columns">
-                        <img src={logoImage}
-                             alt="React Logo"
-                        />
-                    </div>
+                <div className="margin-top-medium text-center">
+                    <img className="page-logo margin-bottom-medium"
+                         src={reactLogo}
+                         alt="ReactJs"
+                    />
+                    <img className="page-logo margin-bottom-medium"
+                         src={reduxLogo}
+                         alt="Redux"
+                    />
                 </div>
-                <div className="row margin-top-medium">
-                    <div className="small-12 columns">
-                        <h2>Attempt to access some <Link to="/protected"><b>protected content</b>.</Link></h2>
-                    </div>
+                <div className="text-center">
+                    <h1>Django React Redux Demo</h1>
                 </div>
-                <div className="row margin-top-medium">
-                    <div className="small-12 columns">
-                        {this.props.statusText ?
-                            <div className="alert alert__info">
-                                {this.props.statusText}
-                            </div>
-                            :
-                            null
-                        }
-                    </div>
+                <div className="margin-top-medium text-center">
+                    <p>Attempt to access some <Link to="/protected"><b>protected content</b></Link>.</p>
+                </div>
+                <div className="margin-top-medium">
+                    {this.props.statusText ?
+                        <div className="alert alert-info">
+                            {this.props.statusText}
+                        </div>
+                        :
+                        null
+                    }
                 </div>
             </div>
         );

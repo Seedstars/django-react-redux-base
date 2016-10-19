@@ -1,19 +1,23 @@
 import fetch from 'isomorphic-fetch';
 import { push } from 'react-router-redux';
-import jwtDecode from 'jwt-decode';
-
 import { SERVER_URL } from '../utils/config';
 import { checkHttpStatus, parseJSON } from '../utils';
-import { AUTH_LOGIN_USER_REQUEST, AUTH_LOGIN_USER_FAILURE, AUTH_LOGIN_USER_SUCCESS,
-    AUTH_LOGOUT_USER } from '../constants';
+import {
+    AUTH_LOGIN_USER_REQUEST,
+    AUTH_LOGIN_USER_FAILURE,
+    AUTH_LOGIN_USER_SUCCESS,
+    AUTH_LOGOUT_USER
+} from '../constants';
 
 
-export function authLoginUserSuccess(token) {
+export function authLoginUserSuccess(token, user) {
     sessionStorage.setItem('token', token);
+    sessionStorage.setItem('user', user);
     return {
         type: AUTH_LOGIN_USER_SUCCESS,
         payload: {
-            token
+            token,
+            user
         }
     };
 }
@@ -46,32 +50,27 @@ export function authLogoutAndRedirect() {
     return (dispatch, state) => {
         dispatch(authLogout());
         dispatch(push('/login'));
-        return Promise.resolve(); // TOOD: we need  promise here because of tests, find a better way
+        return Promise.resolve(); // TODO: we need  promise here because of tests, find a better way
     };
 }
 
 export function authLoginUser(email, password, redirect = '/') {
     return (dispatch) => {
         dispatch(authLoginUserRequest());
+        const auth = btoa(`${email}:${password}`);
         return fetch(`${SERVER_URL}/api/v1/accounts/login/`, {
             method: 'post',
-            credentials: 'include',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email, password
-            })
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${auth}`
+            }
         })
             .then(checkHttpStatus)
             .then(parseJSON)
-            .then(response => {
+            .then((response) => {
                 try {
-                    // Validate if token is valid
-                    jwtDecode(response.token);
-
-                    dispatch(authLoginUserSuccess(response.token));
+                    dispatch(authLoginUserSuccess(response.token, response.user));
                     dispatch(push(redirect));
                 } catch (e) {
                     dispatch(authLoginUserFailure({
@@ -82,7 +81,7 @@ export function authLoginUser(email, password, redirect = '/') {
                     }));
                 }
             })
-            .catch(error => {
+            .catch((error) => {
                 dispatch(authLoginUserFailure(error));
             });
     };

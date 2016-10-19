@@ -6,6 +6,7 @@ module.exports = {
 
     entry: {
         vendor: [
+            'bootstrap-loader/extractStyles',
             'font-awesome-webpack!./src/static/styles/font-awesome.config.prod.js'
         ]
     },
@@ -13,7 +14,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.scss$/,
-            loader: 'style!css!postcss-loader!sass'
+            loader: ExtractTextPlugin.extract("style", "css?minimize!postcss-loader!sass")
         }],
     },
 

@@ -3,16 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/data';
 
-import './style.scss';
-
-
 class ProtectedView extends React.Component {
 
     static propTypes = {
         isFetching: React.PropTypes.bool.isRequired,
         data: React.PropTypes.string,
         token: React.PropTypes.string.isRequired,
-        actions: React.PropTypes.object.isRequired
+        actions: React.PropTypes.shape({
+            dataFetchProtectedData: React.PropTypes.func.isRequired
+        }).isRequired
     };
 
     // Note: have to use componentWillMount, if I add this in constructor will get error:
@@ -27,25 +26,39 @@ class ProtectedView extends React.Component {
         return (
             <div className="protected">
                 <div className="container">
+                    <h1 className="text-center margin-bottom-medium">Protected</h1>
                     {this.props.isFetching === true ?
-                        <h1>Loading data...</h1>
+                        <p className="text-center">Loading data...</p>
                         :
-                        <div>
-                            <div className="row">
-                                <div className="small-12 columns">
-                                    <h1>Welcome back!</h1>
-                                </div>
-                            </div>
-
-                            <div className="row margin-top-small">
-                                <div className="small-12 columns">
-                                    <div className="protected__protected-data">
-                                        Data from server<br/>
+                            <div>
+                                <p>Data received from the server:</p>
+                                <div className="margin-top-small">
+                                    <div className="alert alert-info">
                                         <b>{this.props.data}</b>
                                     </div>
                                 </div>
+                                <div className="margin-top-medium">
+                                    <h5 className="margin-bottom-small"><b>How does this work?</b></h5>
+                                    <p className="margin-bottom-small">
+                                        On the <code>componentWillMount</code> method of the
+                                        &nbsp;<code>ProtectedView</code> component, the action
+                                        &nbsp;<code>dataFetchProtectedData</code> is called. This action will first
+                                        dispatch a <code>DATA_FETCH_PROTECTED_DATA_REQUEST</code> action to the Redux
+                                        store. When an action is dispatched to the store, an appropriate reducer for
+                                        that specific action will change the state of the store. After that it will then
+                                        make an asynchronous request to the server using
+                                        the <code>isomorphic-fetch</code> library. On its
+                                        response, it will dispatch the <code>DATA_RECEIVE_PROTECTED_DATA</code> action
+                                        to the Redux store. In case of wrong credentials in the request, the&nbsp;
+                                        <code>AUTH_LOGIN_USER_FAILURE</code> action will be dispatched.
+                                    </p>
+                                    <p>
+                                        Because the <code>ProtectedView</code> is connected to the Redux store, when the
+                                        value of a property connected to the view is changed, the view is re-rendered
+                                        with the new data.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
                     }
                 </div>
             </div>

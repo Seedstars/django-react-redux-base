@@ -71,19 +71,19 @@ describe(' Protected View Tests (Container):', () => {
                 return expect(wrapper).to.be.ok;
             });
 
-            it('should have one h1 with "Welcome back!"', () => {
+            it('should have one h1 with "Protected"', () => {
                 const h1 = wrapper.find('h1');
 
                 expect(h1).to.have.length(1);
-                expect(h1.text()).to.equal('Welcome back!');
+                expect(h1.text()).to.equal('Protected');
             });
 
-            it('should have one div with class .protected__protected-data with  "Data from server: {props.data}"',
+            it('should have one div with class .alert .alert-info with  "Data from server: {props.data}"',
                 () => {
-                    const div = wrapper.find('.protected__protected-data');
+                    const div = wrapper.find('.alert.alert-info');
 
                     expect(div).to.have.length(1);
-                    expect(div.text()).to.equal('Data from serversome data');
+                    expect(div.text()).to.equal('some data');
                 });
         });
     });

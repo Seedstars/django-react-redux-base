@@ -19,8 +19,9 @@ const node = (
 );
 
 const token = sessionStorage.getItem('token');
+const user = sessionStorage.getItem('user');
 if (token !== null) {
-    store.dispatch(authLoginUserSuccess(token));
+    store.dispatch(authLoginUserSuccess(token, user));
 }
 
 ReactDOM.render(node, target);

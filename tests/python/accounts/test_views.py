@@ -1,15 +1,31 @@
 import uuid
 
+import base64
 from django.core.urlresolvers import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
 from lib.testutils import CustomTestCase
-from tests.python.accounts.test_serializers import UserRegistrationSerializerTest, UserLoginSerializerTest
+from tests.python.accounts.test_serializers import UserRegistrationSerializerTest, UserSerializerTest
 from .test_models import UserFactory
 
+def get_basic_auth_header(username, password):
+    return 'Basic %s' % base64.b64encode(('%s:%s' % (username, password)).encode('ascii')).decode()
 
 class AccountTests(CustomTestCase, APITestCase):
+    INVALID_DATA_DICT = [
+        {'data': {'email': 'emailwilllogin@mydomain.com',
+                  'password': 'teste'},
+         'error': ('non_field_errors', ['Unable to login with provided credentials.']),
+         'label': 'Invalid login credentials.',
+         'method': 'POST',
+         'status': status.HTTP_401_UNAUTHORIZED
+         },
+    ]
+    VALID_DATA_DICT = [
+        {'email': 'emailwilllogin@mydomain.com', 'password': 'test'},
+    ]
+
     def setUp(self):
         self.user = UserFactory.create(email='emailwilllogin@mydomain.com',
                                        first_name='Test',
@@ -23,8 +39,9 @@ class AccountTests(CustomTestCase, APITestCase):
                                           url=reverse('accounts:register'))
 
     def test_account_login_unsuccessful(self):
-        self.assert_invalid_data_response(invalid_data_dicts=UserLoginSerializerTest.INVALID_DATA_DICT,
-                                          url=reverse('accounts:login'))
+        self.client.credentials(HTTP_AUTHORIZATION=get_basic_auth_header('emailwilllogin@mydomain.com', 'wrong'))
+        response = self.client.post(reverse('accounts:login'))
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_account_register_successful(self):
         url = reverse('accounts:register')
@@ -39,20 +56,20 @@ class AccountTests(CustomTestCase, APITestCase):
 
         # Confirm user can login after register
         url_login = reverse('accounts:login')
-        data_login = {'email': 'emailsuccess@mydomain.com', 'password': 'test'}
-        response_login = self.client.post(url_login, data_login, format='json')
+        self.client.credentials(HTTP_AUTHORIZATION=get_basic_auth_header('emailwilllogin@mydomain.com', 'test'))
+        response_login = self.client.post(url_login, format='json')
         self.assertTrue('token' in response_login.data)
         self.assertEqual(response_login.status_code, status.HTTP_200_OK)
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + response_login.data['token'])
+        self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(response_login.data['token']))
 
     def test_account_login_successful_and_perform_actions(self):
         # Ensure we can login with given credentials.
         url = reverse('accounts:login')
-        data = {'email': 'emailwilllogin@mydomain.com', 'password': 'test'}
-        response = self.client.post(url, data, format='json')
+        self.client.credentials(HTTP_AUTHORIZATION=get_basic_auth_header('emailwilllogin@mydomain.com', 'test'))
+        response = self.client.post(url, format='json')
         self.assertTrue('token' in response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + response.data['token'])
+        self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(response.data['token']))
 
         # user confirmed account unsuccessfully
         url = reverse('accounts:status')
@@ -64,7 +81,7 @@ class AccountTests(CustomTestCase, APITestCase):
         invalid_data = {'status': status.HTTP_404_NOT_FOUND, 'method': 'GET', 'data': {}, 'label': 'Not found'}
         self.assert_invalid_data_response(url=reverse('accounts:confirm_email', args=[str(uuid.uuid4())]),
                                           invalid_data_dicts=[invalid_data])
-        
+
     def test_account_confirm_email_successful(self):
         user = UserFactory.create(email='emailtoconfirm@mydomain.com',
                                   first_name='Test',

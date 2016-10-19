@@ -29,15 +29,15 @@ export function dataFetchProtectedData(token) {
             credentials: 'include',
             headers: {
                 Accept: 'application/json',
-                Authorization: `JWT ${token}`
+                Authorization: `Token ${token}`
             }
         })
             .then(checkHttpStatus)
             .then(parseJSON)
-            .then(response => {
+            .then((response) => {
                 dispatch(dataReceiveProtectedData(response.data));
             })
-            .catch(error => {
+            .catch((error) => {
                 if (error.response.status === 401) {
                     dispatch(authLoginUserFailure(error));
                     dispatch(push('/login'));

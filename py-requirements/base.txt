@@ -1,5 +1,5 @@
-Django==1.8.14
-django-extensions==1.7.2
+Django==1.8.15
+django-extensions==1.7.4
 
 django-disposable-email-checker==1.2.1
 
@@ -7,15 +7,13 @@ django-disposable-email-checker==1.2.1
 psycopg2==2.6.2
 
 # serve files
-whitenoise==3.2.1
+whitenoise==3.2.2
 
 # Rest Framework
-djangorestframework==3.4.5
-djangorestframework-jwt==1.8.0
-PyJWT==1.4.2
+djangorestframework==3.4.7
 
 # Sentry
-raven==5.24.3
+raven==5.27.1
 
 # for date processing
 python-dateutil==2.5.3
@@ -23,3 +21,4 @@ python-dateutil==2.5.3
 # Logging
 git+https://github.com/Seedstars/django-rest-logger.git
 
+django-rest-knox==2.2.0
