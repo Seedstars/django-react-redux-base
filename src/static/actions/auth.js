@@ -12,7 +12,7 @@ import {
 
 export function authLoginUserSuccess(token, user) {
     sessionStorage.setItem('token', token);
-    sessionStorage.setItem('user', user);
+    sessionStorage.setItem('user', JSON.stringify(user));
     return {
         type: AUTH_LOGIN_USER_SUCCESS,
         payload: {
@@ -41,6 +41,7 @@ export function authLoginUserRequest() {
 
 export function authLogout() {
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
     return {
         type: AUTH_LOGOUT_USER
     };
