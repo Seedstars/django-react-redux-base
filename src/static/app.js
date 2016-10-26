@@ -13,7 +13,8 @@ class App extends React.Component {
         isAuthenticated: React.PropTypes.bool.isRequired,
         children: React.PropTypes.shape().isRequired,
         dispatch: React.PropTypes.func.isRequired,
-        pathName: React.PropTypes.string.isRequired
+        pathName: React.PropTypes.string.isRequired,
+        userName: React.PropTypes.string,
     };
 
     logout = () => {

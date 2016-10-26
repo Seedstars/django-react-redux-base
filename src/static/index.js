@@ -19,7 +19,13 @@ const node = (
 );
 
 const token = sessionStorage.getItem('token');
-const user = sessionStorage.getItem('user');
+let user = {};
+try {
+  user = JSON.parse(sessionStorage.getItem('user'));
+} catch (e) {
+  // Failed to parse
+}
+
 if (token !== null) {
     store.dispatch(authLoginUserSuccess(token, user));
 }
