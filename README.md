@@ -2,7 +2,7 @@
 
 This repository includes a boilerplate project used for all Seedstars Labs applications. It uses Django as backend and React as frontend. 
 
-We build on the solders of giants with the following technologies:
+We build on the shoulders of giants with the following technologies:
 
 **Frontend**
 
@@ -43,8 +43,8 @@ We build on the solders of giants with the following technologies:
 
 ## Readme Notes
 
-* Command line starts with $, the command should run with user privileges
-* Command line starts with #, the command should run with root privileges
+* If the command line starts with $, the command should run with user privileges
+* If the coommand line starts with #, the command should run with root privileges
 
 ## Retrieve code 
 
