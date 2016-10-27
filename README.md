@@ -2,7 +2,7 @@
 
 This repository includes a boilerplate project used for all Seedstars Labs applications. It uses Django as backend and React as frontend. 
 
-We build on the solders of giants with the following technologies:
+We build on the shoulders of giants with the following technologies:
 
 **Frontend**
 
