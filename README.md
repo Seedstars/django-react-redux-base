@@ -48,7 +48,7 @@ We build on the shoulders of giants with the following technologies:
 
 ## Retrieve code 
 
-* `$ git clone https://github.com/Seedstars/django-react-redux-jwt-base.git`
+* `$ git clone https://github.com/seedstars/django-react-redux-jwt-base.git`
 * `$ cd django-react-redux-jwt-base`
 * `$ git submodule init`
 * `$ git submodule update`
