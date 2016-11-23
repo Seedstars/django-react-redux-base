@@ -17,6 +17,7 @@ We build on the shoulders of giants with the following technologies:
 * [Redux Thunk](https://github.com/gaearon/redux-thunk) Thunk middleware for Redux - used in async actions
 * [React Router Redux](https://github.com/rackt/react-router-redux) Ruthlessly simple bindings to keep react-router and redux in sync
 * [fetch](https://github.com/github/fetch) A window.fetch JavaScript polyfill
+* [tcomb form](https://github.com/gcanti/tcomb-form) Forms library for react
 * [style-loader](https://github.com/webpack/style-loader), [sass-loader](https://github.com/jtangelder/sass-loader) and [less-loader](https://github.com/webpack/less-loader) to allow import of stylesheets in plain css, sass and less,
 * [font-awesome-webpack](https://github.com/gowravshekar/font-awesome-webpack) to customize FontAwesome
 * [bootstrap-loader](https://github.com/shakacode/bootstrap-loader) to customize Bootstrap
