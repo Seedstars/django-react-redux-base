@@ -7,15 +7,15 @@ We build on the shoulders of giants with the following technologies:
 **Frontend**
 
 * [React](https://github.com/facebook/react)
-* [React Router](https://github.com/rackt/react-router)
+* [React Router](https://github.com/ReactTraining/react-router) Declarative routing for React
 * [Babel](http://babeljs.io) for ES6 and ES7 magic
 * [Webpack](http://webpack.github.io) for bundling
 * [Webpack Dev Middleware](http://webpack.github.io/docs/webpack-dev-middleware.html)
 * [Clean Webpack Plugin](https://github.com/johnagan/clean-webpack-plugin)
-* [Redux](https://github.com/rackt/redux)'s futuristic [Flux](https://facebook.github.io/react/blog/2014/05/06/flux.html) implementation
-* [Redux Dev Tools](https://github.com/rackt/redux-devtools) for next generation DX (developer experience). Watch [Dan Abramov's talk](https://www.youtube.com/watch?v=xsSnOQynTHs)
+* [Redux](https://github.com/reactjs/redux) Predictable state container for JavaScript apps 
+* [Redux Dev Tools](https://github.com/gaearon/redux-devtools) DevTools for Redux with hot reloading, action replay, and customizable UI. Watch [Dan Abramov's talk](https://www.youtube.com/watch?v=xsSnOQynTHs)
 * [Redux Thunk](https://github.com/gaearon/redux-thunk) Thunk middleware for Redux - used in async actions
-* [React Router Redux](https://github.com/rackt/react-router-redux) Ruthlessly simple bindings to keep react-router and redux in sync
+* [React Router Redux](https://github.com/reactjs/react-router-redux) Ruthlessly simple bindings to keep react-router and redux in sync
 * [fetch](https://github.com/github/fetch) A window.fetch JavaScript polyfill
 * [tcomb form](https://github.com/gcanti/tcomb-form) Forms library for react
 * [style-loader](https://github.com/webpack/style-loader), [sass-loader](https://github.com/jtangelder/sass-loader) and [less-loader](https://github.com/webpack/less-loader) to allow import of stylesheets in plain css, sass and less,
