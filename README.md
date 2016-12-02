@@ -94,6 +94,9 @@ Run webpack in development mode
 
 * `$ npm run dev` 
 
+Please note that this process is normally slow because of sourcemaps generation. To make it faster you can change line 5 in 
+webpack/dev.config.js from 'source-map' to 'eval'. See more info: https://webpack.github.io/docs/configuration.html#devtool
+
 Run Django development http server 
 
 * `$ cd src`
