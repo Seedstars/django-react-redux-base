@@ -27,16 +27,6 @@ class UserRegistrationSerializerTest(CustomTestCase, APITestCase):
          'method': 'POST',
          'status': status.HTTP_400_BAD_REQUEST
          },
-
-        {'data': {'email': 'emailwilllogininserializer@mydomain.com',
-                  'first_name': 'test',
-                  'last_name': 'user',
-                  'password': 'test'},
-         'error': ('email', ['user with this Email address already exists.']),
-         'label': 'Email is already in use.',
-         'method': 'POST',
-         'status': status.HTTP_400_BAD_REQUEST
-         },
     ]
     VALID_DATA_DICT = [
         {'email': 'emailsuccess@gmail.com',

@@ -9,8 +9,10 @@ from lib.testutils import CustomTestCase
 from tests.python.accounts.test_serializers import UserRegistrationSerializerTest, UserSerializerTest
 from .test_models import UserFactory
 
+
 def get_basic_auth_header(username, password):
     return 'Basic %s' % base64.b64encode(('%s:%s' % (username, password)).encode('ascii')).decode()
+
 
 class AccountTests(CustomTestCase, APITestCase):
     INVALID_DATA_DICT = [
@@ -61,6 +63,35 @@ class AccountTests(CustomTestCase, APITestCase):
         self.assertTrue('token' in response_login.data)
         self.assertEqual(response_login.status_code, status.HTTP_200_OK)
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(response_login.data['token']))
+
+    def test_account_register_email_already_exists(self):
+        url = reverse('accounts:register')
+        data = {
+            'email': 'emailsuccess@mydomain.com',
+            'first_name': 'test',
+            'last_name': 'user',
+            'password': 'test'
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        # Confirm user can login after register
+        url_login = reverse('accounts:login')
+        self.client.credentials(HTTP_AUTHORIZATION=get_basic_auth_header('emailwilllogin@mydomain.com', 'test'))
+        response_login = self.client.post(url_login, format='json')
+        self.assertTrue('token' in response_login.data)
+        self.assertEqual(response_login.status_code, status.HTTP_200_OK)
+
+        url = reverse('accounts:register')
+        data = {
+            'email': 'emailsuccess@mydomain.com',
+            'first_name': 'test',
+            'last_name': 'user',
+            'password': 'test'
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data['email'], ['Email already in use, please use a different email address.'])
 
     def test_account_login_successful_and_perform_actions(self):
         # Ensure we can login with given credentials.

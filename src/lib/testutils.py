@@ -40,7 +40,7 @@ class CustomTestCase(TestCase):
         """
         for valid_data in valid_data_dicts:
             form_data = form(data=valid_data)
-            self.assertTrue(form_data.is_valid)
+            self.assertTrue(form_data.is_valid())
 
     def assert_invalid_data_response(self, url, invalid_data_dicts):
         """
