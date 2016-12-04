@@ -38,10 +38,20 @@ export function dataFetchProtectedData(token) {
                 dispatch(dataReceiveProtectedData(response.data));
             })
             .catch((error) => {
-                if (error.response.status === 401) {
-                    dispatch(authLoginUserFailure(error));
-                    dispatch(push('/login'));
+                if (error && typeof error.response !== 'undefined' && error.response.status === 401) {
+                    // Invalid authentication credentials
+                    error.response.json().then((data) => {
+                        dispatch(authLoginUserFailure(401, data.non_field_errors[0]));
+                    });
+                } else if (error && typeof error.response !== 'undefined' && error.response.status >= 500) {
+                    // Server side error
+                    dispatch(authLoginUserFailure(500, 'A server error occurred while sending your data!'));
+                } else {
+                    // Most likely connection issues
+                    dispatch(authLoginUserFailure('Connection Error', 'An error occurred while sending your data!'));
                 }
+
+                dispatch(push('/login'));
             });
     };
 }

@@ -22,13 +22,13 @@ export function authLoginUserSuccess(token, user) {
     };
 }
 
-export function authLoginUserFailure(error) {
+export function authLoginUserFailure(error, message) {
     sessionStorage.removeItem('token');
     return {
         type: AUTH_LOGIN_USER_FAILURE,
         payload: {
-            status: error.response.status,
-            statusText: error.response.statusText
+            status: error,
+            statusText: message
         }
     };
 }
@@ -70,20 +70,22 @@ export function authLoginUser(email, password, redirect = '/') {
             .then(checkHttpStatus)
             .then(parseJSON)
             .then((response) => {
-                try {
-                    dispatch(authLoginUserSuccess(response.token, response.user));
-                    dispatch(push(redirect));
-                } catch (e) {
-                    dispatch(authLoginUserFailure({
-                        response: {
-                            status: 403,
-                            statusText: 'Invalid token'
-                        }
-                    }));
-                }
+                dispatch(authLoginUserSuccess(response.token, response.user));
+                dispatch(push(redirect));
             })
             .catch((error) => {
-                dispatch(authLoginUserFailure(error));
+                if (error && typeof error.response !== 'undefined' && error.response.status === 401) {
+                    // Invalid authentication credentials
+                    error.response.json().then((data) => {
+                        dispatch(authLoginUserFailure(401, data.non_field_errors[0]));
+                    });
+                } else if (error && typeof error.response !== 'undefined' && error.response.status >= 500) {
+                    // Server side error
+                    dispatch(authLoginUserFailure(500, 'A server error occurred while sending your data!'));
+                } else {
+                    // Most likely connection issues
+                    dispatch(authLoginUserFailure('Connection Error', 'An error occurred while sending your data!'));
+                }
             });
     };
 }
