@@ -1,4 +1,5 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+/* eslint import/no-named-default: 0 */
 
 import React from 'react';
 import { expect } from 'chai';

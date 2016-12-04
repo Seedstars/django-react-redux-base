@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+    nginx:
+        restart: always
+        image: nginx:1.11.6-alpine
+    postgres:
+        restart: always
+        image: postgres:9.5.4
+        expose:
+            - 5432
+        volumes:
+          - ./docker/postgres/data:/var/lib/postgresql
+    django:
+        restart: always
+        build:
+            context: .
+            dockerfile: ./docker/django/Dockerfile
+        volumes:
+            - .:/django
+    web:
+        restart: always
+        build:
+            context: .
+            dockerfile: ./docker/web/Dockerfile
+        volumes:
+            - .:/django

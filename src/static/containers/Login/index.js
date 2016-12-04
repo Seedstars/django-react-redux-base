@@ -19,7 +19,7 @@ const LoginFormOptions = {
     help: <i>Hint: a@a.com / qw</i>,
     fields: {
         password: {
-            type: 'password',
+            type: 'password'
         }
     }
 };
@@ -32,7 +32,7 @@ class LoginView extends React.Component {
         isAuthenticating: React.PropTypes.bool.isRequired,
         statusText: React.PropTypes.string,
         actions: React.PropTypes.shape({
-            authLoginUser: React.PropTypes.func.isRequired,
+            authLoginUser: React.PropTypes.func.isRequired
         }).isRequired,
         location: React.PropTypes.shape({
             query: React.PropTypes.object.isRequired

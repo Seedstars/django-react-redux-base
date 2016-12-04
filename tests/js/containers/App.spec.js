@@ -1,4 +1,5 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+/* eslint import/no-named-default: 0 */
 
 import React from 'react';
 import sinon from 'sinon';
@@ -48,6 +49,22 @@ describe(' App View Tests (Container):', () => {
             it('should have one login button', () => {
                 expect(wrapper.find('.js-login-button')).to.have.length(1);
             });
+
+            it('should have one navbar brand and call a dispatch onClick event', () => {
+                const link = wrapper.find('.navbar-brand');
+                expect(link).to.have.length(1);
+
+                link.simulate('click');
+                expect(spies.redirect.calledOnce).to.equal(true);
+            });
+
+            it('should have one goToIndex link and call a dispatch onClick event', () => {
+                const link = wrapper.find('.js-go-to-index-button');
+                expect(link).to.have.length(1);
+
+                link.simulate('click');
+                expect(spies.redirect.calledTwice).to.equal(true);
+            });
         });
         context('State with authentication:', () => {
             let wrapper;
@@ -88,6 +105,22 @@ describe(' App View Tests (Container):', () => {
 
                 button.simulate('click');
                 expect(spies.redirect.calledOnce).to.equal(true);
+            });
+
+            it('should have one goToIndex link and call a dispatch onClick event', () => {
+                const link = wrapper.find('.js-go-to-index-button');
+                expect(link).to.have.length(1);
+
+                link.simulate('click');
+                expect(spies.redirect.calledTwice).to.equal(true);
+            });
+
+            it('should have one goToProtected link and call a dispatch onClick event', () => {
+                const link = wrapper.find('.js-go-to-protected-button');
+                expect(link).to.have.length(1);
+
+                link.simulate('click');
+                expect(spies.redirect.calledThrice).to.equal(true);
             });
 
             it('should unmount and remove resize event listener', () => {

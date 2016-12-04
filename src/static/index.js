@@ -21,9 +21,9 @@ const node = (
 const token = sessionStorage.getItem('token');
 let user = {};
 try {
-  user = JSON.parse(sessionStorage.getItem('user'));
+    user = JSON.parse(sessionStorage.getItem('user'));
 } catch (e) {
-  // Failed to parse
+    // Failed to parse
 }
 
 if (token !== null) {

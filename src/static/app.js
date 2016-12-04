@@ -13,8 +13,7 @@ class App extends React.Component {
         isAuthenticated: React.PropTypes.bool.isRequired,
         children: React.PropTypes.shape().isRequired,
         dispatch: React.PropTypes.func.isRequired,
-        pathName: React.PropTypes.string.isRequired,
-        userName: React.PropTypes.string,
+        pathName: React.PropTypes.string.isRequired
     };
 
     logout = () => {
@@ -37,7 +36,7 @@ class App extends React.Component {
             active: this.props.pathName === '/protected'
         });
         const loginClass = classNames({
-            active: this.props.pathName === '/login',
+            active: this.props.pathName === '/login'
         });
 
         return (
@@ -64,12 +63,15 @@ class App extends React.Component {
                             {this.props.isAuthenticated ?
                                 <ul className="nav navbar-nav navbar-right">
                                     <li className={homeClass}>
-                                        <a tabIndex="0" onClick={this.goToIndex}>
+                                        <a className="js-go-to-index-button" tabIndex="0" onClick={this.goToIndex}>
                                             <i className="fa fa-home"/> Home
                                         </a>
                                     </li>
                                     <li className={protectedClass}>
-                                        <a tabIndex="0" onClick={this.goToProtected}>
+                                        <a className="js-go-to-protected-button"
+                                           tabIndex="0"
+                                           onClick={this.goToProtected}
+                                        >
                                             <i className="fa fa-lock"/> Protected
                                         </a>
                                     </li>
@@ -80,16 +82,16 @@ class App extends React.Component {
                                     </li>
                                 </ul>
                                 :
-                                    <ul className="nav navbar-nav navbar-right">
-                                        <li className={homeClass}>
-                                            <a tabIndex="0" onClick={this.goToIndex}>
-                                                <i className="fa fa-home"/> Home
-                                            </a>
-                                        </li>
-                                        <li className={loginClass}>
-                                            <Link className="js-login-button" to="/login">Login</Link>
-                                        </li>
-                                    </ul>
+                                <ul className="nav navbar-nav navbar-right">
+                                    <li className={homeClass}>
+                                        <a className="js-go-to-index-button" tabIndex="0" onClick={this.goToIndex}>
+                                            <i className="fa fa-home"/> Home
+                                        </a>
+                                    </li>
+                                    <li className={loginClass}>
+                                        <Link className="js-login-button" to="/login">Login</Link>
+                                    </li>
+                                </ul>
                             }
                         </div>
                     </div>

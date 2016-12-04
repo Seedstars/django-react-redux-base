@@ -1,6 +1,6 @@
 # Django React/Redux Base Project
 
-This repository includes a boilerplate project used for all Seedstars Labs applications. It uses Django as backend and React as frontend. 
+This repository includes a boilerplate project used for all Seedstars Labs applications. It uses Django as backend and React as frontend.
 
 We build on the shoulders of giants with the following technologies:
 
@@ -47,7 +47,8 @@ We build on the shoulders of giants with the following technologies:
 * If the command line starts with $, the command should run with user privileges
 * If the command line starts with #, the command should run with root privileges
 
-## Retrieve code 
+
+## Retrieve code
 
 * `$ git clone https://github.com/seedstars/django-react-redux-jwt-base.git`
 * `$ cd django-react-redux-jwt-base`
@@ -59,48 +60,40 @@ Remember that when you copy this repository for a new project you need to add th
 
 * `$ git submodule add https://github.com/Seedstars/culture-scripts scripts`
 
+
 ## Installation
-
-### django-rest-knox dependencies
-
-* `# apt-get install -y build-essential libssl-dev libffi-dev libpq-dev python3-dev python-dev`
-
-### NodeJS
-
-* `# wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -`
-* `# apt-get install --yes nodejs`
-
-Make sure npm version is 3.x
-* `$ npm -v`
-* `$ npm install -g npm@next` # only if version is lower than 3.x
 
 ### Main Project
 
-* `$ npm install`
-* `$ npm run dev`  # will run webpack with watch and compile code as it changes
+We use Docker as a development environment. For production, we leave you to set it up the way you feel better,
+although it is trivial to extrapolate a production environment from the current docker-compose.yml.
+* Install [Docker](https://www.docker.com/products/overview) and [Docker Compose](https://docs.docker.com/compose/install/).
+* `$ docker-compose build`
 
-* `$ virtualenv -p /usr/bin/python3 virtualenv`
-* `$ source virtualenv/bin/activate`
-* `$ pip install -r py-requirements/dev.txt`
-
-* `$ cd src`
-* `$ python manage.py migrate`
-* `$ python manage.py loaddata fixtures.json`
-* `$ python manage.py runserver`
 
 ## Running
 
-Run webpack in development mode
+Run Docker development server
 
-* `$ npm run dev` 
+* `$ docker-compose up`
 
-Please note that this process is normally slow because of sourcemaps generation. To make it faster you can change line 5 in 
-webpack/dev.config.js from 'source-map' to 'eval'. See more info: https://webpack.github.io/docs/configuration.html#devtool
+### Accessing a container
 
-Run Django development http server 
+You can access shell in a container
 
-* `$ cd src`
-* `$ python manage.py runserver`
+* `$ docker exec -i -t <CONTAINER_NAME_OR_ID> /bin/bash`
+
+E.g.
+
+* `$ docker ps  # get the name from the list of running containers`
+* `$ docker exec -i -t djangoreactreduxbase_frontend_1 /bin/bash`
+
+### Accessing the database
+
+The database can be accessed @localhost:5433
+
+* `$ psql -h localhost -p 5433 -U djangoreactredux djangoreactredux_dev`
+
 
 ## Testing
 
@@ -110,8 +103,7 @@ Frontend (javascript tests)
 
 Backend (django/python tests)
 
-* `$ ./scripts/test_local_backend.sh`
-
+* `$ docker exec -i -t djangoreactreduxbase_backend_1 /bin/bash scripts/test_local_backend.sh`
 
 ### Static analysis
 
@@ -124,9 +116,10 @@ Frontend (javascript static analysis)
 
 Backend (django/python static analysis)
 
-* `$ ./scripts/static_validate_backend.sh`
+* `$ docker exec -i -t djangoreactreduxbase_backend_1 /bin/bash scripts/static_validate_backend.sh`
 
-### Screenshots
+
+## Screenshots
 
 Here are some screenshots of the boilerplate project.
 
@@ -137,3 +130,24 @@ Here are some screenshots of the boilerplate project.
 ![Screenshot02][2]  
 
 [2]: ./screenshots/screenshot_02.png
+
+
+## Gotchas
+
+* The npm development server takes longer than the django server to start, as it has to install the npm dependencies (if not already installed) and fire webpack. This means that after the django server starts, you should wait that webpack finishes compiling the .js files.
+* If your IDE has builtin language support for python with auto-imports (e.g. PyCharm), you can create a virtualenv and install the py-requirements.
+* If you are annoyed by docker creating files belonging to root (which is Docker's intended behaviour), you can run `# chown -hR $(whoami) .` before firing up the server.
+* While testing the backend, if you have a local virtualenv, you can run the static validation without running a docker container.
+* While testing the backend, if you have a local virtualenv and a local database configured with the dev settings, you can run the tests without running a docker container.
+
+
+## Contributing
+
+We welcome contributions from the community, given that they respect these basic guidelines:
+
+* All Tests & Static Analysis passing;
+* 100% code coverage;
+
+Prior to any pull-request, we advise to [open an issue](https://github.com/Seedstars/django-react-redux-base/issues). This is because, although we are happy to merge your code, we must make sure the changes don't impact our way of doing things, thus resulting on a declined PR, and your time wasted.
+
+If you want to tackle any open issue, well..... Just go for it! :)

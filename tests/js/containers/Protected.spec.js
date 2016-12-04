@@ -1,4 +1,5 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+/* eslint import/no-named-default: 0 */
 
 import React from 'react';
 import sinon from 'sinon';
@@ -46,7 +47,7 @@ describe(' Protected View Tests (Container):', () => {
                 expect(wrapper.find('h1')).to.have.length(1);
             });
             it('should call actions.fetchProtectedData', () => {
-                expect(spies.dataFetchProtectedData.calledWith('token')).to.eql(true);
+                expect(spies.dataFetchProtectedData.calledWith('token')).to.equal(true);
             });
         });
 

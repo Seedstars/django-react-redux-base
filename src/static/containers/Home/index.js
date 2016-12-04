@@ -9,7 +9,8 @@ import reduxLogo from './images/redux-logo.png';
 class HomeView extends React.Component {
 
     static propTypes = {
-        statusText: React.PropTypes.string
+        statusText: React.PropTypes.string,
+        userName: React.PropTypes.string
     };
 
     render() {
