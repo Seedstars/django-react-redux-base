@@ -16,48 +16,42 @@ describe('Auth Reducers Tests', () => {
     });
 
     it('should handle AUTH_LOGIN_USER_SUCCESS', () => {
-        const reducerResponse = authReducer([],
-            {
-                type: TYPES.AUTH_LOGIN_USER_SUCCESS,
-                payload: {
-                    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFAYS5jb20iLCJleHAiOjE0NTI5NjA3N' +
-                    'TUsInVzZXJfaWQiOjEsImVtYWlsIjoiYUBhLmNvbSJ9.RrJJ63OyWaZIPSmgS8h_vZyrPo0TV9SXvT_5HJhNKpMunJoY' +
-                    '76GKQ9xyjI27vlir0pA61j0X-j-Wk2phDDk39w',
-                    user: {
-                        email: 'a@a.com'
-                    }
+        const reducerResponse = authReducer([], {
+            type: TYPES.AUTH_LOGIN_USER_SUCCESS,
+            payload: {
+                token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFAYS5jb20iLCJleHAiOjE0NTI5NjA3N' +
+                'TUsInVzZXJfaWQiOjEsImVtYWlsIjoiYUBhLmNvbSJ9.RrJJ63OyWaZIPSmgS8h_vZyrPo0TV9SXvT_5HJhNKpMunJoY' +
+                '76GKQ9xyjI27vlir0pA61j0X-j-Wk2phDDk39w',
+                user: {
+                    email: 'a@a.com'
                 }
             }
-        );
-        expect(reducerResponse).to.eql(
-            {
-                token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFAYS5jb20iLCJleHAiOjE0NTI5NjA3NTUs' +
-                'InVzZXJfaWQiOjEsImVtYWlsIjoiYUBhLmNvbSJ9.RrJJ63OyWaZIPSmgS8h_vZyrPo0TV9SXvT_5HJhNKpMunJoY76GKQ9x' +
-                'yjI27vlir0pA61j0X-j-Wk2phDDk39w',
-                userName: 'a@a.com',
-                isAuthenticating: false,
-                isAuthenticated: true,
-                statusText: 'You have been successfully logged in.'
-            }
-        );
+        });
+        expect(reducerResponse).to.eql({
+            token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFAYS5jb20iLCJleHAiOjE0NTI5NjA3NTUs' +
+            'InVzZXJfaWQiOjEsImVtYWlsIjoiYUBhLmNvbSJ9.RrJJ63OyWaZIPSmgS8h_vZyrPo0TV9SXvT_5HJhNKpMunJoY76GKQ9x' +
+            'yjI27vlir0pA61j0X-j-Wk2phDDk39w',
+            userName: 'a@a.com',
+            isAuthenticating: false,
+            isAuthenticated: true,
+            statusText: 'You have been successfully logged in.'
+        });
     });
 
     it('should handle AUTH_LOGIN_USER_FAILURE', () => {
-        const reducerResponse = authReducer([],
-            {
-                type: TYPES.AUTH_LOGIN_USER_FAILURE,
-                payload: {
-                    status: '401',
-                    statusText: 'something happen'
-                }
+        const reducerResponse = authReducer([], {
+            type: TYPES.AUTH_LOGIN_USER_FAILURE,
+            payload: {
+                status: '401',
+                statusText: 'Something Happened'
             }
-        );
+        });
         expect(reducerResponse).to.eql({
             token: null,
             userName: null,
             isAuthenticating: false,
             isAuthenticated: false,
-            statusText: 'Authentication Error: 401 something happen'
+            statusText: 'Authentication Error: 401 - Something Happened'
         });
     });
 
@@ -91,7 +85,6 @@ describe('Auth Reducers Tests', () => {
             token: null,
             userName: null,
             statusText: 'You have been successfully logged out.'
-
         });
     });
 });

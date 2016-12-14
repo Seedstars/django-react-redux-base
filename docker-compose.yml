@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+    nginx:
+        extends:
+            file: docker-common.yml
+            service: nginx
+        ports:
+            - 8000:8000
+        volumes:
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        volumes_from:
+            - backend
+    postgres:
+        extends:
+            file: docker-common.yml
+            service: postgres
+        ports:
+            - 5433:5432
+        volumes:
+            - ./docker/postgres/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+    backend:
+        extends:
+            file: docker-common.yml
+            service: django
+        links:
+            - postgres
+        entrypoint:
+            - /django-entrypoint.sh
+        expose:
+            - 8000
+    frontend:
+        extends:
+            file: docker-common.yml
+            service: web
+        links:
+            - backend
+        entrypoint:
+            - /web-entrypoint.sh

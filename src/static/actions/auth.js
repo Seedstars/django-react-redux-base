@@ -51,7 +51,7 @@ export function authLogoutAndRedirect() {
     return (dispatch, state) => {
         dispatch(authLogout());
         dispatch(push('/login'));
-        return Promise.resolve(); // TODO: we need  promise here because of tests, find a better way
+        return Promise.resolve(); // TODO: we need a promise here because of the tests, find a better way
     };
 }
 
@@ -76,7 +76,7 @@ export function authLoginUser(email, password, redirect = '/') {
             .catch((error) => {
                 if (error && typeof error.response !== 'undefined' && error.response.status === 401) {
                     // Invalid authentication credentials
-                    error.response.json().then((data) => {
+                    return error.response.json().then((data) => {
                         dispatch(authLoginUserFailure(401, data.non_field_errors[0]));
                     });
                 } else if (error && typeof error.response !== 'undefined' && error.response.status >= 500) {
@@ -86,6 +86,8 @@ export function authLoginUser(email, password, redirect = '/') {
                     // Most likely connection issues
                     dispatch(authLoginUserFailure('Connection Error', 'An error occurred while sending your data!'));
                 }
+
+                return Promise.resolve(); // TODO: we need a promise here because of the tests, find a better way
             });
     };
 }

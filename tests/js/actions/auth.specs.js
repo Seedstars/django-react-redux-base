@@ -31,15 +31,10 @@ describe('Auth Actions:', () => {
     });
 
     it('authLoginUserFailure should create LOGIN_USER_FAILURE action', () => {
-        expect(ACTIONS_AUTH.authLoginUserFailure({
-            response: {
-                status: '404',
-                statusText: 'Not found'
-            }
-        })).to.eql({
+        expect(ACTIONS_AUTH.authLoginUserFailure(404, 'Not found')).to.eql({
             type: TYPES.AUTH_LOGIN_USER_FAILURE,
             payload: {
-                status: '404',
+                status: 404,
                 statusText: 'Not found'
             }
         });
@@ -138,7 +133,7 @@ describe('Auth Actions:', () => {
 
         nock(SERVER_URL)
             .post('/api/v1/accounts/login/')
-            .reply(401);
+            .reply(401, { non_field_errors: ['Unauthorized'] });
 
         const middlewares = [thunk];
         const mockStore = configureStore(middlewares);
@@ -150,30 +145,54 @@ describe('Auth Actions:', () => {
             }).then(done).catch(done);
     });
 
-    it('authLoginUser should create LOGIN_USER_REQUEST and LOGIN_USER_FAILURE ' +
-        'actions when the token is invalid', (done) => {
+    it('authLoginUser should create LOGIN_USER_REQUEST and LOGIN_USER_FAILURE actions when API returns 500', (done) => {
         const expectedActions = [
             {
                 type: TYPES.AUTH_LOGIN_USER_REQUEST
             }, {
                 type: TYPES.AUTH_LOGIN_USER_FAILURE,
                 payload: {
-                    status: 403,
-                    statusText: 'Forbidden'
+                    status: 500,
+                    statusText: 'A server error occurred while sending your data!'
                 }
             }
         ];
 
         nock(SERVER_URL)
             .post('/api/v1/accounts/login/')
-            .reply(403, {
-                status: 403,
-                statusText: 'Forbidden'
-            });
+            .reply(500);
 
         const middlewares = [thunk];
         const mockStore = configureStore(middlewares);
-        const store = mockStore({}, expectedActions, done);
+        const store = mockStore({});
+
+        store.dispatch(ACTIONS_AUTH.authLoginUser())
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
+    });
+
+    it('authLoginUser should create LOGIN_USER_REQUEST and LOGIN_USER_FAILURE actions when API ' +
+        'has no response', (done) => {
+        const expectedActions = [
+            {
+                type: TYPES.AUTH_LOGIN_USER_REQUEST
+            }, {
+                type: TYPES.AUTH_LOGIN_USER_FAILURE,
+                payload: {
+                    status: 'Connection Error',
+                    statusText: 'An error occurred while sending your data!'
+                }
+            }
+        ];
+
+        nock(SERVER_URL)
+            .post('/api/v1/accounts/login/')
+            .reply();
+
+        const middlewares = [thunk];
+        const mockStore = configureStore(middlewares);
+        const store = mockStore({});
 
         store.dispatch(ACTIONS_AUTH.authLoginUser())
             .then(() => {

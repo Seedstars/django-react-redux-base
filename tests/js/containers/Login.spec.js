@@ -1,4 +1,5 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+/* eslint import/no-named-default: 0 */
 
 import React from 'react';
 import sinon from 'sinon';
@@ -110,6 +111,27 @@ describe('Login View Tests (Container):', () => {
 
                 wrapper.find('form').simulate('submit');
                 expect(spies.authLoginUser.calledWith('a@a.com', '123', '/')).to.equal(true);
+            });
+
+            it('should update state on form change', () => {
+                wrapper.setState({
+                    formValues: {
+                        email: 'a@a.com',
+                        password: '123'
+                    },
+                    redirectTo: '/'
+                });
+
+                const inputEmail = wrapper.find('input').at(0);
+                inputEmail.simulate('change', { target: { value: 'b@b.com' } });
+
+                expect(wrapper.state()).to.eql({
+                    formValues: {
+                        email: 'b@b.com',
+                        password: '123'
+                    },
+                    redirectTo: '/'
+                });
             });
         });
     });

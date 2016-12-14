@@ -15,7 +15,7 @@ module.exports = {
         loaders: [{
             test: /\.scss$/,
             loader: 'style!css?localIdentName=[path][name]--[local]!postcss-loader!sass'
-        }],
+        }]
     },
 
     plugins: [
@@ -27,5 +27,5 @@ module.exports = {
         }),
         new ExtractTextPlugin('styles/[name].[contenthash].css'),
         new webpack.optimize.OccurrenceOrderPlugin()
-    ],
+    ]
 };

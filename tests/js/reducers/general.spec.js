@@ -4,16 +4,17 @@ import { expect } from 'chai';
 import reducer from '../../../src/static/reducers/data';
 
 describe('General Reducers Tests', () => {
-    it('the state should be the same when a actions doesnt exist', () => {
+    it('the state should be the same when a actions doesnt exist and output a console warning', () => {
         const reducerResponse = reducer(
             {
                 data: 'some data',
                 isFetching: false
             },
             {
-                type: 'this action doesnt exist'
+                type: 'nonexistent action'
             }
         );
+
         expect(reducerResponse).to.eql({
             data: 'some data',
             isFetching: false
@@ -25,11 +26,8 @@ describe('General Reducers Tests', () => {
             data: null,
             isFetching: false
         };
-        const reducerResponse = reducer(undefined,
-            {
-                type: 'this action doesnt exist'
-            }
-        );
+        const reducerResponse = reducer(undefined, { type: 'nonexistent action' });
+
         expect(reducerResponse).to.eql(initialState);
     });
 });

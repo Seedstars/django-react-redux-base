@@ -34,6 +34,35 @@ describe('Data Actions:', () => {
         });
     });
 
+    it('dataFetchProtectedDataRequest should create DATA_RECEIVE_PROTECTED_DATA actions ' +
+        'when API returns 200', (done) => {
+        const expectedActions = [
+            {
+                type: TYPES.DATA_FETCH_PROTECTED_DATA_REQUEST
+            }, {
+                type: TYPES.DATA_RECEIVE_PROTECTED_DATA,
+                payload: {
+                    data: 'data'
+                }
+            }
+        ];
+
+        nock(SERVER_URL)
+            .get('/api/v1/getdata/')
+            .reply(200, {
+                data: 'data'
+            });
+
+        const middlewares = [thunk];
+        const mockStore = configureStore(middlewares);
+        const store = mockStore({});
+
+        store.dispatch(ACTIONS_DATA.dataFetchProtectedData('token'))
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
+    });
+
     it('dataFetchProtectedDataRequest should create authLogout and pushState actions when API returns 401', (done) => {
         const expectedActions = [
             {
@@ -57,7 +86,7 @@ describe('Data Actions:', () => {
 
         nock(SERVER_URL)
             .get('/api/v1/getdata/')
-            .reply(401);
+            .reply(401, { non_field_errors: ['Unauthorized'] });
 
         const middlewares = [thunk];
         const mockStore = configureStore(middlewares);
@@ -69,24 +98,66 @@ describe('Data Actions:', () => {
             }).then(done).catch(done);
     });
 
-    it('dataFetchProtectedDataRequest should create DATA_RECEIVE_PROTECTED_DATA actions ' +
-        'when API returns 200', (done) => {
+    it('dataFetchProtectedDataRequest should create authLogout and pushState actions when API returns 500', (done) => {
         const expectedActions = [
             {
                 type: TYPES.DATA_FETCH_PROTECTED_DATA_REQUEST
             }, {
-                type: TYPES.DATA_RECEIVE_PROTECTED_DATA,
+                type: TYPES.AUTH_LOGIN_USER_FAILURE,
                 payload: {
-                    data: 'data'
+                    status: 500,
+                    statusText: 'A server error occurred while sending your data!'
+                }
+            }, {
+                type: '@@router/CALL_HISTORY_METHOD',
+                payload: {
+                    method: 'push',
+                    args: [
+                        '/login'
+                    ]
                 }
             }
         ];
 
         nock(SERVER_URL)
             .get('/api/v1/getdata/')
-            .reply(200, {
-                data: 'data'
-            });
+            .reply(500);
+
+        const middlewares = [thunk];
+        const mockStore = configureStore(middlewares);
+        const store = mockStore({});
+
+        store.dispatch(ACTIONS_DATA.dataFetchProtectedData('token'))
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
+    });
+
+    it('dataFetchProtectedDataRequest should create authLogout and pushState actions when API ' +
+        'has no response', (done) => {
+        const expectedActions = [
+            {
+                type: TYPES.DATA_FETCH_PROTECTED_DATA_REQUEST
+            }, {
+                type: TYPES.AUTH_LOGIN_USER_FAILURE,
+                payload: {
+                    status: 'Connection Error',
+                    statusText: 'An error occurred while sending your data!'
+                }
+            }, {
+                type: '@@router/CALL_HISTORY_METHOD',
+                payload: {
+                    method: 'push',
+                    args: [
+                        '/login'
+                    ]
+                }
+            }
+        ];
+
+        nock(SERVER_URL)
+            .get('/api/v1/getdata/')
+            .reply();
 
         const middlewares = [thunk];
         const mockStore = configureStore(middlewares);

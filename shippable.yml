@@ -17,13 +17,32 @@ branches:
     - master
     - staging
 
+
+# before install
+before_install:
+  - shippable_retry sudo apt-get update
+  - shippable_retry sudo apt-get install -y python-dev
+  - shippable_retry sudo apt-get install -y postgresql-9.3 postgresql-contrib-9.3 postgresql-server-dev-9.3
+  - sudo echo "host all all localhost trust" > /etc/postgresql/9.3/main/pg_hba.conf
+  - sudo echo "local all all trust" >> /etc/postgresql/9.3/main/pg_hba.conf
+  - sudo service postgresql start
+  - psql -c "CREATE USER djangoreactredux WITH PASSWORD 'password' CREATEDB;" -U postgres
+  - psql -c "CREATE DATABASE djangoreactredux_ci;" -U postgres
+  - psql -c "GRANT ALL PRIVILEGES ON DATABASE djangoreactredux_ci TO djangoreactredux;" -U postgres
+
+
 install:
   # install nodejs from nodesource  (shippable wasn't supporting both python and node_js as languages)
   - wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -
   - sudo DEBIAN_FRONTEND=noninteractive apt-get install --yes nodejs
   # now install requirements
   - npm install
+  - rm -rf virtualenv
+  - virtualenv -p python3.4 virtualenv
+  - source virtualenv/bin/activate
+  - pip install pip==9.0.1
   - pip install -r py-requirements/dev.txt
+  - ./src/manage.py collectstatic --noinput
 
 # configuration to run tests
 before_script:
@@ -37,8 +56,8 @@ before_script:
 
 # run test scripts
 script:
-  - ./scripts/test_shippable_backend.sh
-  - ./scripts/test_shippable_frontend.sh
+  - ./scripts/test_ci_backend.sh
+  - ./scripts/test_ci_frontend.sh
 
 # Notification
 notifications:
