@@ -16,7 +16,7 @@ const TARGET = process.env.npm_lifecycle_event;
 
 const PATHS = {
     app: path.join(__dirname, '../src/static'),
-    build: path.join(__dirname, '../src/static_dist'),
+    build: path.join(__dirname, '../src/static_dist')
 };
 
 const VENDOR = [
@@ -30,7 +30,7 @@ const VENDOR = [
     'classnames',
     'redux',
     'react-router-redux',
-    'jquery',
+    'jquery'
 ];
 
 process.env.BABEL_ENV = TARGET;
@@ -38,7 +38,7 @@ process.env.BABEL_ENV = TARGET;
 const common = {
     entry: {
         app: PATHS.app,
-        vendor: VENDOR,
+        vendor: VENDOR
     },
 
     output: {
@@ -68,7 +68,7 @@ const common = {
 
     resolve: {
         extensions: ['', '.jsx', '.js', '.json', '.scss'],
-        modulesDirectories: ['node_modules', PATHS.app],
+        modulesDirectories: ['node_modules', PATHS.app]
     },
 
     module: {
@@ -76,7 +76,7 @@ const common = {
             {
                 test: /\.js$/,
                 loaders: ['babel-loader'],
-                exclude: /node_modules/,
+                exclude: /node_modules/
             },
             {
                 test: /\.jpe?g$|\.gif$|\.png$/,
@@ -124,9 +124,9 @@ const common = {
             }),
             postcssImport({
                 addDependencyTo: param
-            }),
+            })
         ];
-    },
+    }
 };
 
 if (TARGET === 'dev' || !TARGET) {

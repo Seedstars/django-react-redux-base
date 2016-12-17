@@ -15,7 +15,7 @@ module.exports = {
         loaders: [{
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract("style", "css?minimize!postcss-loader!sass")
-        }],
+        }]
     },
 
     plugins: [
@@ -32,6 +32,6 @@ module.exports = {
             compress: {
                 warnings: false
             }
-        }),
-    ],
+        })
+    ]
 };

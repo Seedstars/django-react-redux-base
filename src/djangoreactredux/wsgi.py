@@ -1,5 +1,5 @@
 """
-WSGI config for django-react-redux-jwt-base project.
+WSGI config for django-react-redux-base project.
 
 """
 import os

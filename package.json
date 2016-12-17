@@ -1,7 +1,7 @@
 {
-  "name": "django-react-redux-jwt-base",
+  "name": "django-react-redux-base",
   "version": "1.0.0",
-  "description": "Django, React, Redux, and JWT!",
+  "description": "Django, React and Redux!",
   "scripts": {
     "dev": "webpack --progress --display-error-details --config webpack/common.config.js --watch",
     "prod": "webpack --progress --config webpack/common.config.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/seedstarsdev/django-react-redux-jwt-base.git"
+    "url": "git+https://github.com/Seedstars/django-react-redux-base.git"
   },
   "author": "Luis Rodrigues <luis.rodrigues@seedstarslabs.com>",
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "6.5.3",
-    "babel-core": "6.20.0",
-    "babel-loader": "6.2.9",
+    "autoprefixer": "6.5.4",
+    "babel-core": "6.21.0",
+    "babel-loader": "6.2.10",
     "babel-plugin-react-display-name": "2.0.0",
     "babel-plugin-react-transform": "2.0.2",
     "babel-plugin-transform-decorators-legacy": "1.3.4",
@@ -44,7 +44,7 @@
     "file-loader": "0.9.0",
     "font-awesome": "4.7.0",
     "font-awesome-webpack": "0.0.4",
-    "history": "4.4.1",
+    "history": "4.5.0",
     "html-webpack-plugin": "2.24.1",
     "imports-loader": "0.7.0",
     "isomorphic-fetch": "2.2.1",
@@ -64,7 +64,7 @@
     "redux": "3.6.0",
     "redux-thunk": "2.1.0",
     "resolve-url-loader": "1.6.1",
-    "sass-loader": "4.0.2",
+    "sass-loader": "4.1.0",
     "style-loader": "0.13.1",
     "tcomb-form": "0.9.10",
     "url-loader": "0.5.7",
@@ -79,7 +79,7 @@
     "chai-as-promised": "6.0.0",
     "clean-webpack-plugin": "0.1.14",
     "enzyme": "2.6.0",
-    "eslint": "3.12.0",
+    "eslint": "3.12.2",
     "eslint-config-airbnb": "13.0.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "2.2.3",
@@ -102,7 +102,7 @@
     "redux-mock-store": "1.2.1",
     "sass-lint": "1.10.2",
     "sinon": "1.17.6",
-    "webpack-dev-middleware": "1.8.4",
+    "webpack-dev-middleware": "1.9.0",
     "webpack-hot-middleware": "2.13.2"
   }
 }
