@@ -48,10 +48,8 @@ describe('Data Actions:', () => {
         ];
 
         nock(SERVER_URL)
-            .get('/api/v1/getdata/')
-            .reply(200, {
-                data: 'data'
-            });
+            .get('/api/v1/base/get_data')
+            .reply(200, { data: 'data' });
 
         const middlewares = [thunk];
         const mockStore = configureStore(middlewares);
@@ -85,7 +83,7 @@ describe('Data Actions:', () => {
         ];
 
         nock(SERVER_URL)
-            .get('/api/v1/getdata/')
+            .get('/api/v1/base/get_data')
             .reply(401, { non_field_errors: ['Unauthorized'] });
 
         const middlewares = [thunk];
@@ -120,7 +118,7 @@ describe('Data Actions:', () => {
         ];
 
         nock(SERVER_URL)
-            .get('/api/v1/getdata/')
+            .get('/api/v1/base/get_data')
             .reply(500);
 
         const middlewares = [thunk];
@@ -156,7 +154,7 @@ describe('Data Actions:', () => {
         ];
 
         nock(SERVER_URL)
-            .get('/api/v1/getdata/')
+            .get('/api/v1/base/get_data')
             .reply();
 
         const middlewares = [thunk];
@@ -164,6 +162,104 @@ describe('Data Actions:', () => {
         const store = mockStore({});
 
         store.dispatch(ACTIONS_DATA.dataFetchProtectedData('token'))
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
+    });
+
+    it('dataReceiveAsyncTask should create DATA_RECEIVE_ASYNC_TASK action', () => {
+        expect(ACTIONS_DATA.dataReceiveAsyncTask('data')).to.eql({
+            type: TYPES.DATA_RECEIVE_ASYNC_TASK
+        });
+    });
+
+    it('dataFetchAsyncTaskRequest should create DATA_FETCH_ASYNC_TASK action', () => {
+        expect(ACTIONS_DATA.dataFetchAsyncTaskRequest()).to.eql({
+            type: TYPES.DATA_FETCH_ASYNC_TASK
+        });
+    });
+
+    it('dataExecuteAsyncTask should create DATA_RECEIVE_ASYNC_TASK actions when API returns 200', (done) => {
+        const expectedActions = [
+            {
+                type: TYPES.DATA_FETCH_ASYNC_TASK
+            },
+            {
+                type: TYPES.DATA_RECEIVE_ASYNC_TASK
+            }
+        ];
+
+        nock(SERVER_URL)
+            .post('/api/v1/base/async_task')
+            .reply(200, {});
+
+        const middlewares = [thunk];
+        const mockStore = configureStore(middlewares);
+        const store = mockStore({});
+
+        store.dispatch(ACTIONS_DATA.dataExecuteAsyncTask())
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
+    });
+
+    it('dataExecuteAsyncTask should create DATA_RECEIVE_ASYNC_TASK_ERROR when API returns 500', (done) => {
+        const expectedActions = [
+            {
+                type: TYPES.DATA_FETCH_ASYNC_TASK
+            }, {
+                type: TYPES.DATA_RECEIVE_ASYNC_TASK_ERROR,
+                payload: {
+                    status: 500,
+                    statusText: 'Internal Server Error'
+                }
+            }, {
+                type: '@@router/CALL_HISTORY_METHOD',
+                payload: {
+                    method: 'push',
+                    args: [
+                        '/login'
+                    ]
+                }
+            }
+        ];
+
+        nock(SERVER_URL)
+            .post('/api/v1/base/async_task')
+            .reply(500, { statusText: 'Internal Server Error' });
+
+        const middlewares = [thunk];
+        const mockStore = configureStore(middlewares);
+        const store = mockStore({});
+
+        store.dispatch(ACTIONS_DATA.dataExecuteAsyncTask())
+            .then(() => {
+                expect(store.getActions()).to.deep.equal(expectedActions);
+            }).then(done).catch(done);
+    });
+
+    it('dataExecuteAsyncTask should create DATA_RECEIVE_ASYNC_TASK_ERROR when API has no response', (done) => {
+        const expectedActions = [
+            {
+                type: TYPES.DATA_FETCH_ASYNC_TASK
+            }, {
+                type: TYPES.DATA_RECEIVE_ASYNC_TASK_ERROR,
+                payload: {
+                    status: 'Connection Error',
+                    statusText: 'An error occurred while sending your data!'
+                }
+            }
+        ];
+
+        nock(SERVER_URL)
+            .post('/api/v1/base/async_task')
+            .reply();
+
+        const middlewares = [thunk];
+        const mockStore = configureStore(middlewares);
+        const store = mockStore({});
+
+        store.dispatch(ACTIONS_DATA.dataExecuteAsyncTask())
             .then(() => {
                 expect(store.getActions()).to.deep.equal(expectedActions);
             }).then(done).catch(done);

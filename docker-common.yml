@@ -11,6 +11,13 @@ services:
             - 5432
         volumes:
           - ./docker/postgres/data:/var/lib/postgresql
+    redis:
+        restart: always
+        image: redis:3.2.5-alpine
+        expose:
+          - 6379
+        volumes:
+          - ./docker/redis/data:/data
     django:
         restart: always
         build:

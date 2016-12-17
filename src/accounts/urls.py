@@ -9,5 +9,4 @@ urlpatterns = [
     url(_(r'^confirm/email/(?P<activation_key>.*)/$'), account_views.UserConfirmEmailView.as_view(),
         name='confirm_email'),
     url(_(r'^status/email/$'), account_views.UserEmailConfirmationStatusView.as_view(), name='status'),
-
 ]

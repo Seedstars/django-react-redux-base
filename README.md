@@ -72,6 +72,7 @@ NOTE: This is only needed in case you copy this code to a new project. If you on
 
 We use Docker as a development environment. For production, we leave you to set it up the way you feel better,
 although it is trivial to extrapolate a production environment from the current docker-compose.yml.
+
 * Install [Docker](https://www.docker.com/products/overview) and [Docker Compose](https://docs.docker.com/compose/install/).
 * `$ docker-compose build`
 
@@ -128,11 +129,11 @@ Backend (django/python static analysis)
 
 Here are some screenshots of the boilerplate project.
 
-![Screenshot01][1]  
+![Screenshot01][1]
 
 [1]: ./screenshots/screenshot_01.png
 
-![Screenshot02][2]  
+![Screenshot02][2]
 
 [2]: ./screenshots/screenshot_02.png
 

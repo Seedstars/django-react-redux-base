@@ -26,4 +26,42 @@ describe('Data Reducers Tests', () => {
             isFetching: true
         });
     });
+
+    it('should handle DATA_FETCH_ASYNC_TASK', () => {
+        const reducerResponse = dataReducer([], {
+            type: TYPES.DATA_FETCH_ASYNC_TASK
+        });
+        expect(reducerResponse).to.eql({
+            isFetching: true
+        });
+    });
+
+    it('should handle DATA_RECEIVE_ASYNC_TASK', () => {
+        const reducerResponse = dataReducer([], {
+            type: TYPES.DATA_RECEIVE_ASYNC_TASK
+        });
+        expect(reducerResponse).to.eql({
+            isFetching: false
+        });
+    });
+
+    it('should handle DATA_RECEIVE_ASYNC_TASK_ERROR', () => {
+        const reducerResponse = dataReducer([], {
+            type: TYPES.DATA_RECEIVE_ASYNC_TASK_ERROR,
+            payload: {
+                status: 500,
+                statusText: 'some error'
+
+            }
+        });
+        expect(reducerResponse).to.eql({
+            isFetching: false,
+            asyncTask: {
+                error: {
+                    status: 500,
+                    statusText: 'some error'
+                }
+            }
+        });
+    });
 });

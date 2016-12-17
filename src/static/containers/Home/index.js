@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../../actions/data';
 
 import './style.scss';
 import reactLogo from './images/react-logo.png';
@@ -10,7 +12,10 @@ class HomeView extends React.Component {
 
     static propTypes = {
         statusText: React.PropTypes.string,
-        userName: React.PropTypes.string
+        userName: React.PropTypes.string,
+        actions: React.PropTypes.shape({
+            dataExecuteAsyncTask: React.PropTypes.func.isRequired
+        }).isRequired
     };
 
     render() {
@@ -31,7 +36,19 @@ class HomeView extends React.Component {
                     <h4>Hello, {this.props.userName || 'guest'}.</h4>
                 </div>
                 <div className="margin-top-medium text-center">
-                    <p>Attempt to access some <Link to="/protected"><b>protected content</b></Link>.</p>
+                    <p>Attempt to access some <Link to="/protected"><b>protected content</b></Link>...</p>
+                </div>
+                <div className="margin-top-medium text-center">
+                    <p>...or...</p>
+                    <button className="btn btn-default"
+                            onClick={this.props.actions.dataExecuteAsyncTask}
+                    >
+                        <b>execute an asynchronous task</b>
+                    </button>
+                    <p>
+                        (There is also a periodic task running every minute on the scheduler container
+                        . Keep an eye on the docker console!)
+                    </p>
                 </div>
                 <div className="margin-top-medium">
                     {this.props.statusText ?
@@ -54,5 +71,11 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(HomeView);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: bindActionCreators(actionCreators, dispatch)
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
 export { HomeView as HomeViewNotConnected };
