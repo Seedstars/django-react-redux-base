@@ -1,20 +1,16 @@
 {
   // need loose mode for IE9 https://phabricator.babeljs.io/T3041
-  presets: ['es2015-loose', 'stage-1', 'react'],
-  plugins: ['transform-decorators-legacy' ],
-  'env': {
-    // this plugin will be included only in development mode, e.g.
-    // if NODE_ENV (or BABEL_ENV) environment variable is not set
-    // or is equal to 'development'
-    'development': {
-      'plugins': [
-        ['react-transform', {
-          'transforms': [{
-            'transform': 'react-transform-catch-errors',
-            'imports': ['react', 'redbox-react']
-          }]
-        }]
-      ]
-    }
-  }
+  "presets": [
+    [
+      "es2015",
+      {
+        "loose": true
+      }
+    ],
+    "stage-1",
+    "react"
+  ],
+  "plugins": [
+    "transform-decorators-legacy"
+  ]
 }
