@@ -10,9 +10,9 @@ useCustomIconFontPath: false
 
 # Webpack loaders, order matters
 styleLoaders:
-  - style
-  - css?minimize
-  - sass
+  - style-loader
+  - css-loader
+  - sass-loader
 
 # Extract styles to stand-alone css file
 # Different settings for different environments can be used,
@@ -20,6 +20,7 @@ styleLoaders:
 # This param can also be set in webpack config:
 #   entry: 'bootstrap-loader/extractStyles'
 # extractStyles: false
+extractStyles: true
 # env:
 #   development:
 #     extractStyles: false

@@ -4,7 +4,7 @@ build_environment: Ubuntu 14.04
 # variables used for slack comunication
 env:
   global:
-    - PROJECT="django-react-redux-jwt-base"
+    - PROJECT="django-react-redux-base"
 
 language: python
 

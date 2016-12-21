@@ -1,7 +1,7 @@
 -r base.txt
 
 mock==2.0.0
-factory-boy==2.7.0
+factory-boy==2.8.1
 
 prospector==0.12.3
 bandit==1.1.0

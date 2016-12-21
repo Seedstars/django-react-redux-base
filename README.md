@@ -50,15 +50,18 @@ We build on the shoulders of giants with the following technologies:
 
 ## Retrieve code
 
-* `$ git clone https://github.com/seedstars/django-react-redux-jwt-base.git`
-* `$ cd django-react-redux-jwt-base`
+* `$ git clone https://github.com/seedstars/django-react-redux-base.git`
+* `$ cd django-react-redux-base`
 * `$ git submodule init`
 * `$ git submodule update`
 * `$ ./scripts/get_static_validation.sh`
 
+
 Remember that when you copy this repository for a new project you need to add the scripts external module using:
 
 * `$ git submodule add https://github.com/Seedstars/culture-scripts scripts`
+
+NOTE: This is only needed in case you copy this code to a new project. If you only clone or fork the repository, the submodule is already configured
 
 
 ## Installation
@@ -97,6 +100,8 @@ The database can be accessed @localhost:5433
 
 ## Testing
 
+To make sure the code respects all coding guidelines you should run the statics analysis and test scripts before pushing any code.
+
 Frontend (javascript tests)
 
 * `$ ./scripts/test_local_frontend.sh`
@@ -106,8 +111,6 @@ Backend (django/python tests)
 * `$ docker exec -i -t djangoreactreduxbase_backend_1 /bin/bash scripts/test_local_backend.sh`
 
 ### Static analysis
-
-To make sure the code respects all coding guidelines you should run the statics analysis script before pushing any code.
 
 
 Frontend (javascript static analysis)
@@ -134,6 +137,7 @@ Here are some screenshots of the boilerplate project.
 
 ## Gotchas
 
+* This project uses NodeJS v6.x (stable) and the corresponding version of npm
 * The npm development server takes longer than the django server to start, as it has to install the npm dependencies (if not already installed) and fire webpack. This means that after the django server starts, you should wait that webpack finishes compiling the .js files.
 * If your IDE has builtin language support for python with auto-imports (e.g. PyCharm), you can create a virtualenv and install the py-requirements.
 * If you are annoyed by docker creating files belonging to root (which is Docker's intended behaviour), you can run `# chown -hR $(whoami) .` before firing up the server.
