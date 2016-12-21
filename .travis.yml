@@ -1,0 +1,27 @@
+language: python
+branches:
+  only: 
+    - master
+python:
+  - "3.4"
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - git submodule init
+  - git submodule update
+  - ./scripts/get_static_validation.sh
+# command to install dependencies
+install: 
+  - pip install -r py-requirements/dev.txt
+  - nvm install 6
+  - npm install
+  - npm run prod
+# command to run tests
+script:
+  - py.test -c pytest_ci.ini tests/
+  - prospector  --profile-path=. --profile=.prospector.yml --path=src --ignore-patterns=static
+  - bandit -r src
+  - npm run coverage
+  - npm run lintjs
+  - npm run lintscss
