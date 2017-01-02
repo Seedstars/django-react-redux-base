@@ -105,19 +105,12 @@ export function dataExecuteAsyncTask() {
                 );
             })
             .catch((error) => {
-                let result;
                 if (error && error.response) {
-                    result = error.response.json().then((data) => {
-                        dispatch(dataReceiveAsyncTaskError(error.response.status, error.response.statusText));
-                        dispatch(push('/login'));
-                    });
+                    dispatch(dataReceiveAsyncTaskError(error.response.status, error.response.statusText));
                 } else {
                     dispatch(dataReceiveAsyncTaskError(
                         'Connection Error', 'An error occurred while sending your data!'));
-                    result = Promise.resolve();
                 }
-
-                return result;
             });
     };
 }

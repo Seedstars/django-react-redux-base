@@ -213,14 +213,6 @@ describe('Data Actions:', () => {
                     status: 500,
                     statusText: 'Internal Server Error'
                 }
-            }, {
-                type: '@@router/CALL_HISTORY_METHOD',
-                payload: {
-                    method: 'push',
-                    args: [
-                        '/login'
-                    ]
-                }
             }
         ];
 
