@@ -8,9 +8,10 @@ import configureStore from './store/configureStore';
 import { authLoginUserSuccess } from './actions/auth';
 
 
+const initialState = {};
 const target = document.getElementById('root');
 
-const store = configureStore(window.INITIAL_STATE, browserHistory);
+const store = configureStore(initialState, browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
 
 const node = (
