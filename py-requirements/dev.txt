@@ -13,3 +13,5 @@ pytest-pythonpath==0.7.1
 pytest-xdist==1.15.0
 
 ptpython==0.35
+
+django-cors-middleware==1.3.1

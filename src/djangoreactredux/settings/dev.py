@@ -5,6 +5,15 @@ DEBUG = True
 
 PAGE_CACHE_SECONDS = 1
 
+INSTALLED_APPS += ('corsheaders',)
+
+MIDDLEWARE_CLASSES += (
+    'corsheaders.middleware.CorsMiddleware',
+)
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
