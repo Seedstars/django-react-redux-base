@@ -82,6 +82,18 @@ Run Docker development server
 
 * `$ docker-compose up`
 
+## Stopping
+
+Stop Docker development server
+
+* `$ docker-compose stop`
+
+## Resetting
+
+Stop Docker development server and remove containers, networks, volumes, and images created by up.
+
+* `$ docker-compose down`
+
 ### Accessing a container
 
 You can access shell in a container
