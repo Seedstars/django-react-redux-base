@@ -15,7 +15,7 @@ const store = configureStore(initialState, browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
 
 const node = (
-    <Root store={store} history={history}/>
+    <Root store={store} history={history} />
 );
 
 const token = sessionStorage.getItem('token');

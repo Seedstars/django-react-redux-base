@@ -39,6 +39,11 @@ class LoginView extends React.Component {
         })
     };
 
+    static defaultProps = {
+        statusText: '',
+        location: null
+    };
+
     constructor(props) {
         super(props);
 

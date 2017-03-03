@@ -33,7 +33,7 @@ describe('Login View Tests (Container):', () => {
             };
 
             beforeEach(() => {
-                wrapper = mount(<LoginViewNotConnected {...props}/>);
+                wrapper = mount(<LoginViewNotConnected {...props} />);
             });
 
             it('should render correctly', () => {
@@ -77,7 +77,7 @@ describe('Login View Tests (Container):', () => {
             };
 
             beforeEach(() => {
-                wrapper = mount(<LoginViewNotConnected {...props}/>);
+                wrapper = mount(<LoginViewNotConnected {...props} />);
             });
 
             it('should render correctly', () => {
@@ -178,7 +178,7 @@ describe('Login View Tests (Container):', () => {
             const mockStore = configureStore(middlewares);
             const store = mockStore(state, expectedActions, done);
 
-            const wrapper = mount(<LoginViewConnected store={store}/>);
+            const wrapper = mount(<LoginViewConnected store={store} />);
 
             it('should have one div with class alert alert-success', () => {
                 const div = wrapper.find('div.alert-success');

@@ -51,9 +51,9 @@ class App extends React.Component {
                                     aria-expanded="false"
                             >
                                 <span className="sr-only">Toggle navigation</span>
-                                <span className="icon-bar"/>
-                                <span className="icon-bar"/>
-                                <span className="icon-bar"/>
+                                <span className="icon-bar" />
+                                <span className="icon-bar" />
+                                <span className="icon-bar" />
                             </button>
                             <a className="navbar-brand" tabIndex="0" onClick={this.goToIndex}>
                                 Django React Redux Demo
@@ -64,7 +64,7 @@ class App extends React.Component {
                                 <ul className="nav navbar-nav navbar-right">
                                     <li className={homeClass}>
                                         <a className="js-go-to-index-button" tabIndex="0" onClick={this.goToIndex}>
-                                            <i className="fa fa-home"/> Home
+                                            <i className="fa fa-home" /> Home
                                         </a>
                                     </li>
                                     <li className={protectedClass}>
@@ -72,7 +72,7 @@ class App extends React.Component {
                                            tabIndex="0"
                                            onClick={this.goToProtected}
                                         >
-                                            <i className="fa fa-lock"/> Protected
+                                            <i className="fa fa-lock" /> Protected
                                         </a>
                                     </li>
                                     <li>
@@ -85,7 +85,7 @@ class App extends React.Component {
                                 <ul className="nav navbar-nav navbar-right">
                                     <li className={homeClass}>
                                         <a className="js-go-to-index-button" tabIndex="0" onClick={this.goToIndex}>
-                                            <i className="fa fa-home"/> Home
+                                            <i className="fa fa-home" /> Home
                                         </a>
                                     </li>
                                     <li className={loginClass}>

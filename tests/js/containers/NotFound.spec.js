@@ -14,7 +14,7 @@ describe('NotFound View Tests (Container):', () => {
             const props = {};
 
             beforeEach(() => {
-                wrapper = shallow(<NotFoundView {...props}/>);
+                wrapper = shallow(<NotFoundView {...props} />);
             });
 
             it('should render correctly', () => {

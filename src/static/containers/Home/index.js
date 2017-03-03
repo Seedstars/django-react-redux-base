@@ -13,6 +13,11 @@ class HomeView extends React.Component {
         userName: React.PropTypes.string
     };
 
+    static defaultProps = {
+        statusText: '',
+        userName: ''
+    };
+
     render() {
         return (
             <div className="container">

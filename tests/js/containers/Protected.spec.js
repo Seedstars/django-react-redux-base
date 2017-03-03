@@ -37,7 +37,7 @@ describe(' Protected View Tests (Container):', () => {
             };
 
             beforeEach(() => {
-                wrapper = shallow(<ProtectedViewNotConnected {...props}/>);
+                wrapper = shallow(<ProtectedViewNotConnected {...props} />);
             });
 
             it('should render correctly', () => {
@@ -65,7 +65,7 @@ describe(' Protected View Tests (Container):', () => {
             };
 
             beforeEach(() => {
-                wrapper = shallow(<ProtectedViewNotConnected {...props}/>);
+                wrapper = shallow(<ProtectedViewNotConnected {...props} />);
             });
 
             it('should render correctly', () => {
@@ -128,7 +128,7 @@ describe(' Protected View Tests (Container):', () => {
             const store = mockStore(state, expectedActions, done);
 
             // Had to pass token as a prop because it normally is passed down from the AuthenticaedComponent.js
-            const wrapper = mount(<ProtectedViewConnected store={store} token={state.auth.token}/>);
+            const wrapper = mount(<ProtectedViewConnected store={store} token={state.auth.token} />);
 
             it('props', () => {
                 expect(wrapper.node.renderedElement.props.isFetching).to.equal(state.data.isFetching);

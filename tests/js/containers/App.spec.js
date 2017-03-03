@@ -21,13 +21,13 @@ describe(' App View Tests (Container):', () => {
             };
             const props = {
                 isAuthenticated: false,
-                children: <div className="test-test"/>,
+                children: <div className="test-test" />,
                 dispatch: spies.redirect,
                 pathName: '/'
             };
 
             beforeEach(() => {
-                wrapper = shallow(<AppNotConnected {...props}/>);
+                wrapper = shallow(<AppNotConnected {...props} />);
             });
 
             it('should render correctly', () => {
@@ -74,13 +74,13 @@ describe(' App View Tests (Container):', () => {
             };
             const props = {
                 isAuthenticated: true,
-                children: <div className="test-test"/>,
+                children: <div className="test-test" />,
                 dispatch: spies.redirect,
                 pathName: '/'
             };
 
             beforeEach(() => {
-                wrapper = mount(<AppNotConnected {...props}/>);
+                wrapper = mount(<AppNotConnected {...props} />);
             });
 
             it('should render correctly', () => {
