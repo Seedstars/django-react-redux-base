@@ -82,6 +82,11 @@ Run Docker development server
 
 * `$ docker-compose up`
 
+## Accessing Website
+
+The project has CORS enabled and the URL is hardcoded in javscript to http://localhost:8000 
+For login to work you will to use this URL in your browser.
+
 ## Stopping
 
 Stop Docker development server
