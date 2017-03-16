@@ -19,6 +19,10 @@ services:
             - 5433:5432
         volumes:
             - ./docker/postgres/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+    redis:
+        extends:
+            file: docker-common.yml
+            service: redis
     backend:
         extends:
             file: docker-common.yml
@@ -26,7 +30,7 @@ services:
         links:
             - postgres
         entrypoint:
-            - /django-entrypoint.sh
+            - /backend-entrypoint.sh
         expose:
             - 8000
     frontend:
@@ -37,3 +41,23 @@ services:
             - backend
         entrypoint:
             - /web-entrypoint.sh
+    worker:
+        extends:
+            file: docker-common.yml
+            service: django
+        links:
+            - redis
+            - postgres
+        entrypoint:
+            - /worker-entrypoint.sh
+    scheduler:
+        extends:
+            file: docker-common.yml
+            service: django
+        links:
+            - redis
+            - postgres
+        entrypoint:
+            - /scheduler-entrypoint.sh
+        volumes:
+            - ./docker/scheduler/data:/celerybeat

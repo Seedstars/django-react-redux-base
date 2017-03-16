@@ -8,7 +8,10 @@ describe('General Reducers Tests', () => {
         const reducerResponse = reducer(
             {
                 data: 'some data',
-                isFetching: false
+                isFetching: false,
+                asyncTask: {
+                    error: null
+                }
             },
             {
                 type: 'nonexistent action'
@@ -17,14 +20,20 @@ describe('General Reducers Tests', () => {
 
         expect(reducerResponse).to.eql({
             data: 'some data',
-            isFetching: false
+            isFetching: false,
+            asyncTask: {
+                error: null
+            }
         });
     });
 
     it('the state should be the initial state when no state are present', () => {
         const initialState = {
             data: null,
-            isFetching: false
+            isFetching: false,
+            asyncTask: {
+                error: null
+            }
         };
         const reducerResponse = reducer(undefined, { type: 'nonexistent action' });
 

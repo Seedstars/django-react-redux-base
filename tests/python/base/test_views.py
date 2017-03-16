@@ -1,3 +1,4 @@
+import mock
 from django.core.urlresolvers import reverse
 from django.test import override_settings
 from rest_framework import status
@@ -5,6 +6,8 @@ from rest_framework.test import APITestCase
 
 from tests.python.accounts.test_models import UserFactory
 from tests.python.accounts.test_views import get_basic_auth_header
+
+from lib.testutils import mock_some_async_task
 
 
 @override_settings(CELERY_EAGER_PROPAGATES_EXCEPTIONS=True, CELERY_ALWAYS_EAGER=True, BROKER_BACKEND='memory')
@@ -31,7 +34,11 @@ class BaseTests(APITestCase):
         self.assertEqual(response.data['data'], 'THIS IS THE PROTECTED STRING FROM SERVER')
 
     def test_get_main_page(self):
-
         response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    @override_settings(CELERY_ALWAYS_EAGER=True)
+    @mock.patch('lib.tasks.some_async_task.delay', mock_some_async_task)
+    def test_execute_async_task(self):
+        response = self.client.post(reverse('base:async_task'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)

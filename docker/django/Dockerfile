@@ -3,7 +3,9 @@ MAINTAINER Filipe Garcia <filipe.garcia@seedstarslabs.com>
 
 ENV PYTHONUNBUFFERED 1
 
-COPY ./docker/django/django-entrypoint.sh /
+COPY ./docker/django/backend-entrypoint.sh /
+COPY ./docker/django/worker-entrypoint.sh /
+COPY ./docker/django/scheduler-entrypoint.sh /
 COPY ./py-requirements /django/py-requirements
 
 WORKDIR /django

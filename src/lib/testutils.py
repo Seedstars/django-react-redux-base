@@ -59,3 +59,8 @@ class CustomTestCase(TestCase):
                 print('Implement other methods.')  # pragma: no cover
             error_msg = '{}-{}-{}'.format(invalid_dict['label'], response.status_code, response.content)
             self.assertEqual(response.status_code, invalid_dict['status'], msg=error_msg)
+
+
+def mock_some_async_task(text):  # noqa
+    """Mock some async task."""
+    return True

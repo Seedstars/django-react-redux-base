@@ -8,6 +8,7 @@
 # Random files
 *~
 \#*
+tags
 
 virtualenv/
 htmlcov/
@@ -36,8 +37,10 @@ coverage/
 .prospector.yml
 .coveragerc
 
-# in case we run shippable tests don't include it
-shippable/
-
 # not include scripts because they come from external module
 scripts/
+
+# Docker volume data
+*.rdb
+*.pid
+celerybeat-schedule.*

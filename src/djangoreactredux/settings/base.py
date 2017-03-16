@@ -107,3 +107,10 @@ REST_KNOX = {
     'AUTH_TOKEN_CHARACTER_LENGTH': 64,
     'USER_SERIALIZER': 'knox.serializers.UserSerializer'
 }
+
+# ######### CELERY ###########
+CELERY_IMPORTS = ['lib.tasks']  # Only import the tasks from modules not in INSTALLED_APPS
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {
+    'visibility_timeout': 3600  # 1 hour
+}

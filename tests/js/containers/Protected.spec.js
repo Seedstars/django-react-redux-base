@@ -92,7 +92,7 @@ describe(' Protected View Tests (Container):', () => {
     describe('Store Integration:', () => {
         context('State map:', (done) => {
             nock(SERVER_URL)
-                .get('/api/v1/getdata/')
+                .get('/api/v1/base/get_data')
                 .reply(200, {
                     data: 'data'
                 });

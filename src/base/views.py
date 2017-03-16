@@ -9,6 +9,8 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+import lib.tasks
+
 
 class IndexView(View):
     """Render main page."""
@@ -34,3 +36,16 @@ class ProtectedDataView(GenericAPIView):
         }
 
         return Response(data, status=status.HTTP_200_OK)
+
+
+class AsyncTaskView(GenericAPIView):
+    """Execute an asynchronous task."""
+
+    authentication_classes = ()
+    permission_classes = ()
+
+    def post(self, request):
+        """Process POST request and execute an asynchronous task."""
+
+        lib.tasks.some_async_task.delay('See? This works!')
+        return Response({}, status=status.HTTP_200_OK)

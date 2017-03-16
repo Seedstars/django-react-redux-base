@@ -9,6 +9,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import { default as HomeViewConnected, HomeViewNotConnected } from '../../../src/static/containers/Home';
+import * as actions from '../../../src/static/actions/data';
 
 
 describe('Home View Tests (Container):', () => {
@@ -16,7 +17,8 @@ describe('Home View Tests (Container):', () => {
         context('Empty state:', () => {
             let wrapper;
             const props = {
-                statusText: null
+                statusText: null,
+                actions
             };
 
             beforeEach(() => {
@@ -27,17 +29,19 @@ describe('Home View Tests (Container):', () => {
                 return expect(wrapper).to.be.ok;
             });
 
-            it('should have two img, one h1 and one p ', () => {
+            it('should have two img, one h1, one button and three p ', () => {
                 expect(wrapper.find('img')).to.have.length(2);
                 expect(wrapper.find('h1')).to.have.length(1);
-                expect(wrapper.find('p')).to.have.length(1);
+                expect(wrapper.find('button')).to.have.length(1);
+                expect(wrapper.find('p')).to.have.length(3);
             });
         });
 
         context('State with statusText:', () => {
             let wrapper;
             const props = {
-                statusText: 'Some status text'
+                statusText: 'Some status text',
+                actions
             };
 
             beforeEach(() => {
@@ -48,10 +52,11 @@ describe('Home View Tests (Container):', () => {
                 return expect(wrapper).to.be.ok;
             });
 
-            it('should have two img, one h1, one p and one alert alert-info div ', () => {
+            it('should have two img, one h1, three p, one button and one alert alert-info div ', () => {
                 expect(wrapper.find('img')).to.have.length(2);
                 expect(wrapper.find('h1')).to.have.length(1);
-                expect(wrapper.find('p')).to.have.length(1);
+                expect(wrapper.find('p')).to.have.length(3);
+                expect(wrapper.find('button')).to.have.length(1);
 
                 const div = wrapper.find('div.alert.alert-info');
                 expect(div).to.have.length(1);
