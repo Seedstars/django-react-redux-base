@@ -29,18 +29,12 @@ class AccountTests(CustomTestCase, APITestCase):
     ]
 
     def setUp(self):
-        self.user = UserFactory.create(
-            username='emailwilllogin',
-            email='emailwilllogin@mydomain.com',
-            first_name='Test',
-            last_name='User'
-        )
+        self.user = UserFactory.create(email='emailwilllogin@mydomain.com',
+                                       first_name='Test',
+                                       last_name='User')
         self.user.set_password('test')
         self.user.save()
-        self.user_2 = UserFactory.create(
-            username='emailwilllogininserializer',
-            email='emailwilllogininserializer@mydomain.com'
-        )
+        self.user_2 = UserFactory.create(email='emailwilllogininserializer@mydomain.com')
 
     def test_account_register_unsuccessful(self):
         self.assert_invalid_data_response(invalid_data_dicts=UserRegistrationSerializerTest.INVALID_DATA_DICT,
