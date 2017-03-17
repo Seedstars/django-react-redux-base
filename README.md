@@ -129,6 +129,8 @@ Backend (django/python tests)
 
 * `$ docker exec -i -t djangoreactreduxbase_backend_1 /bin/bash scripts/test_local_backend.sh`
 
+Please take into account that test_local_backend.sh runs py.test with `--nomigrations --reuse-db` flags to allow it be performant. Any time you add a migration please remove those flags next time you run the script.
+
 ### Static analysis
 
 
