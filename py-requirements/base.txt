@@ -1,16 +1,16 @@
-Django==1.8.15
-django-extensions==1.7.7
+Django==1.11.2
+django-extensions==1.7.9
 
 django-disposable-email-checker==1.2.1
 
 # PostgresSQL
-psycopg2==2.6.2
+psycopg2==2.7.1
 
 # serve files
 whitenoise==3.2.2
 
 # Rest Framework
-djangorestframework==3.5.4
+djangorestframework==3.6.3
 
 # Sentry
 raven==5.27.1
