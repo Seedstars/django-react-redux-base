@@ -11,7 +11,7 @@ metadata:
 spec:
   tls:
   - hosts:
-    - gitlab.@DJANGO_REACT_DOMAIN@
+    - django-react.@DJANGO_REACT_DOMAIN@
     secretName: django-react-tls
   rules:
   - host: django-react.@DJANGO_REACT_DOMAIN@
