@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-react-config
+  namespace: django-react
+data:
+  external_scheme: https
+  external_hostname: django-react.@DJANGO_REACT_DOMAIN@
+  postgres_user: django-react
+  postgres_db: django-react_production
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: django-react-secrets
+  namespace: gitlab
+data:
+  postgres_password: NDl1ZjNtenMxcWR6NXZnbw==
+  initial_shared_runners_registration_token: NDl1ZjNtenMxcWR6NXZnbw==

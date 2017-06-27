@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-react-redis
+  namespace: django-react
+  labels:
+    name: django-react-redis
+spec:
+  selector:
+    name: django-react-redis
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: redis

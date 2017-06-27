@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-react-postgresql-initdb
+  namespace: django-react
+data:
+  01_create_mattermost_production.sql: |
+    CREATE USER djangoreactredux WITH PASSWORD 'password' CREATEDB;
+    CREATE DATABASE djangoreactredux_dev;
+    GRANT ALL PRIVILEGES ON DATABASE djangoreactredux_dev TO djangoreactredux;

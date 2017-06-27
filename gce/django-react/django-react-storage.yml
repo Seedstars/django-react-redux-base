@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: django-react-rails-storage
+  namespace: django-react
+  annotations:
+    volume.beta.kubernetes.io/storage-class: fast
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi

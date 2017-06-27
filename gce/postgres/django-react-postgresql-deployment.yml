@@ -1,0 +1,72 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: django-react-postgresql
+  namespace: django-react
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: django-react-postgresql
+    spec:
+      containers:
+      - name: postgresql
+        image: postgres:9.6.1
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: django-react-config
+              key: postgres_user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: django-react-secrets
+              key: postgres_password
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: django-react-config
+              key: postgres_db
+        - name: DB_EXTENSION
+          value: pg_trgm
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        ports:
+        - name: postgres
+          containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: data
+        - mountPath: /docker-entrypoint-initdb.d
+          name: initdb
+          readOnly: true
+        livenessProbe:
+          exec:
+            command:
+            - pg_isready
+            - -h
+            - localhost
+            - -U
+            - postgres
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+            - pg_isready
+            - -h
+            - localhost
+            - -U
+            - postgres
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: django-react-postgresql-storage
+      - name: initdb
+        configMap:
+          name: django-react-postgresql-initdb

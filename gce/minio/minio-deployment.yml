@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: minio
+  namespace: django-react
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: minio
+        app: minio
+    spec:
+      containers:
+      - name: minio
+        image: minio/minio:RELEASE.2016-08-21T02-44-47Z
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: data-store
+          mountPath: /export
+        ports:
+        - containerPort: 9000
+          name: http
+          protocol: TCP
+      volumes:
+      - name: data-store
+        emptyDir: {}

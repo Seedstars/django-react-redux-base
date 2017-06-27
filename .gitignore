@@ -41,3 +41,11 @@ shippable/
 
 # not include scripts because they come from external module
 scripts/
+
+.env
+django-react-all.yml
+django-react-full.yml
+django-react-load-balancer-full.yml
+django-react-ingress.yml
+django-react-*-*.yml
+.DS_Store

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  namespace: nginx-ingress
+  annotations:
+    service.beta.kubernetes.io/external-traffic: "OnlyLocal"
+spec:
+  type: LoadBalancer
+  loadBalancerIP: @GITLAB_GKE_IP@
+  ports:
+  - port: 80
+    name: http
+  - port: 443
+    name: https
+  - port: 22
+    name: git
+  selector:
+    app: nginx

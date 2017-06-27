@@ -1,0 +1,119 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: django-react
+  namespace: django-react
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: django-react
+        app: django-react
+    spec:
+      containers:
+      - name: django-react
+        image: gitlab/gitlab-ce:9.3.0-ce.0
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash", "-c",
+          "sed -i \"s/environment ({'DJANGO-REACT_ROOT_PASSWORD' => initial_root_password }) if initial_root_password/environment ({'DJANGO-REACT_ROOT_PASSWORD' => initial_root_password, 'DJANGO-REACT_SHARED_RUNNERS_REGISTRATION_TOKEN' => node['gitlab']['gitlab-rails']['initial_shared_runners_registration_token'] })/g\" /opt/gitlab/embedded/cookbooks/gitlab/recipes/database_migrations.rb && exec /assets/wrapper"]
+        env:
+        - name: DJANGO-REACT_EXTERNAL_SCHEME
+          valueFrom:
+            configMapKeyRef:
+              name: django-react-config
+              key: external_scheme
+        - name: DJANGO-REACT_EXTERNAL_HOSTNAME
+          valueFrom:
+            configMapKeyRef:
+              name: django-react-config
+              key: external_hostname
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: django-react-config
+              key: postgres_user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: django-react-secrets
+              key: postgres_password
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: django-react-config
+              key: postgres_db
+        - name: DJANGO-REACT_OMNIBUS_CONFIG
+          value: |
+            external_url "#{ENV['DJANGO-REACT_EXTERNAL_SCHEME']}://#{ENV['DJANGO-REACT_EXTERNAL_HOSTNAME']}"
+
+            nginx['enable'] = false
+
+            postgresql['enable'] = false
+            gitlab_rails['db_host'] = 'gitlab-postgresql'
+            gitlab_rails['db_password'] = ENV['POSTGRES_PASSWORD']
+            gitlab_rails['db_username'] = ENV['POSTGRES_USER']
+            gitlab_rails['db_database'] = ENV['POSTGRES_DB']
+
+            redis['enable'] = false
+            gitlab_rails['redis_host'] = 'gitlab-redis'
+
+            gitlab_shell['auth_file'] = '/gitlab-data/ssh/authorized_keys'
+            git_data_dir '/gitlab-data/git-data'
+            gitlab_rails['shared_path'] = '/gitlab-data/shared'
+            gitlab_rails['uploads_directory'] = '/gitlab-data/uploads'
+            gitlab_ci['builds_directory'] = '/gitlab-data/builds'
+            gitlab_rails['registry_path'] = '/gitlab-registry'
+            gitlab_rails['trusted_proxies'] = ["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16"]
+
+            prometheus['listen_address'] = '0.0.0.0:9090'
+            postgres_exporter['enable'] = true
+            postgres_exporter['env'] = {
+              'DATA_SOURCE_NAME' => "user=#{ENV['POSTGRES_USER']} host=gitlab-postgresql port=5432 dbname=#{ENV['POSTGRES_DB']} password=#{ENV['POSTGRES_PASSWORD']} sslmode=disable"
+            }
+            redis_exporter['enable'] = true
+            redis_exporter['flags'] = {
+              'redis.addr' => "gitlab-redis:6379",
+            }
+
+        - name: DJANGO-REACT_POST_RECONFIGURE_CODE
+          value: |
+            PrometheusService.where(template: true).first_or_create(
+              active: true, api_url: "http://localhost:9090")
+
+            KubernetesService.where(template: true).first_or_create(
+              active: true,
+              api_url: "https://#{ENV["KUBERNETES_SERVICE_HOST"]}:#{ENV["KUBERNETES_SERVICE_PORT"]}",
+              token: File.read("/var/run/secrets/kubernetes.io/serviceaccount/token"),
+              ca_pem: File.read("/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"))
+
+        - name: DJANGO-REACT_POST_RECONFIGURE_SCRIPT
+          value: |
+            /opt/gitlab/bin/gitlab-rails runner -e production "$DJANGO-REACT_POST_RECONFIGURE_CODE"
+        ports:
+        - name: registry
+          containerPort: 8105
+        volumeMounts:
+        - name: config
+          mountPath: /etc/django-react
+        - name: data
+          mountPath: /django-react-data
+        livenessProbe:
+          httpGet:
+            path: /help
+            port: 8005
+          initialDelaySeconds: 180
+          timeoutSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /help
+            port: 8005
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: django-react-rails-storage
+      - name: config
+        persistentVolumeClaim:
+          claimName: gitlab-config-storage
