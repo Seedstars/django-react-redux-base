@@ -5,11 +5,12 @@ factory-boy==2.8.1
 
 prospector==0.12.4
 bandit==1.4.0
+pylint==1.6.5
 
-pytest==3.0.6
-pytest-cov==2.4.0
-pytest-django==3.0.0
+pytest==3.1.2
+pytest-cov==2.5.1
+pytest-django==3.1.2
 pytest-pythonpath==0.7.1
-pytest-xdist==1.15.0
+pytest-xdist==1.17.1
 
 ptpython==0.36
