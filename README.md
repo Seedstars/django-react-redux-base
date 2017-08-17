@@ -157,6 +157,13 @@ Backend (django/python static analysis)
 
 * `$ ./scripts/static_validate_backend.sh`
 
+## Deployment in Production
+
+We deploy all our production code using Kubernetes. Explaining how to do deployments is beyond the scope of this boilerplate. 
+
+Here's a great article from digital ocean on how to deploy django project in a VM: https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04 
+
+
 
 ## Screenshots
 
