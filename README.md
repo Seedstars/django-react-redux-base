@@ -68,53 +68,68 @@ NOTE: This is only needed in case you copy this code to a new project. If you on
 
 ## Installation
 
-### Main Project
+You have two ways of running this project: Using the Dockers scripts or running directly in the console.
+
+### Running NO DOCKER
+
+**NodeJS tooling**
+
+* `$ wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -`
+* `$ apt-get install --yes nodejs`
+* `$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -`
+* `$ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
+* `$ sudo apt-get update && sudo apt-get install yarn`
+
+**Compile and run project**
+
+There are commands you need to compile javascript and run project. Ideally `yarn run dev` should be run in another console because it blocks it.
+
+* `$ yarn `
+* `$ yarn run dev`  # will run webpack with watch and compile code as it changes
+
+* `$ virtualenv -p /usr/bin/python3 virtualenv`
+* `$ source virtualenv/bin/activate`
+* `$ pip install -r py-requirements/dev.txt`
+
+* `$ cd src`
+* `$ python manage.py migrate`
+* `$ python manage.py loaddata fixtures.json`
+* `$ python manage.py runserver`
+
+Then open your browser the page: http://localhost:8000/ If all goes ok you should see a React single page app. 
+
+
+### Running DOCKER
 
 We use Docker as a development environment. For production, we leave you to set it up the way you feel better,
 although it is trivial to extrapolate a production environment from the current docker-compose.yml.
+
 * Install [Docker](https://www.docker.com/products/overview) and [Docker Compose](https://docs.docker.com/compose/install/).
 * `$ docker-compose build`
-
-
-## Running
-
-Run Docker development server
-
 * `$ docker-compose up`
 
-## Accessing Website
-
-The project has CORS enabled and the URL is hardcoded in javscript to http://localhost:8000 
-For login to work you will to use this URL in your browser.
-
-## Stopping
-
-Stop Docker development server
+To stop the development server:
 
 * `$ docker-compose stop`
-
-## Resetting
 
 Stop Docker development server and remove containers, networks, volumes, and images created by up.
 
 * `$ docker-compose down`
 
-### Accessing a container
-
 You can access shell in a container
-
-* `$ docker exec -i -t <CONTAINER_NAME_OR_ID> /bin/bash`
-
-E.g.
 
 * `$ docker ps  # get the name from the list of running containers`
 * `$ docker exec -i -t djangoreactreduxbase_frontend_1 /bin/bash`
 
-### Accessing the database
-
 The database can be accessed @localhost:5433
 
 * `$ psql -h localhost -p 5433 -U djangoreactredux djangoreactredux_dev`
+
+
+## Accessing Website
+
+The project has CORS enabled and the URL is hard-coded in javascript to http://localhost:8000 
+For login to work you will to use this URL in your browser.
 
 
 ## Testing
@@ -127,7 +142,7 @@ Frontend (javascript tests)
 
 Backend (django/python tests)
 
-* `$ docker exec -i -t djangoreactreduxbase_backend_1 /bin/bash scripts/test_local_backend.sh`
+* `$ ./scripts/test_local_backend.sh`
 
 Please take into account that test_local_backend.sh runs py.test with `--nomigrations --reuse-db` flags to allow it be performant. Any time you add a migration please remove those flags next time you run the script.
 
@@ -140,7 +155,7 @@ Frontend (javascript static analysis)
 
 Backend (django/python static analysis)
 
-* `$ docker exec -i -t djangoreactreduxbase_backend_1 /bin/bash scripts/static_validate_backend.sh`
+* `$ ./scripts/static_validate_backend.sh`
 
 
 ## Screenshots
@@ -156,14 +171,12 @@ Here are some screenshots of the boilerplate project.
 [2]: ./screenshots/screenshot_02.png
 
 
-## Gotchas
+## Gotchas in Docker
 
-* This project uses NodeJS v6.x (stable) and the corresponding version of npm
-* The npm development server takes longer than the django server to start, as it has to install the npm dependencies (if not already installed) and fire webpack. This means that after the django server starts, you should wait that webpack finishes compiling the .js files.
+* This project uses NodeJS v6.x (stable) and yarn
+* The development server takes longer than the django server to start, as it has to install the javascript dependencies (if not already installed) and fire webpack. This means that after the django server starts, you should wait that webpack finishes compiling the .js files.
 * If your IDE has builtin language support for python with auto-imports (e.g. PyCharm), you can create a virtualenv and install the py-requirements.
 * If you are annoyed by docker creating files belonging to root (which is Docker's intended behaviour), you can run `# chown -hR $(whoami) .` before firing up the server.
-* While testing the backend, if you have a local virtualenv, you can run the static validation without running a docker container.
-* While testing the backend, if you have a local virtualenv and a local database configured with the dev settings, you can run the tests without running a docker container.
 
 
 ## Contributing

@@ -55,7 +55,7 @@ class App extends React.Component {
                                 <span className="icon-bar" />
                                 <span className="icon-bar" />
                             </button>
-                            <a className="navbar-brand" tabIndex="0" onClick={this.goToIndex}>
+                            <a className="navbar-brand" onClick={this.goToIndex}>
                                 Django React Redux Demo
                             </a>
                         </div>
@@ -63,20 +63,17 @@ class App extends React.Component {
                             {this.props.isAuthenticated ?
                                 <ul className="nav navbar-nav navbar-right">
                                     <li className={homeClass}>
-                                        <a className="js-go-to-index-button" tabIndex="0" onClick={this.goToIndex}>
+                                        <a className="js-go-to-index-button" onClick={this.goToIndex}>
                                             <i className="fa fa-home" /> Home
                                         </a>
                                     </li>
                                     <li className={protectedClass}>
-                                        <a className="js-go-to-protected-button"
-                                           tabIndex="0"
-                                           onClick={this.goToProtected}
-                                        >
+                                        <a className="js-go-to-protected-button" onClick={this.goToProtected}>
                                             <i className="fa fa-lock" /> Protected
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="js-logout-button" tabIndex="0" onClick={this.logout}>
+                                        <a className="js-logout-button" onClick={this.logout}>
                                             Logout
                                         </a>
                                     </li>
@@ -84,7 +81,7 @@ class App extends React.Component {
                                 :
                                 <ul className="nav navbar-nav navbar-right">
                                     <li className={homeClass}>
-                                        <a className="js-go-to-index-button" tabIndex="0" onClick={this.goToIndex}>
+                                        <a className="js-go-to-index-button" onClick={this.goToIndex}>
                                             <i className="fa fa-home" /> Home
                                         </a>
                                     </li>
