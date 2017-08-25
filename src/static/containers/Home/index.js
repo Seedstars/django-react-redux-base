@@ -7,7 +7,6 @@ import reactLogo from './images/react-logo.png';
 import reduxLogo from './images/redux-logo.png';
 
 class HomeView extends React.Component {
-
     static propTypes = {
         statusText: React.PropTypes.string,
         userName: React.PropTypes.string
@@ -23,12 +22,12 @@ class HomeView extends React.Component {
             <div className="container">
                 <div className="margin-top-medium text-center">
                     <img className="page-logo margin-bottom-medium"
-                         src={reactLogo}
-                         alt="ReactJs"
+                        src={reactLogo}
+                        alt="ReactJs"
                     />
                     <img className="page-logo margin-bottom-medium"
-                         src={reduxLogo}
-                         alt="Redux"
+                        src={reduxLogo}
+                        alt="Redux"
                     />
                 </div>
                 <div className="text-center">

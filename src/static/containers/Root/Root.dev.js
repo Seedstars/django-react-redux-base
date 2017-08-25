@@ -6,7 +6,6 @@ import routes from '../../routes';
 import DevTools from './DevTools';
 
 export default class Root extends React.Component {
-
     static propTypes = {
         store: React.PropTypes.shape().isRequired,
         history: React.PropTypes.shape().isRequired

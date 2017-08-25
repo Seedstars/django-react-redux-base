@@ -25,7 +25,6 @@ const LoginFormOptions = {
 };
 
 class LoginView extends React.Component {
-
     static propTypes = {
         dispatch: React.PropTypes.func.isRequired,
         isAuthenticated: React.PropTypes.bool.isRequired,
@@ -102,14 +101,14 @@ class LoginView extends React.Component {
                     {statusText}
                     <form onSubmit={this.login}>
                         <Form ref={(ref) => { this.loginForm = ref; }}
-                              type={Login}
-                              options={LoginFormOptions}
-                              value={this.state.formValues}
-                              onChange={this.onFormChange}
+                            type={Login}
+                            options={LoginFormOptions}
+                            value={this.state.formValues}
+                            onChange={this.onFormChange}
                         />
                         <button disabled={this.props.isAuthenticating}
-                                type="submit"
-                                className="btn btn-default btn-block"
+                            type="submit"
+                            className="btn btn-default btn-block"
                         >
                             Submit
                         </button>

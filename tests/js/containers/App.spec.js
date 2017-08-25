@@ -154,7 +154,7 @@ describe(' App View Tests (Container):', () => {
 
             const wrapper = mount(
                 <AppConnected store={store}
-                              location={{ pathname: '/' }}
+                    location={{ pathname: '/' }}
                 >
                     <div>for testing only</div>
                 </AppConnected>);

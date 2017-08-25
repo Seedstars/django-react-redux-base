@@ -8,7 +8,6 @@ import { authLogoutAndRedirect } from './actions/auth';
 import './styles/main.scss';
 
 class App extends React.Component {
-
     static propTypes = {
         isAuthenticated: React.PropTypes.bool.isRequired,
         children: React.PropTypes.shape().isRequired,
@@ -45,10 +44,10 @@ class App extends React.Component {
                     <div className="container-fluid">
                         <div className="navbar-header">
                             <button type="button"
-                                    className="navbar-toggle collapsed"
-                                    data-toggle="collapse"
-                                    data-target="#top-navbar"
-                                    aria-expanded="false"
+                                className="navbar-toggle collapsed"
+                                data-toggle="collapse"
+                                data-target="#top-navbar"
+                                aria-expanded="false"
                             >
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar" />

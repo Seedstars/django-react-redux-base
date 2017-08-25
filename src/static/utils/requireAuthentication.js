@@ -4,7 +4,6 @@ import { push } from 'react-router-redux';
 
 export default function requireAuthentication(Component) {
     class AuthenticatedComponent extends React.Component {
-
         static propTypes = {
             isAuthenticated: React.PropTypes.bool.isRequired,
             location: React.PropTypes.shape({

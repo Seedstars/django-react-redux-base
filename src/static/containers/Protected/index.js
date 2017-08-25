@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/data';
 
 class ProtectedView extends React.Component {
-
     static propTypes = {
         isFetching: React.PropTypes.bool.isRequired,
         data: React.PropTypes.string,
