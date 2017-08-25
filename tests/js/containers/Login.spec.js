@@ -184,16 +184,16 @@ describe('Login View Tests (Container):', () => {
                 const div = wrapper.find('div.alert-success');
 
                 expect(div).to.have.length(1);
-                expect(div.text()).to.equal(wrapper.node.renderedElement.props.statusText);
+                expect(div.text()).to.equal(wrapper.node.selector.props.statusText);
             });
 
             it('props', () => {
-                expect(wrapper.node.renderedElement.props.isAuthenticating).to.equal(state.auth.isAuthenticating);
-                expect(wrapper.node.renderedElement.props.statusText).to.equal(state.auth.statusText);
+                expect(wrapper.node.selector.props.isAuthenticating).to.equal(state.auth.isAuthenticating);
+                expect(wrapper.node.selector.props.statusText).to.equal(state.auth.statusText);
             });
 
             it('actions', () => {
-                expect(wrapper.node.renderedElement.props.actions.authLoginUser).to.not.equal(undefined);
+                expect(wrapper.node.selector.props.actions.authLoginUser).to.not.equal(undefined);
             });
 
             nock.cleanAll();

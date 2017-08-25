@@ -131,12 +131,12 @@ describe(' Protected View Tests (Container):', () => {
             const wrapper = mount(<ProtectedViewConnected store={store} token={state.auth.token} />);
 
             it('props', () => {
-                expect(wrapper.node.renderedElement.props.isFetching).to.equal(state.data.isFetching);
-                expect(wrapper.node.renderedElement.props.data).to.equal(state.data.data);
+                expect(wrapper.node.selector.props.isFetching).to.equal(state.data.isFetching);
+                expect(wrapper.node.selector.props.data).to.equal(state.data.data);
             });
 
             it('actions', () => {
-                expect(wrapper.node.renderedElement.props.actions.dataFetchProtectedData).to.not.equal(undefined);
+                expect(wrapper.node.selector.props.actions.dataFetchProtectedData).to.not.equal(undefined);
             });
 
             nock.cleanAll();

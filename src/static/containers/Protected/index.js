@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
 import * as actionCreators from '../../actions/data';
 
 class ProtectedView extends React.Component {
     static propTypes = {
-        isFetching: React.PropTypes.bool.isRequired,
-        data: React.PropTypes.string,
-        token: React.PropTypes.string.isRequired,
-        actions: React.PropTypes.shape({
-            dataFetchProtectedData: React.PropTypes.func.isRequired
+        isFetching: PropTypes.bool.isRequired,
+        data: PropTypes.string,
+        token: PropTypes.string.isRequired,
+        actions: PropTypes.shape({
+            dataFetchProtectedData: PropTypes.func.isRequired
         }).isRequired
     };
 

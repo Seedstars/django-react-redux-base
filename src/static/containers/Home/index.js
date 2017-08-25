@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import './style.scss';
 import reactLogo from './images/react-logo.png';
@@ -8,8 +9,8 @@ import reduxLogo from './images/redux-logo.png';
 
 class HomeView extends React.Component {
     static propTypes = {
-        statusText: React.PropTypes.string,
-        userName: React.PropTypes.string
+        statusText: PropTypes.string,
+        userName: PropTypes.string
     };
 
     static defaultProps = {

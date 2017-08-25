@@ -79,7 +79,7 @@ describe('Home View Tests (Container):', () => {
             const wrapper = mount(<HomeViewConnected store={store} />);
 
             it('props', () => {
-                expect(wrapper.node.renderedElement.props.statusText).to.equal(state.auth.statusText);
+                expect(wrapper.node.selector.props.statusText).to.equal(state.auth.statusText);
             });
         });
     });

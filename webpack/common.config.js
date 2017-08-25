@@ -52,25 +52,6 @@ const common = {
             async: true,
             minChunks: 2
         }),
-        new webpack.LoaderOptionsPlugin({
-            test: /\.scss$/,
-            options: {
-                postcss: [
-                    autoprefixer({ browsers: ['last 2 versions'] })
-                ],
-                sassLoader: {
-                    data: `@import "${__dirname}/../src/static/styles/config/_variables.scss";`
-                }
-            }
-        }),
-        new webpack.LoaderOptionsPlugin({
-            test: /\.css$/,
-            options: {
-                postcss: [
-                    autoprefixer({ browsers: ['last 2 versions'] })
-                ]
-            }
-        }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, '../src/static/index.html'),
             hash: true,
@@ -98,9 +79,9 @@ const common = {
         rules: [
             {
                 test: /\.js$/,
-                use: [
-                    { loader: 'babel-loader' }
-                ],
+                use: {
+                    loader: 'babel-loader'
+                },
                 exclude: /node_modules/
             },
             {

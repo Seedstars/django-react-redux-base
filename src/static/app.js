@@ -3,16 +3,17 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import { authLogoutAndRedirect } from './actions/auth';
 import './styles/main.scss';
 
 class App extends React.Component {
     static propTypes = {
-        isAuthenticated: React.PropTypes.bool.isRequired,
-        children: React.PropTypes.shape().isRequired,
-        dispatch: React.PropTypes.func.isRequired,
-        pathName: React.PropTypes.string.isRequired
+        isAuthenticated: PropTypes.bool.isRequired,
+        children: PropTypes.shape().isRequired,
+        dispatch: PropTypes.func.isRequired,
+        pathName: PropTypes.string.isRequired
     };
 
     logout = () => {

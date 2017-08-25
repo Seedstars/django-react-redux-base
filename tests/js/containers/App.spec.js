@@ -160,8 +160,8 @@ describe(' App View Tests (Container):', () => {
                 </AppConnected>);
 
             it('props', () => {
-                expect(wrapper.node.renderedElement.props.isAuthenticated).to.equal(state.auth.isAuthenticated);
-                expect(wrapper.node.renderedElement.props.pathName).to.equal('/');
+                expect(wrapper.node.selector.props.isAuthenticated).to.equal(state.auth.isAuthenticated);
+                expect(wrapper.node.selector.props.pathName).to.equal('/');
             });
         });
     });

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { push } from 'react-router-redux';
 import t from 'tcomb-form';
+import PropTypes from 'prop-types';
 
 import * as actionCreators from '../../actions/auth';
 
@@ -26,15 +27,15 @@ const LoginFormOptions = {
 
 class LoginView extends React.Component {
     static propTypes = {
-        dispatch: React.PropTypes.func.isRequired,
-        isAuthenticated: React.PropTypes.bool.isRequired,
-        isAuthenticating: React.PropTypes.bool.isRequired,
-        statusText: React.PropTypes.string,
-        actions: React.PropTypes.shape({
-            authLoginUser: React.PropTypes.func.isRequired
+        dispatch: PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.bool.isRequired,
+        isAuthenticating: PropTypes.bool.isRequired,
+        statusText: PropTypes.string,
+        actions: PropTypes.shape({
+            authLoginUser: PropTypes.func.isRequired
         }).isRequired,
-        location: React.PropTypes.shape({
-            query: React.PropTypes.object.isRequired
+        location: PropTypes.shape({
+            query: PropTypes.object.isRequired
         })
     };
 

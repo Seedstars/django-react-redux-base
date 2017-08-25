@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const extractCSS = new ExtractTextPlugin('styles/[name].css');
+// importLoader:1 from https://blog.madewithenvy.com/webpack-2-postcss-cssnext-fdcd2fd7d0bd
 
 module.exports = {
     // devtool: 'source-map', // No need for dev tool in production
@@ -9,24 +9,33 @@ module.exports = {
     module: {
         rules: [{
             test: /\.css$/,
-            use: [
-                extractCSS.extract('style'),
-                'css-loader?localIdentName=[path][name]--[local]',
-                'postcss-loader'
-            ]
+            use: ExtractTextPlugin.extract([
+                {
+                    loader: 'css-loader',
+                    options: { importLoaders: 1 },
+                },
+                'postcss-loader']
+            )
         }, {
             test: /\.scss$/,
-            use: [
-                extractCSS.extract('style'),
-                'css-loader?localIdentName=[path][name]--[local]',
+            use: ExtractTextPlugin.extract([
+                {
+                    loader: 'css-loader',
+                    options: { importLoaders: 1 },
+                },
                 'postcss-loader',
-                'sass-loader',
-            ]
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        data: `@import "${__dirname}/../src/static/styles/config/_variables.scss";`
+                    }
+                }]
+            )
         }],
     },
 
     plugins: [
-        extractCSS,
+        new ExtractTextPlugin('styles/[name].css'),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
