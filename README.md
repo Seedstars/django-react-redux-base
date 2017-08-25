@@ -74,7 +74,7 @@ You have two ways of running this project: Using the Dockers scripts or running 
 
 **NodeJS tooling**
 
-* `$ wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -`
+* `$ wget -qO- https://deb.nodesource.com/setup_6.x | sudo bash -`
 * `$ apt-get install --yes nodejs`
 * `$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -`
 * `$ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
