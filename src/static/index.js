@@ -1,18 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 
+import { authLoginUserSuccess } from './actions/auth';
 import Root from './containers/Root/Root';
 import configureStore from './store/configureStore';
-import { authLoginUserSuccess } from './actions/auth';
 
 
 const initialState = {};
 const target = document.getElementById('root');
 
-const store = configureStore(initialState, browserHistory);
-const history = syncHistoryWithStore(browserHistory, store);
+const history = createHistory();
+const store = configureStore(initialState, history);
 
 const node = (
     <Root store={store} history={history} />

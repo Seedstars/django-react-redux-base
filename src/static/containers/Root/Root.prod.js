@@ -1,9 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
+import { ConnectedRouter } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
 import routes from '../../routes';
+import App from '../../app';
 
 export default class Root extends React.Component {
     static propTypes = {
@@ -15,11 +16,11 @@ export default class Root extends React.Component {
         return (
             <div>
                 <Provider store={this.props.store}>
-                    <div>
-                        <Router history={this.props.history}>
+                    <App>
+                        <ConnectedRouter history={this.props.history}>
                             {routes}
-                        </Router>
-                    </div>
+                        </ConnectedRouter>
+                    </App>
                 </Provider>
             </div>
         );

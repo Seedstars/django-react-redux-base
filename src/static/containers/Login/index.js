@@ -35,7 +35,7 @@ class LoginView extends React.Component {
             authLoginUser: PropTypes.func.isRequired
         }).isRequired,
         location: PropTypes.shape({
-            query: PropTypes.object.isRequired
+            search: PropTypes.string.isRequired
         })
     };
 
@@ -47,7 +47,7 @@ class LoginView extends React.Component {
     constructor(props) {
         super(props);
 
-        const redirectRoute = this.props.location ? this.props.location.query.next || '/' : '/';
+        const redirectRoute = this.props.location ? this.extractRedirect(this.props.location.search) || '/' : '/';
         this.state = {
             formValues: {
                 email: '',
@@ -65,6 +65,11 @@ class LoginView extends React.Component {
 
     onFormChange = (value) => {
         this.setState({ formValues: value });
+    };
+
+    extractRedirect = (string) => {
+        const match = string.match(/next=(.*)/);
+        return match ? match[1] : '/';
     };
 
     login = (e) => {

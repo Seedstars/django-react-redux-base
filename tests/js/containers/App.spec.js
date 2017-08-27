@@ -23,7 +23,7 @@ describe(' App View Tests (Container):', () => {
                 isAuthenticated: false,
                 children: <div className="test-test" />,
                 dispatch: spies.redirect,
-                pathName: '/'
+                location: { pathname: '/' }
             };
 
             beforeEach(() => {
@@ -161,7 +161,7 @@ describe(' App View Tests (Container):', () => {
 
             it('props', () => {
                 expect(wrapper.node.selector.props.isAuthenticated).to.equal(state.auth.isAuthenticated);
-                expect(wrapper.node.selector.props.pathName).to.equal('/');
+                expect(wrapper.node.selector.props.location.pathname).to.equal('/');
             });
         });
     });

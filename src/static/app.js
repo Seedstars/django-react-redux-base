@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
@@ -13,7 +12,13 @@ class App extends React.Component {
         isAuthenticated: PropTypes.bool.isRequired,
         children: PropTypes.shape().isRequired,
         dispatch: PropTypes.func.isRequired,
-        pathName: PropTypes.string.isRequired
+        location: PropTypes.shape({
+            pathname: PropTypes.string
+        })
+    };
+
+    static defaultProps = {
+        location: undefined
     };
 
     logout = () => {
@@ -24,19 +29,23 @@ class App extends React.Component {
         this.props.dispatch(push('/'));
     };
 
+    goToLogin = () => {
+        this.props.dispatch(push('/login'));
+    };
+
     goToProtected = () => {
         this.props.dispatch(push('/protected'));
     };
 
     render() {
         const homeClass = classNames({
-            active: this.props.pathName === '/'
+            active: this.props.location && this.props.location.pathname === '/'
         });
         const protectedClass = classNames({
-            active: this.props.pathName === '/protected'
+            active: this.props.location && this.props.location.pathname === '/protected'
         });
         const loginClass = classNames({
-            active: this.props.pathName === '/login'
+            active: this.props.location && this.props.location.pathname === '/login'
         });
 
         return (
@@ -86,7 +95,9 @@ class App extends React.Component {
                                         </a>
                                     </li>
                                     <li className={loginClass}>
-                                        <Link className="js-login-button" to="/login">Login</Link>
+                                        <a className="js-login-button" onClick={this.goToLogin}>
+                                            <i className="fa fa-home" /> Login
+                                        </a>
                                     </li>
                                 </ul>
                             }
@@ -105,7 +116,7 @@ class App extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        pathName: ownProps.location.pathname
+        location: state.routing.location
     };
 };
 

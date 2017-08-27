@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -10,12 +10,17 @@ import reduxLogo from './images/redux-logo.png';
 class HomeView extends React.Component {
     static propTypes = {
         statusText: PropTypes.string,
-        userName: PropTypes.string
+        userName: PropTypes.string,
+        dispatch: PropTypes.func.isRequired
     };
 
     static defaultProps = {
         statusText: '',
         userName: ''
+    };
+
+    goToProtected = () => {
+        this.props.dispatch(push('/protected'));
     };
 
     render() {
@@ -36,7 +41,7 @@ class HomeView extends React.Component {
                     <h4>Hello, {this.props.userName || 'guest'}.</h4>
                 </div>
                 <div className="margin-top-medium text-center">
-                    <p>Attempt to access some <Link to="/protected"><b>protected content</b></Link>.</p>
+                    <p>Attempt to access some <a onClick={this.goToProtected}><b>protected content</b></a>.</p>
                 </div>
                 <div className="margin-top-medium">
                     {this.props.statusText ?
