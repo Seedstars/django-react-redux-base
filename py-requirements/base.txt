@@ -21,4 +21,4 @@ python-dateutil==2.6.1
 # Logging
 git+https://github.com/Seedstars/django-rest-logger.git
 
-django-rest-knox==3.0.0
+django-rest-knox==3.0.3
