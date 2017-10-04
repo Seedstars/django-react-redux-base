@@ -55,6 +55,8 @@ const common = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, '../src/static/index.html'),
             hash: true,
+            chunks: ['vendor', 'app'],
+            chunksSortMode: 'manual',
             filename: 'index.html',
             inject: 'body'
         }),
