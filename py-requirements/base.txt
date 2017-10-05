@@ -10,7 +10,7 @@ psycopg2==2.7.3
 whitenoise==3.3.0
 
 # Rest Framework
-djangorestframework==3.6.3
+djangorestframework==3.6.4
 
 # Sentry
 raven==6.1.0
