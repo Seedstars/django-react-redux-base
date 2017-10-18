@@ -5,15 +5,23 @@ from lib.utils import validate_email as email_is_valid
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """Simply extracts core user attributes."""
+
     class Meta:
+        """Meta."""
+
         model = User
         fields = ('email', 'first_name', 'last_name',)
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
+    """Registration Serializer."""
+
     email = serializers.EmailField()
 
     class Meta:
+        """Meta."""
+
         model = User
         fields = ('id', 'email', 'first_name', 'last_name', 'password')
 
