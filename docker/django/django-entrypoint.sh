@@ -1,8 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 until cd src
 do
     echo "Waiting for django volume..."
+    sleep 2
 done
 
 until python manage.py migrate --settings=djangoreactredux.settings.dev_docker
