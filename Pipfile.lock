@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "90dd0c535f2e2ad7ddb408570bbf0e869c3b24f2e80de080a60cef2e953830b9"
+            "sha256": "07d979005d3b62f390d32b808afe27ead2aa8ceccc0ea6040d8e711f5de4ee10"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -125,16 +125,16 @@
             "version": "==3.1.4"
         },
         "django-rest-logger": {
-            "git": "https://github.com/Seedstars/django-rest-logger.git",
-            "ref": "7523864f4a5e4f94b205770101d45e3155dfcb50"
+            "git": "https://github.com/seedstars/django-rest-logger.git",
+            "ref": "eb1a74a573a8d1359a55bcf8440ee2f6b7ee7f0a"
         },
         "djangorestframework": {
             "hashes": [
-                "sha256:0f9bfbac702f3376dfb2db4971ad8af4e066bfa35393b1b85e085f7e8b91189a",
-                "sha256:de8ac68b3cf6dd41b98e01dcc92dc0022a5958f096eafc181a17fa975d18ca42"
+                "sha256:b6714c3e4b0f8d524f193c91ecf5f5450092c2145439ac2769711f7eba89a9d9",
+                "sha256:c375e4f95a3a64fccac412e36fb42ba36881e52313ec021ef410b40f67cddca4"
             ],
             "index": "pypi",
-            "version": "==3.6.4"
+            "version": "==3.8.2"
         },
         "gunicorn": {
             "hashes": [

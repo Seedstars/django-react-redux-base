@@ -9,7 +9,7 @@ Django = "==1.11.14"
 django-extensions = "==2.0.7"
 django-disposable-email-checker = "==1.2.1"
 django-rest-knox = "==3.1.4"
-djangorestframework = "==3.6.4"
+djangorestframework = "==3.8.2"
 # PostgresSQL
 "psycopg2" = "==2.7.5"
 # serve files
@@ -19,7 +19,7 @@ raven = "==6.9.0"
 # WSGI server
 gunicorn = "==19.9.0"
 # Logging
-django-rest-logger = {git = "https://github.com/Seedstars/django-rest-logger.git"}
+django-rest-logger = {git = "https://github.com/seedstars/django-rest-logger.git"}
 python-dateutil = "==2.7.3"
 
 [dev-packages]
