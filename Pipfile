@@ -1,0 +1,41 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+# Django
+Django = "==1.11.14"
+django-extensions = "==2.0.7"
+django-disposable-email-checker = "==1.2.1"
+django-rest-knox = "==3.1.4"
+djangorestframework = "==3.6.4"
+# PostgresSQL
+"psycopg2" = "==2.7.5"
+# serve files
+whitenoise = "==3.3.1"
+# Sentry
+raven = "==6.9.0"
+# WSGI server
+gunicorn = "==19.9.0"
+# Logging
+django-rest-logger = {git = "https://github.com/Seedstars/django-rest-logger.git"}
+python-dateutil = "==2.7.3"
+
+[dev-packages]
+factory_boy = "==2.11.1"
+prospector = "==0.12.11"
+bandit = "==1.4.0"
+pytest = "==3.6.3"
+pytest-cov = "==2.5.1"
+pytest-django = "==3.3.2"
+pytest-pythonpath = "==0.7.2"
+pytest-xdist = "==1.22.2"
+ptpython = "==0.41"
+pylint = "==1.9.2"
+pylint-django = "==0.11.1"
+mock = "==2.0.0"
+black = "==18.6b4"
+
+[requires]
+python_version = "3.6"

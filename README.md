@@ -74,7 +74,7 @@ You have two ways of running this project: Using the Dockers scripts or running 
 
 **NodeJS tooling**
 
-* `$ wget -qO- https://deb.nodesource.com/setup_6.x | sudo bash -`
+* `$ wget -qO- https://deb.nodesource.com/setup_8.x | sudo bash -`
 * `$ apt-get install --yes nodejs`
 * `$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -`
 * `$ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
@@ -87,13 +87,14 @@ There are commands you need to compile javascript and run project. Ideally `yarn
 * `$ yarn `
 * `$ yarn run dev`  # will run webpack with watch and compile code as it changes
 
-* `$ virtualenv -p /usr/bin/python3 virtualenv`
+* `$ virtualenv -p python3.6 virtualenv`
 * `$ source virtualenv/bin/activate`
-* `$ pip install -r py-requirements/dev.txt`
+* `$ pipenv install --dev`
 
 * `$ cd src`
 * `$ python manage.py migrate`
 * `$ python manage.py loaddata fixtures.json`
+* `$ python manage.py collectstatic`
 * `$ python manage.py runserver`
 
 Then open your browser the page: http://localhost:8000/ If all goes ok you should see a React single page app. 

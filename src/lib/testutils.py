@@ -1,7 +1,6 @@
-from unittest import TestCase
+from django.test import testcases
 
-
-class CustomTestCase(TestCase):
+class CustomTestCase(testcases.TestCase):
     def assert_fields_required(self, required, form, list_fields):
         """
         Check if a list of fields and required or not required in a form.
