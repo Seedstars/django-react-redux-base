@@ -6,7 +6,9 @@ services:
         image: nginx:1.11.6-alpine
     postgres:
         restart: always
-        image: postgres:9.5.4
+        build:
+            context: .
+            dockerfile: ./docker/postgres/Dockerfile
         expose:
             - 5432
         volumes:
