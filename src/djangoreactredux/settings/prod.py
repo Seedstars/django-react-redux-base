@@ -29,9 +29,9 @@ RAVEN_CONFIG = {
     'dsn': '',
 }
 
-INSTALLED_APPS = INSTALLED_APPS + (  # NOQA (ignore all errors on this line)
+INSTALLED_APPS = INSTALLED_APPS + [  # NOQA (ignore all errors on this line)
     'raven.contrib.django.raven_compat',
-)
+]
 
 # ####### Logging
 
