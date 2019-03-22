@@ -129,6 +129,7 @@ const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
         isAuthenticating: state.auth.isAuthenticating,
+        location: state.routing.location,
         statusText: state.auth.statusText
     };
 };
