@@ -1,15 +1,15 @@
 -r base.txt
 
-mock==2.0.0
-factory-boy==2.9.2
+mock==3.0.5
+factory-boy==2.12.0
 
-prospector==0.12.7
-bandit==1.4.0
+prospector==1.1.6.2
+bandit==1.6.0
 
-pytest==3.2.1
-pytest-cov==2.5.1
-pytest-django==3.1.2
-pytest-pythonpath==0.7.1
-pytest-xdist==1.20.0
+pytest==4.6.1
+pytest-cov==2.7.1
+pytest-django==3.4.8
+pytest-pythonpath==0.7.3
+pytest-xdist==1.28.0
 
-ptpython==0.41
+ptpython==2.0.4

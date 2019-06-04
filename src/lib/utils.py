@@ -1,7 +1,7 @@
-from disposable_email_checker.validators import validate_disposable_email
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email as django_validate_email
 from django.db import transaction
+from email_validator import validate_email as existence_check, EmailNotValidError
 
 
 def validate_email(value):
@@ -14,10 +14,10 @@ def validate_email(value):
     except ValidationError:
         return False
     else:
-        # Check with the disposable list.
+        # Check if the domain name exists.
         try:
-            validate_disposable_email(value)
-        except ValidationError:
+            existence_check(value)
+        except EmailNotValidError:
             return False
         else:
             return True

@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django_rest_logger import log
-from knox.auth import TokenAuthentication
-from knox.models import AuthToken
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token as TokenModel
 from rest_framework import status
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.generics import GenericAPIView
@@ -30,10 +30,11 @@ class UserLoginView(GenericAPIView):
 
     def post(self, request):
         """User login with username and password."""
-        token = AuthToken.objects.create(request.user)
+        token = TokenModel.objects.get_or_create(user=request.user)
+
         return Response({
             'user': self.get_serializer(request.user).data,
-            'token': token
+            'token': token[0].key
         })
 
 
@@ -47,7 +48,7 @@ class UserConfirmEmailView(AtomicMixin, GenericAPIView):
 
         Receive an activation key as parameter and confirm email.
         """
-        user = get_object_or_404(User, activation_key=str(activation_key))
+        user = get_object_or_404(User, activation_key=activation_key)
         if user.confirm_email():
             return Response(status=status.HTTP_200_OK)
 
