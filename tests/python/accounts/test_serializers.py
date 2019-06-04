@@ -8,7 +8,7 @@ from tests.python.accounts.test_models import UserFactory
 
 class UserRegistrationSerializerTest(CustomTestCase, APITestCase):
     INVALID_DATA_DICT = [
-        {'data': {'email': 'test1@mailinator.com',
+        {'data': {'email': 'test1@FAKEmailinator.com',
                   'first_name': 'test',
                   'last_name': 'user',
                   'password': 'test'},
