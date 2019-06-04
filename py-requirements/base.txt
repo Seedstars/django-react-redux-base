@@ -19,3 +19,15 @@ python-dateutil==2.8.0
 # Logging
 git+https://github.com/Seedstars/django-rest-logger.git
 
+# email validator
+email-validator==1.0.4
+dnspython==1.16.0
+idna==2.8
+
+# django rest auth
+django-rest-auth==0.9.5
+six==1.10.0
+pycodestyle==2.5.0
+pytz==2019.1
+sqlparse==0.3.0
+
