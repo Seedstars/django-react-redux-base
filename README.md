@@ -35,14 +35,14 @@ We build on the shoulders of giants with the following technologies:
 
 * [Django](https://www.djangoproject.com/)
 * [Django REST framework](http://www.django-rest-framework.org/) Django REST framework is a powerful and flexible toolkit for building Web APIs
-* [Django REST Knox](https://github.com/James1345/django-rest-knox) Token based authentication for API endpoints
+* [Django Rest Auth](https://github.com/Tivix/django-rest-auth) Authentication Methods for API endpoints
 * [WhiteNoise](http://whitenoise.evans.io/en/latest/django.html) to serve files efficiently from Django
 * [Prospector](http://prospector.landscape.io/en/master/) a complete Python static analysis tool
 * [Bandit](https://github.com/openstack/bandit) a security linter from OpenStack Security
 * [pytest](http://pytest.org/latest/) a mature full-featured Python testing tool
 * [Mock](http://www.voidspace.org.uk/python/mock/) mocking and testing Library
 * [Responses](https://github.com/getsentry/responses) a utility for mocking out the Python Requests library
-
+* [Python Email Validator](https://github.com/JoshData/python-email-validator) Validation and Domain Check for Emails
 
 ## Readme Notes
 
