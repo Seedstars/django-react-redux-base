@@ -4,7 +4,7 @@ django-extensions==1.8.1
 django-disposable-email-checker==1.2.1
 
 # PostgresSQL
-psycopg2==2.7.3
+psycopg2
 
 # serve files
 whitenoise==3.3.0
